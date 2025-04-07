@@ -31,6 +31,7 @@ void Phonebook::setIndex(int Index) {
 // }
 
 void	Phonebook::add(Contact NewContact) {
+
     if (Counter < 8)
     {
         contacts[Counter] = NewContact;

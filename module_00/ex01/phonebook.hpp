@@ -2,7 +2,7 @@
 #define PHONEBOOK_HPP
 
 #include <iostream>
-#include <string>
+#include <cstring>
 #include <iomanip>
 #include "contact.hpp"
 
