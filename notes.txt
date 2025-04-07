@@ -1,0 +1,34 @@
+References:
+    - https://cplusplus.com/doc/oldtutorial/
+    - https://www.w3schools.com/cpp/
+
+Class: declaration
+Object: instance of a class
+
+The Orthodox Canonical Class Form (Forma Canônica Ortodoxa de Classe)
+    - Default constructor: basicamente, declarando e inicializando com valores
+        padrões os atributos dentro da classe.
+    - Copy constructor: usado para criar e inicializar uma cópia 
+    (deep copy) de um objetos e seus atributos.
+    - Copy assignment operator: usado para modificar um objeto que já existe
+        com os valores dos atributos de outro objeto. 
+    - Destructor: deletar um objeto; liberar memória.
+    - Example: 
+        class MyClass {
+            private:
+                char* data;
+                size_t length;
+
+            public:
+                // Default Constructor
+                MyClass();
+
+                // Copy Constructor
+                MyClass(const MyClass& other);
+
+                // Copy Assignment Operator
+                MyClass& operator=(const MyClass& other);
+
+                // Destructor
+                ~MyClass();
+        };

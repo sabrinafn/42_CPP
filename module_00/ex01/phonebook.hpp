@@ -3,26 +3,23 @@
 
 #include <iostream>
 #include <string>
-#include <string>
 
-class PhoneBook
+class Phonebook //the c++ class
 {
-	public:
+	private:
 		std::string contacts[8];
 		void	add(void);
 		void	search(void);
 		void	exit(void); // method/function
-};
+    
+	public: // access specifier, public means that the atributes and methods are 
+			// acessible outside the class
+        Phonebook(); // Default Constructor
+        Phonebook(const Phonebook& copy); // Copy Constructor
+        Phonebook& operator=(const Phonebook& copy); // Copy Assignment Operator
+        ~Phonebook(); // Destructor
 
-class Contact
-{
-	public:
-		int			index;
-		std::string	first_name;
-		std::string	last_name;
-		std::string nickname;
-		int			phone_number;
-		std::string	darkest_secret;
+		// Phonebook&: referência a alguma estância da classe
 };
 
 #endif

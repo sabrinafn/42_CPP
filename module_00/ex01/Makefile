@@ -4,9 +4,9 @@ CC := c++
 
 FLAGS := -Wall -Wextra -Werror -std=c++98
 
-HPP_HEADER := phonebook.hpp
+HPP_HEADER := phonebook.hpp contact.hpp
 
-CPP_FILES := main.cpp
+CPP_FILES := main.cpp phonebook.cpp contact.cpp
 
 OBJ_FILES := $(CPP_FILES:.cpp=.o)
 
