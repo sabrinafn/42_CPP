@@ -3,23 +3,28 @@
 
 #include <iostream>
 #include <string>
+#include <iomanip>
+#include "contact.hpp"
 
 class Phonebook //the c++ class
 {
 	private:
-		std::string contacts[8];
-		void	add(void);
-		void	search(void);
-		void	exit(void); // method/function
+		Contact contacts[8]; // using the contact class to create an array
+		int			Index; // attribute
+		int			Counter;
+		int			NextIndex;
     
 	public: // access specifier, public means that the atributes and methods are 
 			// acessible outside the class
         Phonebook(); // Default Constructor
-        Phonebook(const Phonebook& copy); // Copy Constructor
-        Phonebook& operator=(const Phonebook& copy); // Copy Assignment Operator
         ~Phonebook(); // Destructor
-
-		// Phonebook&: referência a alguma estância da classe
+		int		getIndex();
+		void	setIndex(int Index);
+		int		getCounter();
+		void	setCounter(int Counter);
+		void	add(Contact NewContact); // method/function
+		void	search(void); // method/function
+		void	exit(void); // method/function
 };
 
 #endif

@@ -2,22 +2,16 @@
 
 // constructor method
 Contact::Contact() {
-    std::cout << "Constructor called." << std::endl;
+    std::cout << "Contact Constructor called." << std::endl;
 }
 
-// Copy Constructor
-Contact::Contact(const Contact& copy) {
-
+// Destructor method
+Contact::~Contact() {
+    std::cout << "Contact Destructor called." << std::endl;
 }
 
-Contact::Contact& operator=(const Contact& copy); // Copy Assignment Operator
-~Contact(); // Destructor
+// getter methods/functions
 
-// getter methodsfunctions
-
-int Contact::getIndex() {
-    return Index;
-}
 std::string	Contact::getFirstName() {
     return FirstName;
 }
@@ -39,10 +33,6 @@ std::string	Contact::getDarkestSecret() {
 }
 
 // setter methods/functions
-
-void Contact::setIndex(int Index) {
-    this->Index = Index;
-}
 
 void Contact::setFirstName(const std::string& FirstName) {
     this->FirstName = FirstName;

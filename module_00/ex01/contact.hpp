@@ -7,7 +7,6 @@
 class Contact //the c++ class
 {
 	private:
-		int			Index; // attribute
 		std::string	FirstName; // attribute
 		std::string	LastName; // attribute
 		std::string Nickname; // attribute
@@ -16,14 +15,10 @@ class Contact //the c++ class
     
 	public: // access specifier, public means that the atributes and methods are 
 			// acessible outside the class
-        Contact(); // Default Constructor
-        Contact(const Contact& copy); // Copy Constructor
-        Contact& operator=(const Contact& copy); // Copy Assignment Operator
+        Contact(); // Constructor
         ~Contact(); // Destructor
-		// Contact&: referência a alguma estância da classe
 
 		// declaration of getter functions
-		int	getIndex();
 		std::string	getFirstName();
 		std::string	getLastName();
 		std::string	getNickname();
@@ -31,7 +26,6 @@ class Contact //the c++ class
 		std::string	getDarkestSecret();
 
 		// declaration of setter functions
-		void	setIndex(int Index);
 		void	setFirstName(const std::string& FirstName);
 		void	setLastName(const std::string& LastName);
 		void	setNickname(const std::string& Nickname);
