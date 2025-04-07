@@ -1,6 +1,19 @@
 #include "contact.hpp"
 
-// getter functions
+// constructor method
+Contact::Contact() {
+    std::cout << "Constructor called." << std::endl;
+}
+
+// Copy Constructor
+Contact::Contact(const Contact& copy) {
+
+}
+
+Contact::Contact& operator=(const Contact& copy); // Copy Assignment Operator
+~Contact(); // Destructor
+
+// getter methodsfunctions
 
 int Contact::getIndex() {
     return Index;
@@ -25,5 +38,28 @@ std::string	Contact::getDarkestSecret() {
     return DarkestSecret;
 }
 
-// setter functions
+// setter methods/functions
 
+void Contact::setIndex(int Index) {
+    this->Index = Index;
+}
+
+void Contact::setFirstName(const std::string& FirstName) {
+    this->FirstName = FirstName;
+}
+
+void Contact::setLastName(const std::string& LastName) {
+    this->LastName = LastName;
+}
+
+void Contact::setNickname(const std::string& Nickname) {
+    this->Nickname = Nickname;
+}
+
+void Contact::setPhoneNumber(const std::string& PhoneNumber) {
+    this->PhoneNumber = PhoneNumber;
+}
+
+void Contact::setDarkestSecret(const std::string& DarkestSecret) {
+    this->DarkestSecret = DarkestSecret;
+}
