@@ -16,7 +16,7 @@ all: $(NAME)
 	$(CC) $(FLAGS) -c $<
 
 $(NAME): $(OBJ_FILES)
-	$(CC) $(FLAGS) $< -o $(NAME)
+	$(CC) $(FLAGS) $(OBJ_FILES) -o $(NAME)
 
 clean:
 	rm -f $(OBJ_FILES)
