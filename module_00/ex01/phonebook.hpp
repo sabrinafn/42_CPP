@@ -15,15 +15,15 @@ class Phonebook //the c++ class
 		int			NextIndex;
     
 	public: // access specifier, public means that the atributes and methods are 
-			// acessible outside the class
+			// accessible outside the class
         Phonebook(); // Default Constructor
         ~Phonebook(); // Destructor
 		int		getIndex();
 		void	setIndex(int Index);
 		int		getCounter();
 		void	setCounter(int Counter);
-		void	add(Contact NewContact); // method/function
-		void	search(void); // method/function
+		void	add(Contact NewContact); // method/function // set
+		void	search(void); // method/function // get
 		void	exit(void); // method/function
 };
 

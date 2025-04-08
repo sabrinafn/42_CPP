@@ -2,7 +2,7 @@
 #include "contact.hpp"
 
 // constructor method
-Phonebook::Phonebook() {
+Phonebook::Phonebook() : Index(0), Counter(0){
     std::cout << "Phonebook Constructor called." << std::endl;
 }
 
@@ -32,6 +32,8 @@ void Phonebook::setIndex(int Index) {
 
 void	Phonebook::add(Contact NewContact) {
 
+    std::cout << "here" << std::endl;
+    std::cout << "Current Counter value: " << Counter << std::endl;
     if (Counter < 8)
     {
         contacts[Counter] = NewContact;
@@ -46,10 +48,7 @@ void	Phonebook::add(Contact NewContact) {
 }
 
 void	Phonebook::search(void) {
-    std::cout << std::setw(10) << std::right << "Index" << "|"
-        << std::setw(10) << std::right << "First Name" << "|"
-        << std::setw(10) << std::right << "Last Name" << "|"
-        << std::setw(10) << std::right << "Nickname" << std::endl;
+    std::cout << "searching..." << std::endl;
 }
 
 void	Phonebook::exit(void) {

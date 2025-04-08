@@ -13,25 +13,25 @@ int	main(void)
 	while (1)
 	{
 		getline(std::cin, line);
-		
 		if (line == "ADD")
 		{
-			std::cout << "First name:" << std::endl;
+			Contact newContact;
+			std::cout << "First name:";
 			std::cin >> line;
-			phonebook.Contact[0].setFirstName(line);
-			std::cout << "Last name:" << std::endl;
+			newContact.setFirstName(line);
+			std::cout << "Last name:";
 			std::cin >> line;
-			new_contact.setLastName(line);
-			std::cout << "Nickname:" << std::endl;
+			newContact.setLastName(line);
+			std::cout << "Nickname:";
 			std::cin >> line;
-			new_contact.setNickname(line);
-			std::cout << "Phone number:" << std::endl;
+			newContact.setNickname(line);
+			std::cout << "Phone number:";
 			std::cin >> line;
-			new_contact.setPhoneNumber(line);
-			std::cout << "Darkest Secret:" << std::endl;
+			newContact.setPhoneNumber(line);
+			std::cout << "Darkest Secret:";
 			std::cin >> line;
-			new_contact.setDarkestSecret(line);
-			phonebook.add(new_contact);
+			newContact.setDarkestSecret(line);
+			phonebook.add(newContact);
 		}
 		else if (line == "SEARCH")
 		{
@@ -40,7 +40,9 @@ int	main(void)
 		else if (line == "EXIT")
 		{
 			exit(1);
-		} 
+		}
+		else
+			std::cout << "ADD || SEARCH || EXIT" << std::endl;
 	}
 }
 
