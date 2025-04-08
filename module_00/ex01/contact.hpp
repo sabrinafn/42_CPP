@@ -2,7 +2,7 @@
 #define CONTACT_HPP
 
 #include <iostream>
-#include <string>
+#include <cstring>
 
 class Contact //the c++ class
 {

@@ -1,35 +1,45 @@
 #include "phonebook.hpp"
 #include "contact.hpp"
 
-	//void	add(void);
-	//void	search(void);
-	//void	exit(void);
-
 int	main(void)
 {
 	Phonebook	phonebook;
 	std::string line;
 
+	std::cout << "===================================" << std::endl;
+	std::cout << "|      Welcome to Phonebook!      |" << std::endl;
+	std::cout << "===================================" << std::endl;
 	while (1)
 	{
+		std::system("clear");
+		std::cout << "===================================" << std::endl;
+		std::cout << "|                                 |" << std::endl;
+		std::cout << "| Please select an option:        |" << std::endl;
+		std::cout << "|                                 |" << std::endl;
+		std::cout << "| ADD: Add a new contact          |" << std::endl;
+		std::cout << "| SEARCH: Search for a contact    |" << std::endl;
+		std::cout << "| EXIT: Exit the program          |" << std::endl;
+		std::cout << "|                                 |" << std::endl;
+		std::cout << "===================================" << std::endl;
+
 		getline(std::cin, line);
 		if (line == "ADD")
 		{
 			Contact newContact;
 			std::cout << "First name:";
-			std::cin >> line;
+			getline(std::cin, line);
 			newContact.setFirstName(line);
 			std::cout << "Last name:";
-			std::cin >> line;
+			getline(std::cin, line);
 			newContact.setLastName(line);
 			std::cout << "Nickname:";
-			std::cin >> line;
+			getline(std::cin, line);
 			newContact.setNickname(line);
 			std::cout << "Phone number:";
-			std::cin >> line;
+			getline(std::cin, line);
 			newContact.setPhoneNumber(line);
 			std::cout << "Darkest Secret:";
-			std::cin >> line;
+			getline(std::cin, line);
 			newContact.setDarkestSecret(line);
 			phonebook.add(newContact);
 		}
@@ -39,26 +49,8 @@ int	main(void)
 		}
 		else if (line == "EXIT")
 		{
-			exit(1);
+			break;
 		}
-		else
-			std::cout << "ADD || SEARCH || EXIT" << std::endl;
 	}
 }
 
-	//std::cout << "First name:" << std::endl;
-	//std::cin >> first_name;
-	//new_contact.setFirstName(first_name);
-	//std::cout << "Last name:" << std::endl;
-	//std::cin >> last_name;
-	//new_contact.setLastName(last_name);
-	//std::cout << "Nickname:" << std::endl;
-	//std::cin >> nickname;
-	//new_contact.setNickname(nickname);
-	//std::cout << "Phone number:" << std::endl;
-	//std::cin >> phone_number;
-	//new_contact.setPhoneNumber(phone_number);
-	//std::cout << "Darkest Secret:" << std::endl;
-	//std::cin >> darkest_secret;
-	//new_contact.setDarkestSecret(darkest_secret);
-	//phonebook.add(new_contact);

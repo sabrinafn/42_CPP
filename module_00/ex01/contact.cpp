@@ -2,12 +2,10 @@
 
 // constructor method
 Contact::Contact() {
-    std::cout << "Contact Constructor called." << std::endl;
 }
 
 // Destructor method
 Contact::~Contact() {
-    std::cout << "Contact Destructor called." << std::endl;
 }
 
 // getter methods/functions
