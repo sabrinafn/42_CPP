@@ -56,7 +56,6 @@ Contact Phonebook::CreateContact(void) {
 }
 
 void	Phonebook::add(Contact NewContact) {
-    std::cout << "counter = " << Counter << std::endl;
     if (Counter < 8)
     {
         contacts[Counter] = NewContact;
@@ -127,22 +126,23 @@ void	Phonebook::search(void) {
         std::cout << "Invalid index." << std::endl;
 
     std::cout << "Enter anything to continue..." << std::endl;
-    getline(std::cin, line); // Wait for Enter
+    getline(std::cin, line);
   
 }
 
 void    Phonebook::display_info(void) {
-    std::cout << "===================================" << std::endl;
-    std::cout << "|      This is your phonebook     |" << std::endl;
-    std::cout << "===================================" << std::endl;
-    std::cout << "|                                 |" << std::endl;
-    std::cout << "|  How to use:                    |" << std::endl;
-    std::cout << "|                                 |" << std::endl;
-    std::cout << "|  ADD: Add a new contact         |" << std::endl;
-    std::cout << "|  SEARCH: Search for a contact   |" << std::endl;
-    std::cout << "|  EXIT: Exit the program         |" << std::endl;
-    std::cout << "|                                 |" << std::endl;
-    std::cout << "===================================" << std::endl;
+    std::cout << "=======================================" << std::endl;
+    std::cout << "|        This is your phonebook       |" << std::endl;
+    std::cout << "=======================================" << std::endl;
+    std::cout << "|                                     |" << std::endl;
+    std::cout << "|  How to use:                        |" << std::endl;
+    std::cout << "|                                     |" << std::endl;
+    std::cout << "|  ADD: Add a new contact             |" << std::endl;
+    std::cout << "|  SEARCH: Search for a contact       |" << std::endl;
+    std::cout << "|  EXIT: Exit the program             |" << std::endl;
+    std::cout << "|                                     |" << std::endl;
+    std::cout << "|            Phonebook capacity: [" << Counter << "/8] |" << std::endl;
+    std::cout << "=======================================" << std::endl;
     std::cout << std::endl;
     std::cout << "Command: ";
 }
