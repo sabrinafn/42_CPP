@@ -2,7 +2,7 @@
 #include "contact.hpp"
 
 // constructor method
-Phonebook::Phonebook() : Index(0), Counter(0){
+Phonebook::Phonebook() : Index(0), Counter(0), NextIndex(0){
 }
 
 // Destructor method
@@ -20,18 +20,41 @@ void Phonebook::setIndex(int Index) {
     this->Index = Index;
 }
 
+Contact Phonebook::CreateContact(void) {
+    Contact newContact;
+	std::string line;
+
+    std::cout << "First name:";
+    getline(std::cin, line);
+    newContact.setFirstName(line);
+    std::cout << "Last name:";
+    getline(std::cin, line);
+    newContact.setLastName(line);
+    std::cout << "Nickname:";
+    getline(std::cin, line);
+    newContact.setNickname(line);
+    std::cout << "Phone number:";
+    getline(std::cin, line);
+    newContact.setPhoneNumber(line);
+    std::cout << "Darkest Secret:";
+    getline(std::cin, line);
+    newContact.setDarkestSecret(line);
+
+    return (newContact);
+}
+
 void	Phonebook::add(Contact NewContact) {
+    std::cout << "counter = " << Counter << std::endl;
     if (Counter < 8)
     {
         contacts[Counter] = NewContact;
         Counter++;
     }
-    else
+    else if (Counter == 8)
     {
         contacts[NextIndex] = NewContact;
         NextIndex = (NextIndex + 1) % 8;
     }
-       
 }
 
 void	Phonebook::search(void) {
@@ -71,20 +94,43 @@ void	Phonebook::search(void) {
     }
 
     // 2. Prompt for Index
+    std::string line;
     int index;
     std::cout << "Enter index to display contact: ";
-    std::cin >> index;
-
+    getline(std::cin, line);
+    try {
+        index = std::stoi(line);
+    } catch (const std::invalid_argument& e) {
+    }
     // 3. Display Full Contact Information and 4. Handle Errors
-    if (index >= 1 && index <= Counter) { // Check for valid index
-        Contact& selectedContact = contacts[index - 1]; // Adjust index for array access
-
-        std::cout << "First Name: " << selectedContact.getFirstName() << std::endl;
-        std::cout << "Last Name: " << selectedContact.getLastName() << std::endl;
-        std::cout << "Nickname: " << selectedContact.getNickname() << std::endl;
-        std::cout << "Phone Number: " << selectedContact.getPhoneNumber() << std::endl;
-        std::cout << "Darkest Secret: " << selectedContact.getDarkestSecret() << std::endl;
+    if (!isdigit(index) && index >= 1 && index <= Counter) { // Check for valid index
+        Contact& ContactIndexed = contacts[index - 1]; // Adjust index for array access
+        std::cout << "First Name: " << ContactIndexed.getFirstName() << std::endl;
+        std::cout << "Last Name: " << ContactIndexed.getLastName() << std::endl;
+        std::cout << "Nickname: " << ContactIndexed.getNickname() << std::endl;
+        std::cout << "Phone Number: " << ContactIndexed.getPhoneNumber() << std::endl;
+        std::cout << "Darkest Secret: " << ContactIndexed.getDarkestSecret() << std::endl;
     }
     else
         std::cout << "Invalid index." << std::endl;
+
+    std::cout << "Enter anything to continue..." << std::endl;
+    getline(std::cin, line); // Wait for Enter
+  
+}
+
+void    Phonebook::display_info(void) {
+    std::cout << "===================================" << std::endl;
+    std::cout << "|      This is your phonebook     |" << std::endl;
+    std::cout << "===================================" << std::endl;
+    std::cout << "|                                 |" << std::endl;
+    std::cout << "|  How to use:                    |" << std::endl;
+    std::cout << "|                                 |" << std::endl;
+    std::cout << "|  ADD: Add a new contact         |" << std::endl;
+    std::cout << "|  SEARCH: Search for a contact   |" << std::endl;
+    std::cout << "|  EXIT: Exit the program         |" << std::endl;
+    std::cout << "|                                 |" << std::endl;
+    std::cout << "===================================" << std::endl;
+    std::cout << std::endl;
+    std::cout << "Command: ";
 }

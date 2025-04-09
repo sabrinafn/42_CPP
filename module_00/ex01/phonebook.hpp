@@ -25,6 +25,8 @@ class Phonebook //the c++ class
 		void	add(Contact NewContact); // method/function // set
 		void	search(void); // method/function // get
 		void	exit(void); // method/function
+		Contact	CreateContact();
+		void	display_info();
 };
 
 #endif
