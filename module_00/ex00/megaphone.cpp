@@ -11,8 +11,6 @@
 /* ************************************************************************** */
 
 #include <iostream>
-#include <string>
-#include <cctype>
 
 void	to_upper(std::string str)
 {
