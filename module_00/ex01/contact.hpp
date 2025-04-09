@@ -18,14 +18,15 @@
 
 class Contact //the c++ class
 {
-	private:
+	private:// access specifier, private means that the attributes and methods are 
+			// only acessible inside the class
 		std::string	FirstName; // attribute
 		std::string	LastName; // attribute
 		std::string Nickname; // attribute
 		std::string PhoneNumber; // attribute
 		std::string	DarkestSecret; // attribute
     
-	public: // access specifier, public means that the atributes and methods are 
+	public: // access specifier, public means that the attributes and methods are 
 			// acessible outside the class
         Contact(); // Constructor
         ~Contact(); // Destructor

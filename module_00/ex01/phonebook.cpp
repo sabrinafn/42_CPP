@@ -56,6 +56,15 @@ Contact Phonebook::CreateContact(void) {
 }
 
 void	Phonebook::add(Contact NewContact) {
+
+    if (NewContact.getFirstName().empty() || NewContact.getLastName().empty() ||
+        NewContact.getNickname().empty() || NewContact.getPhoneNumber().empty() ||
+        NewContact.getDarkestSecret().empty()) {
+        std::cerr << "Error: Contact has empty fields. Try again." << std::endl;
+        std::string line;
+        getline(std::cin, line);
+        return;
+    }
     if (Counter < 8)
     {
         contacts[Counter] = NewContact;
@@ -141,7 +150,7 @@ void    Phonebook::display_info(void) {
     std::cout << "|  SEARCH: Search for a contact       |" << std::endl;
     std::cout << "|  EXIT: Exit the program             |" << std::endl;
     std::cout << "|                                     |" << std::endl;
-    std::cout << "|            Phonebook capacity: [" << Counter << "/8] |" << std::endl;
+    std::cout << "|           Phonebook capacity: [" << Counter << "/8] |" << std::endl;
     std::cout << "=======================================" << std::endl;
     std::cout << std::endl;
     std::cout << "Command: ";
