@@ -21,17 +21,6 @@ Phonebook::Phonebook() : Index(0), Counter(0), NextIndex(0){
 Phonebook::~Phonebook() {
 }
 
-// getter functions 
-int Phonebook::getIndex() {
-    return Index;
-}
-
-// setter functions
-
-void Phonebook::setIndex(int Index) {
-    this->Index = Index;
-}
-
 Contact Phonebook::CreateContact(void) {
     Contact newContact;
 	std::string line;

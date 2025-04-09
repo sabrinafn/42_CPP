@@ -30,8 +30,6 @@ class Phonebook //the c++ class
 			// accessible outside the class
         Phonebook(); // Default Constructor
         ~Phonebook(); // Destructor
-		int		getIndex();
-		void	setIndex(int Index);
 		int		getCounter();
 		void	setCounter(int Counter);
 		void	add(Contact NewContact); // method/function // set
