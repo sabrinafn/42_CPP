@@ -107,11 +107,11 @@ void	Phonebook::search(void) {
     int index;
     std::cout << "Enter index to display contact: ";
     getline(std::cin, line);
-    try {
+    //try {
         index = std::stoi(line);
-    } catch (const std::invalid_argument& e) {
-        index = 0;
-    }
+    //} catch (const std::invalid_argument& e) {
+    //    index = 0;
+    //}
     // 3. Display Full Contact Information and 4. Handle Errors
     if (!isdigit(index) && index >= 1 && index <= Counter) { // Check for valid index
         Contact& ContactIndexed = contacts[index - 1]; // Adjust index for array access
