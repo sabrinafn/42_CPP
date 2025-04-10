@@ -14,13 +14,15 @@
 
 // constructor method
 Contact::Contact() {
+    return ;
 }
 
 // Destructor method
 Contact::~Contact() {
+    return ;
 }
 
-// getter methods/functions
+// getter methods
 
 std::string	Contact::getFirstName() {
     return FirstName;
@@ -42,7 +44,7 @@ std::string	Contact::getDarkestSecret() {
     return DarkestSecret;
 }
 
-// setter methods/functions
+// setter methods
 
 void Contact::setFirstName(const std::string& FirstName) {
     this->FirstName = FirstName;

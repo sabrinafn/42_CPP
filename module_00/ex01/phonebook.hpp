@@ -21,22 +21,25 @@
 
 class Phonebook //the c++ class
 {
-	private:
-		Contact contacts[8]; // using the contact class to create an array
+	private: // access specifier, private means that the attributes and methods are 
+	// only acessible inside the class
+		Contact contacts[8]; // using the contact class to create an array of contacts
 		int			Index; // attribute
 		int			Counter;
 		int			NextIndex;
     
 	public: // access specifier, public means that the atributes and methods are 
 			// accessible outside the class
-        Phonebook(); // Default Constructor
+        Phonebook(); // Constructor
         ~Phonebook(); // Destructor
 		int		getCounter();
 		void	setCounter(int Counter);
-		void	add(Contact NewContact); // method/function // set
-		void	search(void); // method/function // get
+		void	add(Contact NewContact); // method // setter
+		void	search(); // method // getter
 		Contact	CreateContact();
 		void	display_info();
+		void    display_contactlist_header();
+		void    search_contact_by_index();
 };
 
 #endif
