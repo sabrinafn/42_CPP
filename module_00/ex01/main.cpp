@@ -31,14 +31,14 @@ int	main(void)
 		else if (line == "SEARCH")
 			phonebook.search();
 		else if (line == "EXIT") {
-			std::system("clear");
+			std::cout << "\033[2J\033[1;1H";
 			break;
 		}
 		if (std::cin.eof()) {
-        	std::cout << "EOF (Ctrl+D) detected." << std::endl;
+        	std::cerr << "EOF (Ctrl+D) detected." << std::endl;
             break;
         }
-		std::system("clear");
+		std::cout << "\033[2J\033[1;1H";
 	}
 	return (0);
 }

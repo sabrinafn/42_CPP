@@ -49,7 +49,7 @@ void	Phonebook::add(Contact NewContact) {
     if (NewContact.getFirstName().empty() || NewContact.getLastName().empty() ||
         NewContact.getNickname().empty() || NewContact.getPhoneNumber().empty() ||
         NewContact.getDarkestSecret().empty()) {
-        std::cerr << "Error: Contact has empty fields. Try again." << std::endl;
+        std::cerr << "Error: A contact can't have empty fields. Try again." << std::endl;
         std::string line;
         getline(std::cin, line);
         return;
@@ -107,11 +107,10 @@ void	Phonebook::search(void) {
     int index;
     std::cout << "Enter index to display contact: ";
     getline(std::cin, line);
-    //try {
-        index = std::stoi(line);
-    //} catch (const std::invalid_argument& e) {
-    //    index = 0;
-    //}
+    std::stringstream ss(line);
+    ss >> index;
+    if (ss.fail())
+        index = 0;
     // 3. Display Full Contact Information and 4. Handle Errors
     if (!isdigit(index) && index >= 1 && index <= Counter) { // Check for valid index
         Contact& ContactIndexed = contacts[index - 1]; // Adjust index for array access
@@ -122,7 +121,7 @@ void	Phonebook::search(void) {
         std::cout << "Darkest Secret: " << ContactIndexed.getDarkestSecret() << std::endl;
     }
     else
-        std::cout << "Invalid index." << std::endl;
+        std::cerr << "Invalid index." << std::endl;
 
     std::cout << "Enter anything to continue..." << std::endl;
     getline(std::cin, line);

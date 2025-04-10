@@ -16,6 +16,7 @@
 #include <iostream>
 #include <cstring>
 #include <iomanip>
+#include <sstream>
 #include "contact.hpp"
 
 class Phonebook //the c++ class
