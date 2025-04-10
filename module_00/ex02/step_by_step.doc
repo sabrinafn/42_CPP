@@ -1,0 +1,63 @@
+A step-by-step breakdown of the process to reconstruct Account.cpp:
+
+Phase 1: Understanding the Header and Log
+
+1. Read Account.hpp:
+    Identify all member variables (both static and instance).
+    List all member functions (constructors, destructors, static functions, instance functions).
+    Note the return types and parameter types of each function.
+2. Analyze the Log File:
+    Observe the timestamp format at the beginning of each line.
+    Identify the sequence of operations (constructor calls, deposits, withdrawals, status displays, destructor calls).
+    Determine the input values passed to functions and the resulting output.
+    Deduce the logic of each function based on the input-output relationships.
+    Note the initial values of static variables and how they change.
+    Pay close attention to the messages related to successful and failed withdrawals.
+
+Phase 2: Implementing Account.cpp
+3. Create Account.cpp:
+    Create a new file named Account.cpp.
+    Include Account.hpp and necessary standard library headers (e.g., iostream, iomanip, ctime).
+4. Initialize Static Variables:
+    Outside the class definition, initialize all static member variables to their appropriate starting values (likely 0).
+5. Implement _displayTimestamp():
+    Write the function to produce the timestamp in the exact format shown in the log file (using time functions and output formatting).
+6. Implement the Constructor:
+    Write the constructor that takes an initial_deposit as input.
+    Assign the _accountIndex based on the number of accounts created.
+    Set the _amount to the initial_deposit.
+    Update static variables related to the number of accounts and total amount.
+    Output the account creation message in the log's format, including the timestamp.
+7. Implement the Destructor:
+    Write the destructor to output the account closure message in the log's format, including the timestamp.
+8. Implement displayAccountsInfos():
+    Write the function to output the values of the static member variables in the log's format, including the timestamp.
+9. Implement displayStatus():
+    Write the function to output the current state of an account in the log's format, including the timestamp.
+10. Implement makeDeposit():
+    Write the function to add a deposit to the account.
+    Update the account's _amount and _nbDeposits.
+    Update the static variables related to total amount and total deposits.
+    Output the deposit message in the log's format, including the timestamp.
+11. Implement makeWithdrawal():
+    Write the function to handle withdrawals.
+    Check if the withdrawal is possible (sufficient funds).
+    If possible, update the account's _amount and _nbWithdrawals, and update the static variables.
+    Output the withdrawal message (success or refusal) in the log's format, including the timestamp.
+12. Implement checkAmount():
+    Write the function to return the account's current balance.
+
+Phase 3: Compilation and Testing
+13. Create Makefile:
+    Create a Makefile to compile Account.cpp and tests.cpp.
+14. Compile the Program:
+    Use make to compile the program.
+15. Run the Executable:
+    Execute the compiled program.
+16. Compare Output:
+    Compare the program's output with the log file, ensuring they match exactly (except for timestamps).
+    The 'diff' command can be used to compare both files.
+17. Iterate and Debug:
+    If the output doesn't match, review Account.cpp, correct errors, and repeat steps 14-16.
+18. Verify with tests.cpp:
+    Ensure that all tests within the test.cpp file pass.
