@@ -10,7 +10,7 @@ OBJ_FILES := $(CPP_FILES:.cpp=.o)
 
 all: $(NAME)
 
-%.o: %.c
+%.o: %.cpp
 	$(CC) $(FLAGS) -c $<
 
 $(NAME): $(OBJ_FILES)
