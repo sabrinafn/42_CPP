@@ -12,6 +12,14 @@
 
 #include "phonebook.hpp"
 #include "contact.hpp"
+#include <csignal>
+
+void signalHandler(int signal) {
+    if (signal == SIGINT) {
+        std::cerr << " Signal interrupt (Ctrl+C) detected." << std::endl;
+        _exit(0);
+    }
+}
 
 int	main(void)
 {
@@ -19,6 +27,7 @@ int	main(void)
 	Contact		NewContact;
 	std::string line;
 
+	std::signal(SIGINT, signalHandler);
 	while (1)
 	{
 		phonebook.display_info();

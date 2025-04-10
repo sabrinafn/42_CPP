@@ -10,7 +10,7 @@ int Account::_totalNbDeposits = 0;
 int Account::_totalNbWithdrawals = 0;
 
 //2. initialize displaytimestamp
-// how the time should be displayed: [YYYYMMDD_HHMMSS]
+// how the timestamp should be displayed: [YYYYMMDD_HHMMSS]
 void	Account::_displayTimestamp(void) {
     // gets current calendar time
     std::time_t now = std::time(NULL);
@@ -40,6 +40,9 @@ Account::Account(int initial_deposit) {
 
     //update static variables related to the number of accounts and total amount.
     _totalAmount += initial_deposit;
+
+    _nbDeposits = 0;
+    _nbWithdrawals = 0;
 
     //Output the account creation message in the log's format, including the timestamp.
     //[19920104_091532] index:0;amount:42;created
