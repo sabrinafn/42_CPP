@@ -3,15 +3,17 @@
 #include <iomanip>
 #include <ctime>
 
-// 1. initialize static variables to 0;
+// 1. initialize static variables;
 int Account::_nbAccounts = 0;
 int Account::_totalAmount = 0;
 int Account::_totalNbDeposits = 0;
 int Account::_totalNbWithdrawals = 0;
 
-//2. initialize displaytimestamp
-// how the timestamp should be displayed: [YYYYMMDD_HHMMSS]
+//2. method to display timestamp
 void	Account::_displayTimestamp(void) {
+
+    // how the timestamp should be displayed: [YYYYMMDD_HHMMSS]
+
     // gets current calendar time
     std::time_t now = std::time(NULL);
     std::tm* localTime = std::localtime(&now);
@@ -24,18 +26,20 @@ void	Account::_displayTimestamp(void) {
     << std::setw(2) << localTime->tm_min // Minute (0-59)
     << std::setw(2) << localTime->tm_sec // Second (0-59)
     << "] ";
-    // timestamp exactly the same as the log file
+
+    // to display the timestamp exactly as the same in the log file received:
     //std::cout << "[19920104_091532] ";
 }
 
 // 3. constructor
 Account::Account(int initial_deposit) {
+
     // update the account index equal to the current number of accounts created.
     _accountIndex = _nbAccounts;
     // increment the number of accounts we have
     _nbAccounts += 1;
 
-    // initializing account with this first deposit done
+    // initializing account with the first deposit received
     _amount = initial_deposit;
 
     //update static variables related to the number of accounts and total amount.
