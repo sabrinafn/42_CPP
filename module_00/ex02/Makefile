@@ -18,6 +18,9 @@ all: $(NAME)
 $(NAME): $(OBJ_FILES)
 	$(CC) $(FLAGS) $(OBJ_FILES) -o $(NAME)
 
+v: 
+	valgrind --leak-check=full ./$(NAME)
+
 run: $(NAME)
 	./$(NAME) > output.log
 
@@ -30,4 +33,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all fclean clean re run
+.PHONY: all fclean clean re run v
