@@ -13,13 +13,13 @@
 #include "Zombie.hpp"
 
 // constructor
-Zombie::Zombie() {
+Zombie::Zombie(std::string name) name(name){
 
 }
 
 // destructor
 Zombie::~Zombie() {
-
+    std::cout << name << "is dead." << std::endl;
 }
 
 void    Zombie::announce( void ) {
@@ -27,23 +27,25 @@ void    Zombie::announce( void ) {
     std::cout << name << ": BraiiiiiiinnnzzzZ..." << std::endl;
 }
 
-Zombie* Zombie::newZombie( std::string name ) {
+Zombie* newZombie( std::string name ) {
     
     // creating zombie on the heap
-    Zombie* heapJohn = new Zombie();
-    if (heapJohn) { // checking if allocation was succesful
-        heapJohn->announce();
+    Zombie* heapZombie = new Zombie(name);
+    if (heapZombie) { // checking if allocation was succesful
+        heapZombie->announce();
     }
     else {
         std::cerr << "Memory allocation failed." << std::endl;
     }
 
-    return heapJohn;
+    return heapZombie;
 }
 
-void    Zombie::randomChump( std::string name ) {
+void    randomChump( std::string name ) {
     
     // creating zombie on the stack
-    Zombie* stackMary = Zombie;
+    Zombie stackZombie(name);
+    
+    stackZombie.announce();
 
 }
