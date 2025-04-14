@@ -10,4 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "Zombie.hpp"
 
+Zombie* newZombie( std::string name ) {
+    
+    // HEAP: dynamic memory to be allocated
+    // creating zombie on the heap
+    Zombie* heapZombie = new Zombie(name);
+    if (!heapZombie) {
+        std::cerr << "Memory allocation failed." << std::endl;
+    }
+    return heapZombie;
+}

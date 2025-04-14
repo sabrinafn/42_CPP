@@ -10,4 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "Zombie.hpp"
 
+void    randomChump( std::string name ) {
+    
+    // STACK: stores local variables - not allocated
+    // creating zombie on the stack
+    Zombie stackZombie(name);
+    stackZombie.announce();
+}

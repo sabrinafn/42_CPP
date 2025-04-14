@@ -13,5 +13,36 @@
 #include "Zombie.hpp"
 
 int main(void) {
+
+    // Creating a Zombie on the heap
+    std::cout << "==================================================" << std::endl;
+    std::cout << "|       Creating a Zombie on the Heap:           |" << std::endl;
+    std::cout << "==================================================" << std::endl;
+    std::cout << std::endl;
     
+    Zombie* heapZombie = newZombie("John");
+    heapZombie->announce();
+
+    std::cout << std::endl;
+
+
+    // Creating a Zombie on the stack
+    std::cout << "==================================================" << std::endl;
+    std::cout << "|  Creating and Deleting a Zombie on the Stack:  |" << std::endl;
+    std::cout << "==================================================" << std::endl;
+    std::cout << std::endl;
+    randomChump("Mary");
+
+    std::cout << std::endl;
+
+    // Deleting Zombie on the heap
+    std::cout << "==================================================" << std::endl;
+    std::cout << "|      Deleting the Zombie on the Heap:          |" << std::endl;
+    std::cout << "==================================================" << std::endl;
+    std::cout << std::endl;
+    delete heapZombie;
+    heapZombie = NULL;
+    std::cout << std::endl;
+
+    return 0;
 }
