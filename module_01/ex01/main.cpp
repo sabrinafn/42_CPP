@@ -16,12 +16,12 @@ int main(void) {
 
     // Creating a Zombie on the heap
     std::cout << "==================================================" << std::endl;
-    std::cout << "|       Creating a Zombie on the Heap:           |" << std::endl;
+    std::cout << "|    Creating a horde of Zombies on the Heap:    |" << std::endl;
     std::cout << "==================================================" << std::endl;
     std::cout << std::endl;
     
-    Zombie* heapZombie = newZombie("John");
-    heapZombie->announce();
+    Zombie* Zombies = zombieHorde(10, "John");
+    Zombies->announce();
 
     std::cout << std::endl;
 

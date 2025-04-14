@@ -13,7 +13,7 @@
 #include "Zombie.hpp"
 
 // constructor
-Zombie::Zombie(std::string name) : name(name) {
+Zombie::Zombie( void) : name("default") {
     std::cout  << "  " << name << " Constructor called" << std::endl;
 }
 
@@ -26,4 +26,8 @@ Zombie::~Zombie() {
 void    Zombie::announce( void ) const {
     
     std::cout << "  " << name << ": BraiiiiiiinnnzzzZ..." << std::endl;
+}
+
+void    Zombie::setName(std::string new_name) {
+        name = new_name;
 }

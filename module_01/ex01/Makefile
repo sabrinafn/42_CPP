@@ -4,7 +4,7 @@ CC := c++
 
 FLAGS := -Wall -Wextra -Werror -std=c++98
 
-CPP_FILES := main.cpp Zombie.cpp ZombieHorde.cpp
+CPP_FILES := main.cpp Zombie.cpp zombieHorde.cpp
 
 OBJ_FILES := $(CPP_FILES:.cpp=.o)
 
