@@ -32,3 +32,23 @@ The Orthodox Canonical Class Form (Forma Canônica Ortodoxa de Classe)
                 // Destructor
                 ~MyClass();
         };
+
+Stack and Heap Memory
+    
+    Stack: stores local variables - do not allocate
+    - stack has a fixed size, much smaller than the heap
+    - allocation and deallocation on the stack is done automatically
+    - every time a function is called, a new variable is declared, 
+        stack memory is allocated for the function and whenever a new variable
+        is declared then more stack memory is allocated for use.
+    - memory is allocated when a function is called and deallocated when the function returns
+
+    Associations: Stack = Plates (pratos guardados no armário da cozinha)
+                    = Automatic, Local, Fast, Small.
+
+    Heap: dynamic memory to be allocated
+    - allocation and deallocation is done by the programmer
+    - it's good for data that needs to be used out of a function scope
+    - heap has more space than the stack
+    
+    Associations: Heap = Heap (pilha de roupas) = Manual, Persistent, Slower, Large.
