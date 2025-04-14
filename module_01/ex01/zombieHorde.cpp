@@ -1,21 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   randomChump.cpp                                    :+:      :+:    :+:   */
+/*   zombieHorde.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabrifer <sabrifer@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/10 19:56:17 by sabrifer          #+#    #+#             */
-/*   Updated: 2025/04/10 19:56:19 by sabrifer         ###   ########.fr       */
+/*   Created: 2025/04/14 17:51:45 by sabrifer          #+#    #+#             */
+/*   Updated: 2025/04/14 17:51:46 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
 
-void    randomChump( std::string name ) {
+Zombie* Zombie::zombieHorde( int N, std::string name ) {
     
-    // STACK: stores local variables - not allocated
-    // creating zombie on the stack
-    Zombie stackZombie(name);
-    stackZombie.announce();
 }

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabrifer <sabrifer@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/10 19:56:41 by sabrifer          #+#    #+#             */
-/*   Updated: 2025/04/10 19:56:42 by sabrifer         ###   ########.fr       */
+/*   Created: 2025/04/14 17:52:21 by sabrifer          #+#    #+#             */
+/*   Updated: 2025/04/14 17:52:23 by sabrifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,7 @@ class Zombie
         Zombie(std::string name);
         ~Zombie();
         void    announce( void ) const;
-};         
-
-Zombie* newZombie( std::string name );
-void    randomChump( std::string name );
+        Zombie* zombieHorde( int N, std::string name );
+};
 
 #endif
