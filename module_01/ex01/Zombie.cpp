@@ -13,7 +13,7 @@
 #include "Zombie.hpp"
 
 // constructor
-Zombie::Zombie( void) : name("default") {
+Zombie::Zombie( void) : name("'unnamed'") {
     std::cout  << "  " << name << " Constructor called" << std::endl;
 }
 

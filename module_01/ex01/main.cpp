@@ -20,28 +20,22 @@ int main(void) {
     std::cout << "==================================================" << std::endl;
     std::cout << std::endl;
     
-    Zombie* Zombies = zombieHorde(10, "John");
-    Zombies->announce();
+    int size = 3;
 
-    std::cout << std::endl;
-
-
-    // Creating a Zombie on the stack
-    std::cout << "==================================================" << std::endl;
-    std::cout << "|  Creating and Deleting a Zombie on the Stack:  |" << std::endl;
-    std::cout << "==================================================" << std::endl;
-    std::cout << std::endl;
-    randomChump("Mary");
+    Zombie* Zombies = zombieHorde(size, "John");
+    for (int i = 0; i < size; i++) {
+        Zombies[i].announce();
+    }
 
     std::cout << std::endl;
 
     // Deleting Zombie on the heap
     std::cout << "==================================================" << std::endl;
-    std::cout << "|      Deleting the Zombie on the Heap:          |" << std::endl;
+    std::cout << "|    Deleting a horde of Zombies on the Heap:    |" << std::endl;
     std::cout << "==================================================" << std::endl;
     std::cout << std::endl;
-    delete heapZombie;
-    heapZombie = NULL;
+    delete[] Zombies;
+    Zombies = NULL;
     std::cout << std::endl;
 
     return 0;
