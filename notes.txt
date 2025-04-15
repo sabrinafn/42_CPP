@@ -63,3 +63,19 @@ Access Specifiers
         The access is allowed by functions that are defined within the class block.
     Protected: members cannot be accessed outside the class, however, they can be accessed
         in inherited classes.
+
+C++ References x Pointers
+
+    - References are declared using the '&'. For example: int& reference;
+    - Declaration and initialization must be done at the same time. For 
+        example, int x = 10; int& ref = x;
+    - It cannot be initialized to NULL
+    - It cannot be reassigned to refer to a different variable after initialization, 
+        it will be bound to the same object for the rest of its life.
+    - It must always refer to a valid object.
+    - Access is direct, as if it were the original variable
+
+    Associations:
+        - references == aka
+                     == pseudonym
+                     == nickname
