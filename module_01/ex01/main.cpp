@@ -14,7 +14,7 @@
 
 int main(void) {
 
-    // Creating a Zombie on the heap
+    // Creating a horde of Zombies on the heap
     std::cout << "==================================================" << std::endl;
     std::cout << "|    Creating a horde of Zombies on the Heap:    |" << std::endl;
     std::cout << "==================================================" << std::endl;
@@ -29,7 +29,7 @@ int main(void) {
 
     std::cout << std::endl;
 
-    // Deleting Zombie on the heap
+    // Deleting a horde of Zombies on the heap
     std::cout << "==================================================" << std::endl;
     std::cout << "|    Deleting a horde of Zombies on the Heap:    |" << std::endl;
     std::cout << "==================================================" << std::endl;
