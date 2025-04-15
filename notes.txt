@@ -52,3 +52,14 @@ Stack and Heap Memory
     - heap has more space than the stack
     
     Associations: Heap = Heap (pilha de roupas) = Manual, Persistent, Slower, Large.
+
+Access Specifiers
+
+    Public: attributes and methods can be accessed and modified from outside the code of
+        its class. For example, in the main() or other classes' methods.
+    Private: attributes and methods can only be accessed and modified inside the code of
+        its class. These members cannot be accessed (or viewed) from outside the class.
+        By default, all members of a class are private, unless an access specifier is mentioned.
+        The access is allowed by functions that are defined within the class block.
+    Protected: members cannot be accessed outside the class, however, they can be accessed
+        in inherited classes.
