@@ -32,18 +32,19 @@ int main(void) {
     std::cout << "============================================================================" << std::endl;
 
     std::cout << "| " << std::left << std::setw(23) << "stringVariable"
-              << "| " << std::left << std::setw(21) << *stringPTR
+              << "| " << std::left << std::setw(21) << &str
+              << "| " << std::left << std::setw(25) << str << "|" << std::endl;
+    std::cout << "============================================================================" << std::endl;
+    
+    std::cout << "| " << std::left << std::setw(23) << "stringPTR"
+              << "| " << std::left << std::setw(21) << stringPTR
               << "| " << std::left << std::setw(25) << *stringPTR << "|" << std::endl;
     std::cout << "============================================================================" << std::endl;
-    std::cout << "The memory address of the string variable: " << &str << std::endl;
-    std::cout << "The memory address held by stringPTR: " << stringPTR << std::endl;
-    std::cout << "The memory address held by stringREF: " << &stringREF << std::endl;
-
-    std::cout << std::endl;
-
-    std::cout << "The value of the string variable: " << str << std::endl;
-    std::cout << "The value pointed to by stringPTR: " << *stringPTR << std::endl;
-    std::cout << "The value pointed to by stringREF: " << stringREF << std::endl;
+    
+    std::cout << "| " << std::left << std::setw(23) << "stringREF"
+              << "| " << std::left << std::setw(21) << &stringREF
+              << "| " << std::left << std::setw(25) << stringREF << "|" << std::endl;
+    std::cout << "============================================================================" << std::endl;
      
     return 0;
 }
