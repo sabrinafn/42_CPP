@@ -4,7 +4,7 @@ CC := c++
 
 FLAGS := -Wall -Wextra -Werror -std=c++98
 
-CPP_FILES := main.cpp Replacer.cpp Replacer.hpp
+CPP_FILES := main.cpp Replacer.cpp
 
 OBJ_FILES := $(CPP_FILES:.cpp=.o)
 
@@ -22,7 +22,7 @@ v:
 clean:
 	rm -f $(OBJ_FILES)
 
-fclean:
+fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
