@@ -20,7 +20,7 @@ v:
 	valgrind --leak-check=full ./$(NAME)
 
 clean:
-	rm -f $(OBJ_FILES)
+	rm -f $(OBJ_FILES) *.replace
 
 fclean: clean
 	rm -f $(NAME)

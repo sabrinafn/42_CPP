@@ -1,11 +1,9 @@
 #include "Replacer.hpp"
 
 Replacer::Replacer() : filename(""), str_to_find(""), new_str(""), file_content("") {
-    std::cout << "Replacer constructor called" << std::endl;
 }
 
 Replacer::~Replacer() {
-    std::cout << "Replacer destructor called" << std::endl;
 }
 
 void    Replacer::storeArguments(std::string arg1, std::string arg2, std::string arg3) {
@@ -13,10 +11,6 @@ void    Replacer::storeArguments(std::string arg1, std::string arg2, std::string
     filename = arg1;
     str_to_find = arg2;
     new_str = arg3;
-
-    std::cout << "filename = " << filename << std::endl;
-    std::cout << "string to find = " << str_to_find << std::endl;
-    std::cout << "new string = " << new_str << std::endl;
 }
 
 void    Replacer::readFileandStore() {
@@ -38,48 +32,48 @@ void    Replacer::readFileandStore() {
         file_content += line;
         file_content += '\n';
     }
-    std::cout << file_content << std::endl;
-
     text.close();
 }
 
 int  Replacer::findSubstrPos(int start) {
 
-    size_t index;
+    size_t  index;
 
     index = file_content.find(str_to_find, start);
-    if (index == std::string::npos) {
-        std::cout << "The string '" << str_to_find << "' was not found in file." << std::endl;
-        std::cout << "index returned: " << index << std::endl;
+    if (index == std::string::npos)
         return -1;
-    }
-    else
-        std::cout << "The string '" << str_to_find << "' was found at position: " << index << std::endl;
-
     return ((int)index);
 }
 
 void    Replacer::stringReplace() {
 
-    //std::string output_filename = filename + ".replace";
-    //std::ofstream output_file;
-    //output_file.open(output_filename.c_str());
-    //if (!output_file.is_open()) {
-    //    std::cerr << "Error opening file." << std::endl;
-    //    return;
-    //}
-    std::string output_file;
+    bool    found_and_replaced = false;
     int found_pos = 0;
     int current_pos = 0;
 
     while ((found_pos = findSubstrPos(current_pos)) != -1) {
-        output_file += file_content.substr(current_pos, found_pos - current_pos);
-        output_file += new_str;
+        output_string += file_content.substr(current_pos, found_pos - current_pos);
+        output_string += new_str;
         current_pos = found_pos + str_to_find.length();
+        found_and_replaced = true;
     }
-    std::cout << std::endl << "=========================================="<< std::endl;
-    std::cout << "New file: " << std::endl;
-    std::cout << output_file;
-    std::cout << std::endl << "=========================================="<< std::endl;
-    std::cout << std::endl;
+    if (!found_and_replaced)
+        std::cout << "The string '" << str_to_find << "' was not found in file." << std::endl;
+    else
+        writeToFile();
+}
+
+void    Replacer::writeToFile() {
+    
+    std::string output_filename = filename + ".replace";
+    std::ofstream output_file;
+    output_file.open(output_filename.c_str());
+    if (!output_file.is_open()) {
+        std::cerr << "Error opening file." << std::endl;
+        return;
+    }
+    else {
+        output_file << output_string;
+        output_file.close();
+    }
 }
