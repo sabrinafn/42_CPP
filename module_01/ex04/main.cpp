@@ -4,7 +4,9 @@ int main(int ac, char **av) {
 
     if (ac == 4)
     {
-        std::cout << "av[1] = " << av[1] << std::endl;
+        Replacer    replacerClass;
+        replacerClass.storeArguments(av[1], av[2], av[3]);
+        replacerClass.readFileandStore();
     }
     else
     {
