@@ -15,12 +15,11 @@ class   Replacer {
         std::string     output_string;
 
     public:
-        Replacer();
+        Replacer(std::string arg1, std::string arg2, std::string arg3);
         ~Replacer();
 
-        int  findSubstrPos(int start);
-        void    storeArguments(std::string arg1, std::string arg2, std::string arg3);
-        void    readFileandStore();
+        int     findSubstrPos(int start) const;
+        void    readFile();
         void    stringReplace();
         void    writeToFile();
 

@@ -4,9 +4,8 @@ int main(int ac, char **av) {
 
     if (ac == 4)
     {
-        Replacer    replacerClass;
-        replacerClass.storeArguments(av[1], av[2], av[3]);
-        replacerClass.readFileandStore();
+        Replacer    replacerClass(av[1], av[2], av[3]);
+        replacerClass.readFile();
         replacerClass.stringReplace();
     }
     else
