@@ -11,9 +11,13 @@ class   Replacer {
         std::string     filename;
         std::string     str_to_find;
         std::string     new_str;
-        std::string   fileContent;
+        std::string     file_content;
 
     public:
+        Replacer();
+        ~Replacer();
+
+        int  findSubstrPos(int start);
         void    storeArguments(std::string arg1, std::string arg2, std::string arg3);
         void    readFileandStore();
         void    stringReplace(); 
