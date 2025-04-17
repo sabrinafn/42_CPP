@@ -74,6 +74,8 @@ C++ References x Pointers
         it will be bound to the same object for the rest of its life.
     - It must always refer to a valid object.
     - Access is direct, as if it were the original variable
+    - It does not have a different memory address, it occupies the same location as
+        the variable it is referencing.
 
     Associations:
         - references == aka
