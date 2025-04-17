@@ -11,11 +11,12 @@ class   Replacer {
         std::string     filename;
         std::string     str_to_find;
         std::string     new_str;
-        std::ifstream   text;
+        std::string   fileContent;
 
     public:
         void    storeArguments(std::string arg1, std::string arg2, std::string arg3);
-        void    readFileandStore(); 
+        void    readFileandStore();
+        void    stringReplace(); 
 
 
 };

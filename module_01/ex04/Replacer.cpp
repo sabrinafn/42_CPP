@@ -13,6 +13,7 @@ void    Replacer::storeArguments(std::string arg1, std::string arg2, std::string
 
 void    Replacer::readFileandStore() {
 
+    std::ifstream text;
     //open file and write to string
     text.open(filename.c_str()); // converting to const char * to pass argument to open()
 
@@ -25,7 +26,23 @@ void    Replacer::readFileandStore() {
     // Use a while loop together with the getline() function to read the file line by line
     while (getline(text, line)) {
         // Output the text from the file
+        fileContent += line;
+        //fileContent += '\n'; // Add newline character if needed
         std::cout << line << std::endl;
     }
     text.close();
+}
+
+void    Replacer::stringReplace() {
+
+    int index;
+
+    index = fileContent.find(str_to_find, 0);
+    if (std::string::npos) {
+        std::cout << "String not found in text." << std::endl;
+        return ;
+    }
+    else
+        std::cout << "The word [" << str_to_find << "] was found at position: " << index << std::endl;
+
 }

@@ -7,6 +7,7 @@ int main(int ac, char **av) {
         Replacer    replacerClass;
         replacerClass.storeArguments(av[1], av[2], av[3]);
         replacerClass.readFileandStore();
+        replacerClass.stringReplace();
     }
     else
     {
