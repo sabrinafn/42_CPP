@@ -11,10 +11,10 @@ OBJ_FILES := $(CPP_FILES:.cpp=.o)
 all: $(NAME)
 
 %.o: %.cpp
-	$(CC) $(FLAGS) -c $<
+	$(CPP) $(FLAGS) -c $<
 
 $(NAME): $(OBJ_FILES)
-	$(CC) $(FLAGS) $(OBJ_FILES) -o $(NAME)
+	$(CPP) $(FLAGS) $(OBJ_FILES) -o $(NAME)
 
 v:
 	valgrind --leak-check=full ./$(NAME)
