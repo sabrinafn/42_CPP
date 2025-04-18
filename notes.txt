@@ -9,9 +9,10 @@ The Orthodox Canonical Class Form (Forma Canônica Ortodoxa de Classe)
     - Default constructor: basicamente, declarando e inicializando com valores
         padrões os atributos dentro da classe.
     - Copy constructor: usado para criar e inicializar uma cópia 
-    (deep copy) de um objetos e seus atributos.
-    - Copy assignment operator: usado para modificar um objeto que já existe
-        com os valores dos atributos de outro objeto. 
+        (deep copy) de um objeto e seus atributos.
+    - Copy assignment operator:  o "Operador de Atribuição de Cópia" é a 
+        implementação de como o sinal de igual (=) funciona para atribuir
+         o estado de um objeto a outro objeto existente da mesma classe. 
     - Destructor: deletar um objeto; liberar memória.
     - Example: 
         class MyClass {
@@ -85,4 +86,11 @@ C++ References x Pointers
 Function Pointers
 
     - A function pointer store the memory address of a function's code.
-    
+
+Fixed Point Number
+
+    - It establishes that there is a fixed number of digits after the
+        decimal point. On the other hand, a floating point number can
+        vary on the number of digits after the decimal point.
+    - It is stored as a integer in memory, but I am the one who
+        interprets this number as a fixed-point value in calculations.
