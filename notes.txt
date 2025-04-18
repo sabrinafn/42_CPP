@@ -81,3 +81,8 @@ C++ References x Pointers
         - references == aka
                      == pseudonym
                      == nickname
+
+Function Pointers
+
+    - A function pointer store the memory address of a function's code.
+    

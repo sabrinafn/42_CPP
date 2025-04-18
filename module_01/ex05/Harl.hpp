@@ -15,6 +15,7 @@ class Harl {
     public:
         void    complain(std::string level);
         // Define a type for the function pointer
+        // typedef creates a new name to make it easier to call this pointer
         typedef void (Harl::*complaintFunctionPtr)(void);
 };
 

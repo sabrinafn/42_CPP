@@ -52,6 +52,7 @@ void    Harl::complain(std::string level) {
     int i;
     for (i = 0; i < 4; i++) {
         if (levels[i] == level) {
+            // calling the function at pos i in the array
             (this->*complaints[i])();
             return ;
         }
