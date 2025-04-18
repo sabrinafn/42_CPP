@@ -1,11 +1,11 @@
 #ifndef REPLACER_HPP
-#define REPLACE_HPP
+#define REPLACER_HPP
 
 #include <iostream>
 #include <fstream>
 #include <string>
 
-class   Replacer {
+class Replacer {
     
     private:
         std::string     filename;

@@ -10,28 +10,36 @@ Replacer::~Replacer() {
 void    Replacer::readFile() {
 
     std::ifstream text;
+    std::string line;
+
     //open file and write to string
-    text.open(filename.c_str()); // converting to const char * to pass argument to open()
+    text.open(filename.c_str()); // c_str() = converting to const char * to pass argument to open()
 
     if (!text || !text.is_open()) {
         std::cerr << "Error opening file." << std::endl;
         return ;
     }
     
-    std::string line;
-    // Use a while loop together with the getline() function to read the file line by line
+    // read the file line by line to the string file_content
     while (getline(text, line)) {
-        // Output the text from the file
         file_content += line;
-        file_content += '\n';
+        if (!text.eof()) // Check if we've reached the end of the file
+            file_content += '\n';
     }
     text.close();
+
+    if (file_content.empty()) {
+        std::cerr << "File is empty." << std::endl;
+        return ;
+    }
 }
 
 int  Replacer::findSubstrPos(int start) const {
 
     size_t  index;
 
+    // size_t find(const char* s, size_t pos = 0) const;
+    //  'find' is used to locate the first occurrence of a substring within a string
     index = file_content.find(str_to_find, start);
     if (index == std::string::npos)
         return -1;
@@ -45,16 +53,22 @@ void    Replacer::stringReplace() {
     int     current_pos = 0;
 
     if (file_content.empty())
+        return ;
+    if (str_to_find.empty())
+    {
+        std::cerr << "The string to find was empty." << std::endl;
         return;
-
+    }
     while ((found_pos = findSubstrPos(current_pos)) != -1) {
         output_string += file_content.substr(current_pos, found_pos - current_pos);
         output_string += new_str;
         current_pos = found_pos + str_to_find.length();
         found_and_replaced = true;
     }
+    output_string += file_content.substr(current_pos);
+
     if (!found_and_replaced)
-        std::cout << "The string '" << str_to_find << "' was not found in file." << std::endl;
+        std::cerr << "The string '" << str_to_find << "' was not found in file." << std::endl;
     else
         writeToFile();
 }
@@ -63,6 +77,7 @@ void    Replacer::writeToFile() {
     
     std::string output_filename = filename + ".replace";
     std::ofstream output_file;
+    
     output_file.open(output_filename.c_str());
     if (!output_file || !output_file.is_open()) {
         std::cerr << "Error opening file." << std::endl;
