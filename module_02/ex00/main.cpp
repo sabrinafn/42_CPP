@@ -13,3 +13,6 @@ int main(void) {
 
     return 0;
 }
+
+// 1. set up the class structure representing the fixed-point number
+// 2. implement the canonical orthodox form

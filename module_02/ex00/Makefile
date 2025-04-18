@@ -14,7 +14,7 @@ all: $(NAME)
 	$(CPP) $(FLAGS) -c $<
 
 $(NAME): $(OBJ_FILES)
-	$(CPP) $(FLAGS) -o $(NAME)
+	$(CPP) $(FLAGS) $(OBJ_FILES) -o $(NAME)
 
 v:
 	valgring --leak-check=full ./$(NAME)
