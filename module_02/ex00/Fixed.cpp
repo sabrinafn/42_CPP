@@ -13,10 +13,10 @@ Fixed::Fixed(const Fixed &other)
 }
 
 // Copy Assignment Operator Overload
-Fixed   Fixed::&operator=(const Fixed &other) {
+Fixed&  Fixed::operator=(const Fixed &other) {
 
     std::cout << "Copy assignment operator called" << std::endl;
-    if (this != &other) // Prevent self-assignment (important!)
+    if (this != &other) // check if it is not assigning to itself
       fixed_point_value = other.fixed_point_value;
     return *this; // Return a reference to the current object
 }
@@ -28,7 +28,7 @@ Fixed::~Fixed() {
 
 int     Fixed::getRawBits(void) const {
 
-    
+
 }
 
 void    Fixed::setRawBits(int const raw) {
