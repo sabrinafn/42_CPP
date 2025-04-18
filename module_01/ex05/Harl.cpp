@@ -49,11 +49,14 @@ void    Harl::complain(std::string level) {
         "WARNING",
         "ERROR"
     };
-    
-    for (int i = 0; i < 4; i++) {
+    int i;
+    for (i = 0; i < 4; i++) {
         if (levels[i] == level) {
             (this->*complaints[i])();
             return ;
         }
+    }
+    if (i == 4) {
+        std::cout << "Invalid Level" << std::endl;
     }
 }
