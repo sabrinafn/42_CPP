@@ -1,7 +1,8 @@
 #ifndef FIXED_HPP
 #define FIXED_HPP
 
-#include "iostream"
+#include <iostream>
+#include <cmath>
 
 class Fixed {
 
@@ -10,7 +11,7 @@ class Fixed {
         static const int    fractional_bits = 8;
 
     public:
-        Fixed(); // constructor
+        Fixed(); // default constructor
         Fixed(const Fixed &other); // copy constructor
         Fixed &operator=(const Fixed &other); // copy assignment operator overload
         ~Fixed(); // destructor
@@ -20,6 +21,7 @@ class Fixed {
 
         Fixed(const int n); // constructor with const int
         Fixed(const float f); // constructor with const float
+        
         float   toFloat(void) const;
         int     toInt(void) const;
 
