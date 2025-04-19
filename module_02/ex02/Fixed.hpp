@@ -25,6 +25,28 @@ class Fixed {
         float   toFloat(void) const;
         int     toInt(void) const;
 
+        // operator overloading comparison
+        bool    operator>(const Fixed &other) const;
+        bool    operator<(const Fixed &other) const;
+        bool    operator>=(const Fixed &other) const;
+        bool    operator<=(const Fixed &other) const;
+        bool    operator==(const Fixed &other) const;
+        bool    operator!=(const Fixed &other) const;
+
+        // operator overloading arithmetic
+        Fixed   operator+(const Fixed &other) const;
+        Fixed   operator-(const Fixed &other) const;
+        Fixed   operator*(const Fixed &other) const;
+        Fixed   operator/(const Fixed &other) const;
+
+        // operator overloading increment and decrement
+        Fixed   &operator++();      // ++i;
+        Fixed   operator++(int);    // i++;
+        Fixed   &operator--();      // --i;
+        Fixed   operator--(int);    // i--;
+
+        // 
+        
 };
 
 std::ostream &operator<<(std::ostream &out, const Fixed &fixed);

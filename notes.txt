@@ -1,9 +1,7 @@
 References:
     - https://cplusplus.com/doc/oldtutorial/
     - https://www.w3schools.com/cpp/
-
-Class: declaration
-Object: instance of a class
+    - https://www.geeksforgeeks.org/operator-overloading-cpp/
 
 The Orthodox Canonical Class Form (Forma Canônica Ortodoxa de Classe)
     - Default constructor: basicamente, declarando e inicializando com valores
@@ -33,6 +31,9 @@ The Orthodox Canonical Class Form (Forma Canônica Ortodoxa de Classe)
                 // Destructor
                 ~MyClass();
         };
+
+        Class: declaration
+        Object: instance of a class
 
 Stack and Heap Memory
     
@@ -65,7 +66,7 @@ Access Specifiers
     Protected: members cannot be accessed outside the class, however, they can be accessed
         in inherited classes.
 
-C++ References x Pointers
+References
 
     - References are declared using the '&'. For example: int& reference;
     - Declaration and initialization must be done at the same time. For 
@@ -94,3 +95,11 @@ Fixed Point Number
         vary on the number of digits after the decimal point.
     - It is stored as a integer in memory, but I am the one who
         interprets this number as a fixed-point value in calculations.
+
+Operator overloading (sobrecarga de operador)
+
+    - It is an idea of giving special meaning to an existing operator 
+        without changing its original meaning.
+    - The name of an operator function is always the operator key
+        word followed by the symbol of the operator, and operator
+        functions are called when the corresponding operator is used.
