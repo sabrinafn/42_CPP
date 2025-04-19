@@ -24,3 +24,17 @@ Point::~Point() {
 Point::Point(const float a, const float b) : x(a), y(b){
     std::cout << "two floats Constructor called" << std::endl;
 }
+
+Fixed   Point::getX() const {
+    return this->x;
+}
+
+Fixed   Point::getY() const {
+    return this->y;
+}
+
+
+std::ostream &operator<<(std::ostream &out, const Point &point) {
+    out << "(" << point.getX() << ", " << point.getY() << ")";
+    return out;
+  }

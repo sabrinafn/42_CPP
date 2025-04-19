@@ -19,6 +19,10 @@ class Point {
 
         Point(const float a, const float b); // constructor takes two constant floating-point numbers
       
+        Fixed   getX() const;
+        Fixed   getY() const;
 };
+
+std::ostream &operator<<(std::ostream &out, const Point &point);
 
 #endif
