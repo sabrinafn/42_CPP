@@ -17,7 +17,7 @@ $(NAME): $(OBJ_FILES)
 	$(CPP) $(FLAGS) $(OBJ_FILES) -o $(NAME)
 
 v:
-	valgring --leak-check=full ./$(NAME)
+	valgrind --leak-check=full ./$(NAME)
 
 clean:
 	rm -f $(OBJ_FILES)
