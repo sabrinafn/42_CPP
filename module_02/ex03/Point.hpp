@@ -25,4 +25,7 @@ class Point {
 
 std::ostream &operator<<(std::ostream &out, const Point &point);
 
+bool    bsp( Point const a, Point const b, Point const c, Point const point);
+Fixed   getTriangleArea(Point const a, Point const b, Point const c);
+
 #endif
