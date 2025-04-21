@@ -95,6 +95,9 @@ Fixed Point Number
         vary on the number of digits after the decimal point.
     - It is stored as a integer in memory, but I am the one who
         interprets this number as a fixed-point value in calculations.
+    - A classe Fixed que criei eh uma maneira de representar numeros 
+        nao-inteiros usando apenas inteiros.
+
 
 Operator overloading (sobrecarga de operador)
 
