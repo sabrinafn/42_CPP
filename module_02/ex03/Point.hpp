@@ -10,15 +10,18 @@ class Point {
     private:
         const Fixed    x;
         const Fixed    y;
+        Point &operator=(const Point &other); // copy assignment operator overload
         
     public:
         Point(); // default constructor
         Point(const Point &other); // copy constructor
-        Point &operator=(const Point &other); // copy assignment operator overload
+       
         ~Point(); // destructor
 
         Point(const float a, const float b); // constructor takes two constant floating-point numbers
       
+        bool operator==(const Point &other) const;
+
         Fixed   getX() const;
         Fixed   getY() const;
 };
