@@ -4,7 +4,7 @@ CPP := c++
 
 FLAGS := -Wall -Wextra -Werror -std=c++98
 
-CPP_FILES := main_copy_2.cpp Fixed.cpp
+CPP_FILES := main.cpp Fixed.cpp
 
 OBJ_FILES := $(CPP_FILES:.cpp=.o)
 
