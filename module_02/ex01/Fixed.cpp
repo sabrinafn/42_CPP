@@ -75,9 +75,11 @@ int     Fixed::toInt(void) const {
     return(this->fixed_point_value >> fractional_bits);
 }
 
-//An overload of the insertion («) operator that inserts a
+// An overload of the insertion («) operator that inserts a
 // floating-point representation of the fixed-point number 
-//into the output stream object passed as parameter
+// into the output stream object passed as parameter.
+// define como um objeto Fixed deve ser printado quando o
+// operador '<<' eh usado.
 std::ostream &operator<<(std::ostream &out, const Fixed &fixed) {
     out << fixed.toFloat(); // Converte para float e insere no stream
     return out;
