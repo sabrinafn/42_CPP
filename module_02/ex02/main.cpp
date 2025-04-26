@@ -12,7 +12,7 @@
 
 #include "Fixed.hpp"
 
-
+/*
 int main() {
 
     Fixed ValueA(10.5f);
@@ -105,8 +105,8 @@ int main() {
 
     return 0;
   }
+*/
 
-/*
 // SUBJECT MAIN
 
 int main(void) {
@@ -126,4 +126,4 @@ int main(void) {
 
     return 0;
 }
-    */
+
