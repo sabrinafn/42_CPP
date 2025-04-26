@@ -12,6 +12,8 @@
 
 #include "Fixed.hpp"
 
+// ============================ same as ex00 ================================ //
+
 // DEFAULT CONSTRUCTOR
 Fixed::Fixed() : fixed_point_value(0) {
 
@@ -24,7 +26,6 @@ Fixed::Fixed(const Fixed &other) {
     std::cout << "Copy constructor called" << std::endl;
     *this = other;
 }
-
 
 // COPY ASSIGNMENT OPERATOR OVERLOAD
 Fixed&  Fixed::operator=(const Fixed &other) {
@@ -41,24 +42,10 @@ Fixed::~Fixed() {
     std::cout << "Destructor called" << std::endl;
 }
 
-// CONSTRUCTOR THAT RECEIVES A CONST INT AS PARAMETER
-Fixed::Fixed(const int n) {
-    
-    std::cout << "Int constructor called" << std::endl;
-    this->fixed_point_value = n << this->fractional_bits;
-}
-
-// CONSTRUCTOR THAT RECEIVES A CONST FLOAT AS PARAMETER
-Fixed::Fixed(const float f) {
-
-	std::cout << "Float constructor called" << std::endl;
-	this->fixed_point_value = roundf(f * 256);
-}
-
 // METHOD TO GET THE FIXED-POINT VALUE
 int     Fixed::getRawBits(void) const {
 
-    std::cout << "getRawBits member function called" << std::endl;
+    //std::cout << "getRawBits member function called" << std::endl;
     return fixed_point_value;
 }
 
@@ -66,6 +53,22 @@ int     Fixed::getRawBits(void) const {
 void    Fixed::setRawBits(int const raw) {
 
     fixed_point_value = raw;
+}
+
+// ======================================================================== //
+
+// CONSTRUCTOR THAT RECEIVES A CONSTANT INTEGER AS PARAMETER
+Fixed::Fixed(const int n) {
+    
+    std::cout << "Int constructor called" << std::endl;
+    this->fixed_point_value = n << this->fractional_bits;
+}
+
+// CONSTRUCTOR THAT RECEIVES A CONSTANT FLOATING-POINT AS PARAMETER
+Fixed::Fixed(const float f) {
+
+	std::cout << "Float constructor called" << std::endl;
+	this->fixed_point_value = roundf(f * 256);
 }
 
 // METHOD THAT CONVERTS THE FIXED-POINT VALUE
