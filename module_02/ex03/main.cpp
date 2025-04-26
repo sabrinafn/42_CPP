@@ -1,8 +1,8 @@
 #include <iostream>
 #include "Point.hpp"  // Assuming you have your Point class and bsp function in this header.
 
-void run_test(const Point &a, const Point &b, const Point &c, const Point &p, const std::string &desc) {
-    std::cout << desc << ": " << (bsp(a, b, c, p) ? "Inside" : "Outside") << std::endl;
+void run_test(const Point &a, const Point &b, const Point &c, const Point &p, const std::string &str) {
+    std::cout << str << ": " << (bsp(a, b, c, p) ? "Inside" : "Outside") << std::endl;
 }
 
 int main() {
@@ -22,6 +22,8 @@ int main() {
 
     Point j(0, 0), k(5, 5), l(10, 10);
     run_test(j, k, l, Point(7, 7), "Test 9 (On Line of Degenerate Triangle)");
+
+    //std::cout << "Point J with '=' operator: " << j << std::endl;
 
     return 0;
 }

@@ -1,6 +1,7 @@
 #include "Fixed.hpp"
 #include "Point.hpp"
 
+// return the area of the triagle
 Fixed   getTriangleArea(Point const a, Point const b, Point const c) {
 
     //area = 0.5 * |x1(y2 - y3) + x2(y3 - y1) + x3(y1 - y2)|
@@ -14,6 +15,7 @@ Fixed   getTriangleArea(Point const a, Point const b, Point const c) {
     return result / Fixed(2);
 }
 
+// check if the point touches the side of the triangle
 bool isOnEdge(Point const &a, Point const &b, Point const &point) {
 
     Fixed area = getTriangleArea(a, b, point);
@@ -39,9 +41,8 @@ bool bsp( Point const a, Point const b, Point const c, Point const point) {
     if (isOnEdge(a, b, point) || isOnEdge(b, c, point) || isOnEdge(c, a, point)) {
         return false;
     }
-    // 1. calculate area of a triangle using vertex coordinates
+
     Fixed   area(getTriangleArea(a, b, c));
-    (void)point;
 
     Fixed area_1 = getTriangleArea(point, b, c);
     Fixed area_2 = getTriangleArea(a, point, c);

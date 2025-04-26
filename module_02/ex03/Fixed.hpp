@@ -56,6 +56,4 @@ class Fixed {
 
 std::ostream &operator<<(std::ostream &out, const Fixed &fixed);
 
-// https://www.desmos.com/calculator/9uufufvvdz?lang=pt-BR
-
 #endif
