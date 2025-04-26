@@ -18,10 +18,10 @@ Fixed::Fixed() : fixed_point_value(0) {
 }
 
 // Copy Constructor
-Fixed::Fixed(const Fixed &other)
-    : fixed_point_value(other.fixed_point_value) {
+Fixed::Fixed(const Fixed &other) {
 
     std::cout << "Copy constructor called" << std::endl;
+    *this = other;
 }
 
 // Copy Assignment Operator Overload
@@ -29,13 +29,13 @@ Fixed&  Fixed::operator=(const Fixed &other) {
 
     std::cout << "Copy assignment operator called" << std::endl;
     if (this != &other) // check if it is not assigning to itself
-      fixed_point_value = other.fixed_point_value;
+      fixed_point_value = other.getRawBits();
     return *this; // Return a reference to the current object
 }
 
 Fixed::~Fixed() {
 
-    std::cout << "Default destructor called" << std::endl;
+    std::cout << "Destructor called" << std::endl;
 }
 
 int     Fixed::getRawBits(void) const {

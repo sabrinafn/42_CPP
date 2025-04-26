@@ -14,10 +14,10 @@
 
 int main(void) {
 
-    Fixed a;
-    Fixed b( a );
-    Fixed c;
-    c = b;
+    Fixed a;        // default constructor called
+    Fixed b( a );   // copy constructor called
+    Fixed c;        // default constructor called
+    c = b;          // copy assignment operator called
     
     std::cout << a.getRawBits() << std::endl;
     std::cout << b.getRawBits() << std::endl;
