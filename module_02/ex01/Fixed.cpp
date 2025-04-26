@@ -13,26 +13,25 @@
 #include "Fixed.hpp"
 
 // DEFAULT CONSTRUCTOR
-Fixed::Fixed() {
+Fixed::Fixed() : fixed_point_value(0) {
 
     std::cout << "Default constructor called" << std::endl;
-    this->fixed_point_value = 0;
 }
 
 // COPY CONSTRUCTOR
-Fixed::Fixed(const Fixed &copy) {
+Fixed::Fixed(const Fixed &other) {
 
     std::cout << "Copy constructor called" << std::endl;
-    *this = copy;
+    *this = other;
 }
 
+
 // COPY ASSIGNMENT OPERATOR OVERLOAD
-Fixed&  Fixed::operator=(const Fixed &copy) {
+Fixed&  Fixed::operator=(const Fixed &other) {
 
     std::cout << "Copy assignment operator called" << std::endl;
-    if (this != &copy) // check if it is not assigning to itself
-      this->fixed_point_value = copy.fixed_point_value;
-
+    if (this != &other) // check if it is not assigning to itself
+      fixed_point_value = other.getRawBits();
     return *this; // Return a reference to the current object
 }
 
@@ -44,10 +43,7 @@ Fixed::~Fixed() {
 
 // CONSTRUCTOR THAT RECEIVES A CONST INT AS PARAMETER
 Fixed::Fixed(const int n) {
-
-    // bitwise operator to move bits to the left
-    // 5 = 00000101
-    // n << fractional_bits = 0000010100000000
+    
     std::cout << "Int constructor called" << std::endl;
     this->fixed_point_value = n << this->fractional_bits;
 }
@@ -63,14 +59,13 @@ Fixed::Fixed(const float f) {
 int     Fixed::getRawBits(void) const {
 
     std::cout << "getRawBits member function called" << std::endl;
-    return this->fixed_point_value;
+    return fixed_point_value;
 }
 
 // SETS THE FIXED-POINT VALUE
 void    Fixed::setRawBits(int const raw) {
 
-    std::cout << "setRawBits member function called" << std::endl;
-    this->fixed_point_value = raw;
+    fixed_point_value = raw;
 }
 
 // METHOD THAT CONVERTS THE FIXED-POINT VALUE
