@@ -10,7 +10,7 @@
 
 class   ClapTrap {
 
-    private:
+    protected:
         std::string   name;
         int                 hit_points; //represents life; reduces when attacked; can be increased.
         int                 energy_points; // represents ability to act (attack and repair); cannot be increased.

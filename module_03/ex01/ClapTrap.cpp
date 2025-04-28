@@ -2,20 +2,20 @@
 
 // =============== Orthodox Canonical Form =============== //
 
-ClapTrap::ClapTrap() : name("unnamed"), hit_points(100), energy_points(50), attack_damage(20) {
+ClapTrap::ClapTrap() : name("unnamed"), hit_points(10), energy_points(10), attack_damage(0) {
 
-    std::cout << "Default Constructor called" << std::endl;
+    std::cout << "ClapTrap Default Constructor called" << std::endl;
 }
 
 ClapTrap::ClapTrap(const ClapTrap &other) {
     
-    std::cout << "Copy Constructor called" << std::endl;
+    std::cout << "ClapTrap Copy Constructor called" << std::endl;
     *this = other;
 }
 
 ClapTrap& ClapTrap::operator=(const ClapTrap &other) {
 
-    std::cout << "Copy Assignment Operator called" << std::endl;
+    std::cout << "ClapTrap Copy Assignment Operator called" << std::endl;
     if (this != &other) {
         name = other.name;
         hit_points = other.hit_points;
@@ -27,14 +27,14 @@ ClapTrap& ClapTrap::operator=(const ClapTrap &other) {
 
 ClapTrap::~ClapTrap() {
     
-    std::cout << "Destructor called" << std::endl;
+    std::cout << "ClapTrap Destructor called" << std::endl;
 }
 
 // ======================================================== //
 
 ClapTrap::ClapTrap(const std::string name) :  name(name), hit_points(10), energy_points(10), attack_damage(0) {
 
-    std::cout << "Constructor called (const std::string)" << std::endl;
+    std::cout << "ClapTrap Constructor called (const std::string)" << std::endl;
 }
 
 void ClapTrap::attack(const std::string& target) {
