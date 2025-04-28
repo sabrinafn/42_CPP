@@ -50,15 +50,15 @@ int main(void) {
     Frag.displayStatus();
 
     Frag.attack(Frag2);
-    Frag.takeDamage(5);
-    Frag.beRepaired(1);
+    Frag.takeDamage(40);
+    Frag.beRepaired(15);
     Frag.highFivesGuys();
 
     Frag.displayStatus();
 
     Frag.attack(Frag2);
-    Frag.takeDamage(6);
-    Frag.beRepaired(3);
+    Frag.takeDamage(35);
+    Frag.beRepaired(50);
     Frag.highFivesGuys();
 
     Frag.displayStatus();
