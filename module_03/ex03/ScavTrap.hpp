@@ -7,7 +7,7 @@
 #define RED "\033[31m"
 #define YELLOW "\033[33m"
 
-class ScavTrap : public ClapTrap {
+class ScavTrap : virtual public ClapTrap {
 
     private:
 

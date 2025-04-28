@@ -1,6 +1,7 @@
 #include "ClapTrap.hpp"
 #include "ScavTrap.hpp"
 #include "FragTrap.hpp"
+#include "DiamondTrap.hpp"
 
 int main(void) {
 
@@ -62,6 +63,27 @@ int main(void) {
     Frag.highFivesGuys();
 
     Frag.displayStatus();
+
+    // ================================= //
+    
+    DiamondTrap Diamond("Diamond One");
+    std::string Diamond2 = "Diamond two";
+
+    Diamond.displayStatus();
+
+    Diamond.attack(Diamond2);
+    Diamond.takeDamage(40);
+    Diamond.beRepaired(15);
+    Diamond.whoAmI();
+
+    Diamond.displayStatus();
+
+    Diamond.attack(Diamond2);
+    Diamond.takeDamage(35);
+    Diamond.beRepaired(50);
+    Diamond.whoAmI();
+
+    Diamond.displayStatus();
     
     return (0);
 }

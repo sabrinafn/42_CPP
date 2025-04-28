@@ -1,10 +1,10 @@
-NAME := FragTrap
+NAME := DiamondTrap
 
 CC := c++
 
-FLAGS := -Wall -Wextra -Werror -std=c++98
+FLAGS := -Wall -Wextra -Werror -Wshadow -Wno-shadow -std=c++98
 
-CPPFILES := main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp
+CPPFILES := main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp DiamondTrap.cpp
 
 OBJFILES := $(CPPFILES:.cpp=.o)
 

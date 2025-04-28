@@ -7,7 +7,7 @@
 #define MAGENTA "\033[35m"
 #define CYAN "\033[36m"
 
-class FragTrap : public ClapTrap {
+class FragTrap : virtual public ClapTrap {
 
     public:
         FragTrap(); // constructor
