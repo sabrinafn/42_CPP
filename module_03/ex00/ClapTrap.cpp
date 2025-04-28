@@ -83,22 +83,38 @@ void ClapTrap::beRepaired(unsigned int amount) {
     }
 }
 
-void ClapTrap::displayStatus() const
-{
+// GETTER FUNCTIONS
 
-    std::cout << GREEN << "\n= ClapTrap Status =================" << RESET << std::endl;
+std::string ClapTrap::getName() const {
+    return this->name;
+}
 
-    std::cout << GREEN << "| " << RESET << BLUE << std::setw(15) << std::left 
-              << "Name: " << name << RESET << std::endl;
+int ClapTrap::getHitPoints() const {
+    return this->hit_points;
+}
 
-    std::cout << GREEN << "| " << RESET << BLUE << std::setw(15) << std::left
-              << "Hit Points: " << hit_points << RESET << std::endl;
-    
-    std::cout << GREEN << "| " << RESET << BLUE << std::setw(15) << std::left
-              << "Energy Points: " << energy_points << RESET << std::endl;
+int ClapTrap::getEnergyPoints() const {
+    return this->energy_points;
+}
 
-    std::cout << GREEN << "| " << RESET << BLUE << std::setw(15) << std::left
-              << "Attack Damage: " << attack_damage << RESET << std::endl;
+int ClapTrap::getAttackDamage() const {
+    return this->attack_damage;
+}
 
-    std::cout << GREEN << "===================================" << RESET << "\n" << std::endl;
+// SETTER FUNCTIONS
+
+void ClapTrap::setName(const std::string other) {
+    this->name = other;
+}
+
+void ClapTrap::setHitPoints(const int other) {
+    this->hit_points = other;
+}
+
+void ClapTrap::setEnergyPoints(const int other) {
+    this->energy_points = other;
+}
+
+void ClapTrap::setAttackDamage(const int other) {
+    this->attack_damage = other;
 }

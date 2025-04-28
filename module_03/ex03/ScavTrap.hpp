@@ -9,8 +9,6 @@
 
 class ScavTrap : virtual public ClapTrap {
 
-    private:
-
     public:
         ScavTrap(); // constructor
         ScavTrap(const ScavTrap &other); // copy constructor
