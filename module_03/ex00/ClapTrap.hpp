@@ -40,5 +40,6 @@ class   ClapTrap {
         void    setAttackDamage(const int other);
 };
 
+void    displayStatus(const ClapTrap &robot);
 
 #endif

@@ -4,18 +4,18 @@
 
 ClapTrap::ClapTrap() : name("unnamed"), hit_points(10), energy_points(10), attack_damage(0) {
 
-    std::cout << "Default Constructor called" << std::endl;
+    std::cout << "ClapTrap Default Constructor called" << std::endl;
 }
 
 ClapTrap::ClapTrap(const ClapTrap &other) {
     
-    std::cout << "Copy Constructor called" << std::endl;
+    std::cout << "ClapTrap Copy Constructor called" << std::endl;
     *this = other;
 }
 
 ClapTrap& ClapTrap::operator=(const ClapTrap &other) {
 
-    std::cout << "Copy Assignment Operator called" << std::endl;
+    std::cout << "ClapTrap Copy Assignment Operator called" << std::endl;
     if (this != &other) {
         name = other.name;
         hit_points = other.hit_points;
@@ -27,14 +27,14 @@ ClapTrap& ClapTrap::operator=(const ClapTrap &other) {
 
 ClapTrap::~ClapTrap() {
     
-    std::cout << "Destructor called" << std::endl;
+    std::cout << "ClapTrap Destructor called" << std::endl;
 }
 
 // ======================================================== //
 
 ClapTrap::ClapTrap(const std::string name) :  name(name), hit_points(10), energy_points(10), attack_damage(0) {
 
-    std::cout << "Constructor called (const std::string)" << std::endl;
+    std::cout << "ClapTrap Constructor called (const std::string)" << std::endl;
 }
 
 void ClapTrap::attack(const std::string& target) {
@@ -117,4 +117,25 @@ void ClapTrap::setEnergyPoints(const int other) {
 
 void ClapTrap::setAttackDamage(const int other) {
     this->attack_damage = other;
+}
+
+// =============================================== //
+
+void displayStatus(const ClapTrap &robot) {
+
+    std::cout << GREEN << "\n= ClapTrap Status =================" << RESET << std::endl;
+
+    std::cout << GREEN << "| " << RESET << BLUE << std::setw(15) << std::left 
+              << "Name: " << robot.getName() << RESET << std::endl;
+
+    std::cout << GREEN << "| " << RESET << BLUE << std::setw(15) << std::left
+              << "Hit Points: " << robot.getHitPoints() << RESET << std::endl;
+    
+    std::cout << GREEN << "| " << RESET << BLUE << std::setw(15) << std::left
+              << "Energy Points: " << robot.getEnergyPoints() << RESET << std::endl;
+
+    std::cout << GREEN << "| " << RESET << BLUE << std::setw(15) << std::left
+              << "Attack Damage: " << robot.getAttackDamage() << RESET << std::endl;
+
+    std::cout << GREEN << "===================================" << RESET << "\n" << std::endl;
 }

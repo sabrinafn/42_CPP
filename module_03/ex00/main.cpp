@@ -1,24 +1,5 @@
 #include "ClapTrap.hpp"
 
-void displayStatus(const ClapTrap &robot) {
-
-    std::cout << GREEN << "\n= ClapTrap Status =================" << RESET << std::endl;
-
-    std::cout << GREEN << "| " << RESET << BLUE << std::setw(15) << std::left 
-              << "Name: " << robot.getName() << RESET << std::endl;
-
-    std::cout << GREEN << "| " << RESET << BLUE << std::setw(15) << std::left
-              << "Hit Points: " << robot.getHitPoints() << RESET << std::endl;
-    
-    std::cout << GREEN << "| " << RESET << BLUE << std::setw(15) << std::left
-              << "Energy Points: " << robot.getEnergyPoints() << RESET << std::endl;
-
-    std::cout << GREEN << "| " << RESET << BLUE << std::setw(15) << std::left
-              << "Attack Damage: " << robot.getAttackDamage() << RESET << std::endl;
-
-    std::cout << GREEN << "===================================" << RESET << "\n" << std::endl;
-}
-
 int main(void) {
 
     ClapTrap robot("Robot One");
