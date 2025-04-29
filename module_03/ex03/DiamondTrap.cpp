@@ -40,9 +40,9 @@ DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name + "_clap_name"), Frag
     attack_damage = 30; // FragTrap attack damage
 }
 
-void    DiamondTrap::attack(std::string target) {
+void    DiamondTrap::attack(const std::string& target) {
 
-    this->ScavTrap::attack(target);
+    ScavTrap::attack(target);
 }
 
 void    DiamondTrap::whoAmI() {
@@ -52,22 +52,21 @@ void    DiamondTrap::whoAmI() {
     << std::endl;
 }
 
-void DiamondTrap::displayStatus() const
-{
+void    displayStatus(const DiamondTrap &Robot) {
 
     std::cout << MAGENTA << "\n= DiamondTrap Status ==========" << RESET << std::endl;
 
     std::cout << MAGENTA << "| " << RESET << RED << std::setw(15) << std::left 
-              << "Name: " << name << RESET << std::endl;
+              << "Name: " << Robot.getName() << RESET << std::endl;
 
     std::cout << MAGENTA << "| " << RESET << RED << std::setw(15) << std::left
-              << "Hit Points: " << hit_points << RESET << std::endl;
+              << "Hit Points: " << Robot.getHitPoints() << RESET << std::endl;
     
     std::cout << MAGENTA << "| " << RESET << RED << std::setw(15) << std::left
-              << "Energy Points: " << energy_points << RESET << std::endl;
+              << "Energy Points: " << Robot.getEnergyPoints() << RESET << std::endl;
 
     std::cout << MAGENTA << "| " << RESET << RED << std::setw(15) << std::left
-              << "Attack Damage: " << attack_damage << RESET << std::endl;
+              << "Attack Damage: " << Robot.getAttackDamage() << RESET << std::endl;
 
     std::cout << MAGENTA << "===================================" << RESET << "\n" << std::endl;
 }

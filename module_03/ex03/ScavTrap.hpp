@@ -22,4 +22,6 @@ class ScavTrap : virtual public ClapTrap {
         void    displayStatus() const;
 };
 
+void    displayStatus(const ScavTrap &robot);
+
 #endif

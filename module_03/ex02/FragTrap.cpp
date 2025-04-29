@@ -39,7 +39,7 @@ FragTrap::FragTrap(std::string name) : ClapTrap(name) {
 
 void FragTrap::highFivesGuys(void) {
 
-    std::cout << "FragTrap " << this->name << " asks for a high five!" << std::endl;
+    std::cout << "highFivesGuys: " << this->name << " asks for a high five!" << std::endl;
 }
 
 // =============================================== //

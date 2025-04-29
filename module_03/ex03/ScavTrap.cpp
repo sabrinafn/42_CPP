@@ -40,12 +40,12 @@ ScavTrap::ScavTrap(std::string name) : ClapTrap(name) {
 void ScavTrap::attack(const std::string& target) {
 
     if (this->energy_points == 0) {
-        std::cout << "Attack: ScavTrap " << this->name << " does not have energy points to attack "
+        std::cout << "Attack Scav: " << this->name << " does not have energy points to attack "
                   << target << "." <<std::endl;
         return;
     }
 
-    std::cout << "Attack: ScavTrap " << this->name << " attacks " << target 
+    std::cout << "Attack Scav: " << this->name << " attacks " << target 
     << ", causing " << attack_damage << " points of damage!" << std::endl; 
 
     this->energy_points -= 1;
@@ -53,25 +53,26 @@ void ScavTrap::attack(const std::string& target) {
 
 void    ScavTrap::guardGate() {
 
-    std::cout << "ScavTrap " << this->name << " is now in Gate Keeper mode!" << std::endl;
+    std::cout << "guardGate: " << this->name << " is now in Gate Keeper mode!" << std::endl;
 }
 
-void ScavTrap::displayStatus() const
-{
+// =============================================== //
+
+void    displayStatus(const ScavTrap &robot) {
 
     std::cout << YELLOW << "\n= ScavTrap Status =================" << RESET << std::endl;
 
     std::cout << YELLOW << "| " << RESET << RED << std::setw(15) << std::left 
-              << "Name: " << name << RESET << std::endl;
+              << "Name: " << robot.getName() << RESET << std::endl;
 
     std::cout << YELLOW << "| " << RESET << RED << std::setw(15) << std::left
-              << "Hit Points: " << hit_points << RESET << std::endl;
+              << "Hit Points: " << robot.getHitPoints() << RESET << std::endl;
     
     std::cout << YELLOW << "| " << RESET << RED << std::setw(15) << std::left
-              << "Energy Points: " << energy_points << RESET << std::endl;
+              << "Energy Points: " << robot.getEnergyPoints() << RESET << std::endl;
 
     std::cout << YELLOW << "| " << RESET << RED << std::setw(15) << std::left
-              << "Attack Damage: " << attack_damage << RESET << std::endl;
+              << "Attack Damage: " << robot.getAttackDamage() << RESET << std::endl;
 
     std::cout << YELLOW << "===================================" << RESET << "\n" << std::endl;
 }

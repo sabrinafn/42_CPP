@@ -5,85 +5,89 @@
 
 int main(void) {
 
-    ClapTrap Clap("Clap One");
-    std::string Clap2 = "Clap two";
+    ClapTrap Clap("Clap_One");
+    std::string Clap2 = "Clap_Two";
 
-    Clap.displayStatus();
+    displayStatus(Clap);
 
     Clap.attack(Clap2);
     Clap.takeDamage(5);
     Clap.beRepaired(1);
 
-    Clap.displayStatus();
+    displayStatus(Clap);
 
     Clap.attack(Clap2);
     Clap.takeDamage(6);
     Clap.beRepaired(3);
 
-    Clap.displayStatus();
+    displayStatus(Clap);
 
     // ================================= //
 
-    ScavTrap scav("Robot Scav");
-    std::string scav2 = "Robot Scav2";
+    ScavTrap scav("Scav_One");
+    std::string scav2 = "Scav_Two";
 
-    scav.displayStatus();
+    displayStatus(scav);
 
     scav.attack(scav2);
     scav.takeDamage(50);
     scav.beRepaired(10);
     scav.guardGate();
 
-    scav.displayStatus();
+    displayStatus(scav);
 
     scav.attack(scav2);
     scav.takeDamage(60);
     scav.beRepaired(30);
     scav.guardGate();
 
-    scav.displayStatus();
+    displayStatus(scav);
 
     // ================================= //
 
-    FragTrap Frag("Frag One");
-    std::string Frag2 = "Frag two";
+    FragTrap Frag("Frag_One");
+    std::string Frag2 = "Frag_two";
 
-    Frag.displayStatus();
+    displayStatus(Frag);
 
     Frag.attack(Frag2);
     Frag.takeDamage(40);
     Frag.beRepaired(15);
     Frag.highFivesGuys();
 
-    Frag.displayStatus();
+    displayStatus(Frag);
 
     Frag.attack(Frag2);
     Frag.takeDamage(35);
     Frag.beRepaired(50);
     Frag.highFivesGuys();
 
-    Frag.displayStatus();
+    displayStatus(Frag);
 
     // ================================= //
     
-    DiamondTrap Diamond("Diamond One");
-    std::string Diamond2 = "Diamond two";
+    DiamondTrap Diamond("Diamond_One");
+    std::string Diamond2 = "Diamond_Two";
 
-    Diamond.displayStatus();
+    displayStatus(Diamond);
 
     Diamond.attack(Diamond2);
     Diamond.takeDamage(40);
     Diamond.beRepaired(15);
     Diamond.whoAmI();
+    scav.guardGate();
+    Frag.highFivesGuys();
 
-    Diamond.displayStatus();
+    displayStatus(Diamond);
 
     Diamond.attack(Diamond2);
     Diamond.takeDamage(35);
     Diamond.beRepaired(50);
     Diamond.whoAmI();
+    Diamond.guardGate();
+    Diamond.highFivesGuys();
 
-    Diamond.displayStatus();
+    displayStatus(Diamond);
     
     return (0);
 }

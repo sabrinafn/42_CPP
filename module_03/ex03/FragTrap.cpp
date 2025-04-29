@@ -37,41 +37,28 @@ FragTrap::FragTrap(std::string name) : ClapTrap(name) {
     this->attack_damage = 30;
 }
 
-void FragTrap::attack(const std::string& target) {
-
-    if (this->energy_points == 0) {
-        std::cout << "Attack: FragTrap " << this->name << " does not have energy points to attack "
-                  << target << "." <<std::endl;
-        return;
-    }
-
-    std::cout << "Attack: FragTrap " << this->name << " attacks " << target 
-    << ", causing " << attack_damage << " points of damage!" << std::endl; 
-
-    this->energy_points -= 1;
-}
-
 void FragTrap::highFivesGuys(void) {
 
-    std::cout << "FragTrap " << this->name << " asks for a high five!" << std::endl;
+    std::cout << "highFivesGuys " << this->name << " asks for a high five!" << std::endl;
 }
 
-void FragTrap::displayStatus() const
-{
+// =============================================== //
+
+void displayStatus(const FragTrap &robot) {
 
     std::cout << CYAN << "\n= FragTrap Status =================" << RESET << std::endl;
 
     std::cout << CYAN << "| " << RESET << MAGENTA << std::setw(15) << std::left 
-              << "Name: " << name << RESET << std::endl;
+              << "Name: " << robot.getName() << RESET << std::endl;
 
     std::cout << CYAN << "| " << RESET << MAGENTA << std::setw(15) << std::left
-              << "Hit Points: " << hit_points << RESET << std::endl;
+              << "Hit Points: " << robot.getHitPoints() << RESET << std::endl;
     
     std::cout << CYAN << "| " << RESET << MAGENTA << std::setw(15) << std::left
-              << "Energy Points: " << energy_points << RESET << std::endl;
+              << "Energy Points: " << robot.getEnergyPoints() << RESET << std::endl;
 
     std::cout << CYAN << "| " << RESET << MAGENTA << std::setw(15) << std::left
-              << "Attack Damage: " << attack_damage << RESET << std::endl;
+              << "Attack Damage: " << robot.getAttackDamage() << RESET << std::endl;
 
     std::cout << CYAN << "===================================" << RESET << "\n" << std::endl;
 }

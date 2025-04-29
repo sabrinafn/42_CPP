@@ -18,11 +18,12 @@ class DiamondTrap : public FragTrap, public ScavTrap {
         ~DiamondTrap(); // destructor
 
         DiamondTrap(std::string name); // constructor that takes std::string name
-        void    attack(std::string target);
+        void    attack(const std::string& target);
         
         void    whoAmI();
 
-        void displayStatus() const;
 };
+
+void    displayStatus(const DiamondTrap &Robot);
 
 #endif
