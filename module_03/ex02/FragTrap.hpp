@@ -16,11 +16,10 @@ class FragTrap : public ClapTrap {
         ~FragTrap(); // destructor
 
         FragTrap(const std::string name); // constructor that takes a string
-        void    attack(const std::string& target);
         void highFivesGuys(void);
 
-        void displayStatus() const;
-
 };
+
+void    displayStatus(const FragTrap &robot) ;
 
 #endif

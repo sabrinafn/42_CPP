@@ -3,8 +3,8 @@
 
 int main(void) {
 
-    ClapTrap Clap("Clap One");
-    std::string Clap2 = "Clap two";
+    ClapTrap Clap("Clap_One");
+    std::string Clap2 = "Clap_Two";
 
     displayStatus(Clap);
 
@@ -22,8 +22,8 @@ int main(void) {
 
     // ================================= //
 
-    ScavTrap scav("Robot Scav");
-    std::string scav2 = "Robot Scav2";
+    ScavTrap scav("Scav_One");
+    std::string scav2 = "Scav_Two";
 
     displayStatus(scav);
 

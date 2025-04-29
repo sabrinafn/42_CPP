@@ -2,8 +2,8 @@
 
 int main(void) {
 
-    ClapTrap robot("Robot One");
-    std::string robot2 = "Robot two";
+    ClapTrap robot("Robot_One");
+    std::string robot2 = "Robot_Two";
 
     displayStatus(robot);
 
