@@ -9,8 +9,6 @@
 
 class ScavTrap : public ClapTrap {
 
-    private:
-
     public:
         ScavTrap(); // constructor
         ScavTrap(const ScavTrap &other); // copy constructor
@@ -23,5 +21,7 @@ class ScavTrap : public ClapTrap {
         void    guardGate(); // defense mode
         void    displayStatus() const;
 };
+
+void    displayStatus(const ScavTrap &robot);
 
 #endif
