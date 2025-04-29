@@ -1,6 +1,6 @@
 #include "ClapTrap.hpp"
 
-void displayStatus(ClapTrap robot) {
+void displayStatus(const ClapTrap &robot) {
 
     std::cout << GREEN << "\n= ClapTrap Status =================" << RESET << std::endl;
 
