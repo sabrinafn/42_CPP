@@ -47,9 +47,13 @@ void    DiamondTrap::attack(const std::string& target) {
 
 void    DiamondTrap::whoAmI() {
 
-    std::cout << "whoAmI: DiamondTrap's name is " << name
+    std::cout << "whoAmI: DiamondTrap's name is " << DiamondTrap::name
     << " and its ClapTrap's name is " << ClapTrap::name
     << std::endl;
+}
+
+std::string DiamondTrap::getName() const {
+    return this->name; // DiamondTrap's name
 }
 
 void    displayStatus(const DiamondTrap &Robot) {
