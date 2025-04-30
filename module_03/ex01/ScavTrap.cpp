@@ -39,16 +39,17 @@ ScavTrap::ScavTrap(std::string name) : ClapTrap(name) {
 
 void ScavTrap::attack(const std::string& target) {
 
-    if (this->energy_points == 0) {
-        std::cout << "Attack Scav: " << this->name << " does not have energy points to attack "
+    if (this->energy_points <= 0) {
+        std::cout << "Attack: ScavTrap " << this->name << " does not have energy points to attack "
                   << target << "." <<std::endl;
-        return;
+    } else if (this->hit_points <= 0) {
+        std::cout << "Attack: ScavTrap " << this->name << " does not have hit points to attack "
+                  << target << "." <<std::endl;
+    } else {
+        std::cout << "Attack: ScavTrap " << this->name << " attacks " << target 
+        << ", causing " << attack_damage << " points of damage!" << std::endl; 
+        this->energy_points -= 1;
     }
-
-    std::cout << "Attack Scav: " << this->name << " attacks " << target 
-    << ", causing " << attack_damage << " points of damage!" << std::endl; 
-
-    this->energy_points -= 1;
 }
 
 void    ScavTrap::guardGate() {
