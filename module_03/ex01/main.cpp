@@ -1,26 +1,6 @@
-#include "ClapTrap.hpp"
 #include "ScavTrap.hpp"
 
 int main(void) {
-
-    ClapTrap Clap("Clap_One");
-    std::string Clap2 = "Clap_Two";
-
-    displayStatus(Clap);
-
-    Clap.attack(Clap2);
-    Clap.takeDamage(5);
-    Clap.beRepaired(1);
-
-    displayStatus(Clap);
-
-    Clap.attack(Clap2);
-    Clap.takeDamage(6);
-    Clap.beRepaired(3);
-
-    displayStatus(Clap);
-
-    // ================================= //
 
     ScavTrap scav("Scav_One");
     std::string scav2 = "Scav_Two";

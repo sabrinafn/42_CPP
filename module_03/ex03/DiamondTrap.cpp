@@ -3,9 +3,9 @@
 DiamondTrap::DiamondTrap() : name("unnamed") {
 
     std::cout << "DiamondTrap Constructor called" << std::endl;
-    hit_points = 100; // FragTrap hit points
-    energy_points = 50; // ScavTrap energy points
-    attack_damage = 30; // FragTrap attack damage
+    hit_points = FragTrap::hit_points; // FragTrap hit points
+    energy_points = ScavTrap::energy_points; // ScavTrap energy points
+    attack_damage = FragTrap::attack_damage; // FragTrap attack damage
 }
 
 DiamondTrap::DiamondTrap(const DiamondTrap &other) {
@@ -34,10 +34,10 @@ DiamondTrap::~DiamondTrap() {
 
 DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name + "_clap_name"), FragTrap(), ScavTrap() {
 
-    this->name = name; // Set the DiamondTrap name
-    hit_points = 100; // FragTrap hit points
-    energy_points = 50; // ScavTrap energy points
-    attack_damage = 30; // FragTrap attack damage
+    this->name = name; // DiamondTrap name
+    hit_points = FragTrap::hit_points; // FragTrap hit points
+    energy_points = ScavTrap::energy_points; // ScavTrap energy points
+    attack_damage = FragTrap::attack_damage; // FragTrap attack damage
 }
 
 void    DiamondTrap::attack(const std::string& target) {
@@ -54,7 +54,7 @@ void    DiamondTrap::whoAmI() {
 
 void    displayStatus(const DiamondTrap &Robot) {
 
-    std::cout << MAGENTA << "\n= DiamondTrap Status ==========" << RESET << std::endl;
+    std::cout << MAGENTA << "\n= DiamondTrap Status ====================" << RESET << std::endl;
 
     std::cout << MAGENTA << "| " << RESET << RED << std::setw(15) << std::left 
               << "Name: " << Robot.getName() << RESET << std::endl;
@@ -68,5 +68,5 @@ void    displayStatus(const DiamondTrap &Robot) {
     std::cout << MAGENTA << "| " << RESET << RED << std::setw(15) << std::left
               << "Attack Damage: " << Robot.getAttackDamage() << RESET << std::endl;
 
-    std::cout << MAGENTA << "===================================" << RESET << "\n" << std::endl;
+    std::cout << MAGENTA << "=========================================" << RESET << "\n" << std::endl;
 }

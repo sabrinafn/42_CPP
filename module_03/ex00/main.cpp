@@ -19,5 +19,11 @@ int main(void) {
 
     displayStatus(robot);
 
+    robot.attack(robot2);
+    robot.beRepaired(10);
+    robot.takeDamage(5);
+
+    displayStatus(robot);
+
     return (0);
 }

@@ -12,9 +12,9 @@ class   ClapTrap {
 
     private:
         std::string   name;
-        int                 hit_points; //represents life; reduces when attacked; can be increased.
-        int                 energy_points; // represents ability to act (attack and repair); cannot be increased.
-        int                 attack_damage; //
+        int           hit_points;
+        int           energy_points;
+        int           attack_damage;
 
     public:
         ClapTrap(); // constructor
@@ -41,5 +41,13 @@ class   ClapTrap {
 };
 
 void    displayStatus(const ClapTrap &robot);
+
+
+/*
+Hit Points: Represents the health of the ClapTrap;Initialized to 10; reduced when attacked; can be increased.
+Energy Points: Represents ability to act (attack/repair); Initialized to 10; cannot be increased.
+Attack Damage: Represents how much damage is dealt to enemies; initialized to 0.
+- ClapTrap can’t do anything if it has no hit points or energy points left.
+*/
 
 #endif
