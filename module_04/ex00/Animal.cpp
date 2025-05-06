@@ -1,7 +1,7 @@
 #include "Animal.hpp"
 
 // constructor
-Animal::Animal() : type("default") {
+Animal::Animal() : type("Animal") {
     std::cout << "Animal: Default constructor called" << std::endl;
 }
 
@@ -32,9 +32,16 @@ Animal::Animal(std::string other) {
 }
 
 // getter
-Animal::Animal  getType() const {
-
+const std::string Animal::getType() const {
+    return this->type;
 }
-void    setType(Animal &other); // setter
 
-void    makeSound(); // output the animal sound 
+// setter
+void    Animal::setType(const Animal &other) {
+    this->type = other.type;
+} 
+
+// output the animal sound
+void    Animal::makeSound() const {
+    std::cout << "abcdef" << std::endl;
+}

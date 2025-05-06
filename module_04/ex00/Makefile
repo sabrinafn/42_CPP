@@ -4,7 +4,7 @@ CC := c++
 
 FLAGS := -Wall -Wextra -Werror -std=c++98
 
-CPPFILES := main.cpp Animal.cpp
+CPPFILES := main.cpp Animal.cpp Dog.cpp Cat.cpp WrongAnimal.cpp WrongCat.cpp
 
 OBJFILES := $(CPPFILES:.cpp=.o)
 

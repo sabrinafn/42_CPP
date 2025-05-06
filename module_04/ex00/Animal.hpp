@@ -3,6 +3,7 @@
 
 #include <iostream>
 
+// base class
 class Animal {
 
     protected:
@@ -12,14 +13,14 @@ class Animal {
         Animal(); // constructor
         Animal(const Animal &other); // copy constructor
         Animal &operator=(const Animal &other); // copy assignment constructor
-        ~Animal(); // destructor
+        virtual ~Animal(); // destructor
 
         Animal(std::string other); // constructor that takes a string as parameter
         
-        Animal  getType() const; // getter
-        void    setType(Animal &other); // setter
+        const std::string  getType() const; // getter
+        void    setType(const Animal &other); // setter
 
-        void    makeSound(); // output the animal sound 
+        virtual void    makeSound() const; // output the animal sound 
 };
 
 #endif
