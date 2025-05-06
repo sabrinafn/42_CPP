@@ -19,8 +19,10 @@ class Cat : public Animal {
         
         const std::string  getType() const; // getter
         void    setType(const Cat &other); // setter
-        void    makeSound() const; // output the Cat sound 
-
+        void    makeSound() const; // output the Cat sound
+        void    setBrainIdea(int index, const std::string &idea);
+        const std::string  getIdea(int index) const;
+        
 };
 
 #endif

@@ -20,7 +20,9 @@ class Dog : public Animal {
         const std::string  getType() const; // getter
         void    setType(const Dog &other); // setter
         void    makeSound() const; // output the Dog sound 
-
+        void    setBrainIdea(int index, const std::string &idea);
+        const std::string  getIdea(int index) const;
+        
 };
 
 #endif
