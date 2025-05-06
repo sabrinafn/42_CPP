@@ -58,6 +58,9 @@ int main() {
     std::cout << std::endl;
     std::cout << "====== Shallow Copy ======" << std::endl;
     
+    delete(one);
+    delete(copy);
+
     // Shallow Copy
     Cat* two = new Cat();
     for (int i = 0; i < 100; i++) {
@@ -73,5 +76,7 @@ int main() {
 
     std::cout << "Cat two's idea: " << two->getIdea(0) << std::endl;
     std::cout << "Cat copy_two's idea: " << copy_two->getIdea(0) << std::endl;
+
+    delete(two);
     return 0;
 }
