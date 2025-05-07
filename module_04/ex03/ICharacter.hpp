@@ -6,6 +6,10 @@
 
 class ICharacter
 {
+    private:
+        std::string name;
+        AMateria* inventory[4];
+
     public:
         ICharacter(); // constructor
         ICharacter(const ICharacter &other); // copy constructor

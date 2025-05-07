@@ -1,5 +1,4 @@
 #include "Cure.hpp"
-#include "AMateria.hpp"
 
 // constructor
 Cure::Cure() : AMateria("Cure") {
@@ -30,6 +29,6 @@ Cure* Cure::clone() const{
     return (new Cure(*this));
 }
 
-//void    Cure::use(ICharacter& other) const {
-//    std::cout << "* heals " << other << "'s wounds *" << std::endl;
-//}
+void    Cure::use(ICharacter& other) const {
+    std::cout << "* heals " << other.getName() << "'s wounds *" << std::endl;
+}

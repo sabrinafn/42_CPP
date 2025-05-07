@@ -106,3 +106,8 @@ Operator overloading (sobrecarga de operador)
     - The name of an operator function is always the operator key
         word followed by the symbol of the operator, and operator
         functions are called when the corresponding operator is used.
+
+A pure virtual function is specified by placing "= 0" in its declaration.
+The purpose of an abstract class (often referred to as an ABC) is to provide an 
+    appropriate base class from which other classes can inherit.
+Abstract classes cannot be used to instantiate objects and serves only as an interface.

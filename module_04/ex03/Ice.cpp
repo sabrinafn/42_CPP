@@ -1,5 +1,4 @@
 #include "Ice.hpp"
-#include "AMateria.hpp"
 
 // constructor
 Ice::Ice() : AMateria("Ice") {
@@ -30,6 +29,6 @@ Ice*    Ice::clone() const {
     return new Ice(*this);
 }
 
-//void    Ice::use(ICharacter& other) const {
-//    std::cout << "* shoots an ice bolt at " << other << " *" << std::endl;
-//}
+void    Ice::use(ICharacter& other) const {
+    std::cout << "* shoots an ice bolt at " << other.getName() << " *" << std::endl;
+}

@@ -1,7 +1,7 @@
 #include "ICharacter.hpp"
 
 // constructor
-ICharacter::ICharacter() {
+ICharacter::ICharacter() : name("default"){
     std::cout << "ICharacter: Constructor called" << std::endl;
 }
 
