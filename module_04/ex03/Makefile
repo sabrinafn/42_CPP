@@ -4,7 +4,8 @@ CC := c++
 
 FLAGS := -Wall -Wextra -Werror -std=c++98
 
-CPPFILES := main.cpp AMateria.cpp
+CPPFILES := main.cpp AMateria.cpp Ice.cpp Cure.cpp IMateriaSource.cpp \
+			Character.cpp ICharacter.cpp MateriaSource.cpp
 
 OBJFILES := $(CPPFILES:.cpp=.o)
 

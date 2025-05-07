@@ -29,6 +29,6 @@ Cure* Cure::clone() const{
     return (new Cure(*this));
 }
 
-void    Cure::use(ICharacter& other) const {
+void    Cure::use(ICharacter& other){
     std::cout << "* heals " << other.getName() << "'s wounds *" << std::endl;
 }

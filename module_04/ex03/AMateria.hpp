@@ -4,6 +4,8 @@
 #include <iostream>
 #include "ICharacter.hpp"
 
+class ICharacter;
+
 // base class
 class AMateria {
 
@@ -14,13 +16,13 @@ class AMateria {
         AMateria(); // constructor
         AMateria(const AMateria &other); // copy constructor
         AMateria &operator=(const AMateria &other); // copy assignment operator
-        ~AMateria(); // destructor
+        virtual ~AMateria(); // destructor
 
         AMateria(const std::string &other); // constructor that takes a std::string
 
-        const std::string& AMateria::getType(); //Returns the materia type
+        const std::string& getType(); //Returns the materia type
         virtual AMateria* clone() const = 0;
-        virtual void use(ICharacter& target);
+        virtual void use(ICharacter& target) = 0;
 };
 
 #endif

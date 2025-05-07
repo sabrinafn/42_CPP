@@ -13,7 +13,7 @@ class Ice : public AMateria {
         ~Ice(); // destructor
     
         Ice *clone() const;
-        void    use(ICharacter& other) const;
+        void    use(ICharacter& other);
 };
 
 #endif
