@@ -30,6 +30,10 @@ AMateria::AMateria(const std::string &other) : type(other) {
     std::cout << "AMateria: Constructor that takes a std::string called" << std::endl;
 }
 
+//Returns the materia type
+const std::string& AMateria::getType() {
+    return this->type;
+}
 
-//void    use(ICharacter &other) {
-//}
+void    use(ICharacter &other) {
+}
