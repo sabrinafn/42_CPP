@@ -4,7 +4,7 @@ CC := c++
 
 FLAGS := -Wall -Wextra -Werror -std=c++98
 
-CPPFILES := main.cpp ClapTrap.cpp
+CPPFILES := main.cpp AMateria.cpp
 
 OBJFILES := $(CPPFILES:.cpp=.o)
 
