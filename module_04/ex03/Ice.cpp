@@ -1,7 +1,7 @@
 #include "Ice.hpp"
 
 // constructor
-Ice::Ice() : AMateria("Ice") {
+Ice::Ice() : AMateria("ice") {
     //std::cout << "Ice: Constructor called" << std::endl;
 }
 
@@ -27,7 +27,7 @@ Ice::~Ice() {
 
 Ice*    Ice::clone() const {
     std::cout << "Ice: Cloning Ice Materia..." << std::endl;
-    return new Ice(*this);
+    return (new Ice(*this));
 }
 
 void    Ice::use(ICharacter& other){

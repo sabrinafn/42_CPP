@@ -48,7 +48,7 @@ void MateriaSource::learnMateria(AMateria* m) {
 
     for (int i = 0; i < 4; i++) {
         if (storage[i] == NULL) {
-            storage[i] = m;
+            storage[i] = m->clone();
             std::cout << "MateriaSource: Learned " << m->getType() << std::endl;
             return;
         }

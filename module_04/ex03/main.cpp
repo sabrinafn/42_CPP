@@ -30,13 +30,12 @@
 int main() {
     std::cout << "====== Creating MateriaSource and learning Materia ======" << std::endl;
     MateriaSource src;
-    src.learnMateria(new Ice());
-    src.learnMateria(new Cure());
-    src.learnMateria(new Ice());
-    src.learnMateria(new Cure());
-    AMateria* extra_ice = new Ice();
-    src.learnMateria(extra_ice); // Exceeds capacity
-    delete(extra_ice);
+    AMateria* first = new Ice();
+    AMateria* second = new Cure();
+    src.learnMateria(first);
+    src.learnMateria(second);
+    delete(first);
+    delete(second);
 
     std::cout << "\n====== Creating Characters ======" << std::endl;
     Character hero("Hero");
@@ -46,51 +45,26 @@ int main() {
     AMateria* ice1 = src.createMateria("Ice");
     AMateria* cure1 = src.createMateria("Cure");
 
-    if (ice1) {
-        hero.equip(ice1->clone());
-    }
-    if (cure1) {
-        hero.equip(cure1->clone());
-    }
-
-    std::cout << "\n====== Cloning Materia and equipping Hero ======" << std::endl;
-    AMateria* clonedIce = NULL;
-    AMateria* clonedCure = NULL;
-    
-    if (ice1) {
-        clonedIce = ice1->clone();
-    }
-    if (cure1) {
-        clonedCure = cure1->clone();
-    }
-    delete cure1;
-
-    //if (clonedIce) {
-    //    hero.equip(clonedIce);
-    //}
-    //if (clonedCure) {
-    //    hero.equip(clonedCure);
-    //}
+    if (ice1) hero.equip(ice1);
+    if (cure1) hero.equip(cure1);
 
     std::cout << "\n====== Using Materia ======" << std::endl;
     hero.use(0, villain);
     hero.use(1, villain);
-    hero.use(2, villain);
-    hero.use(3, villain);
-    hero.use(4, villain); // Invalid slot
 
     std::cout << "\n====== Unequipping Materia ======" << std::endl;
-    hero.unequip(1);
-    hero.use(1, villain); // Should do nothing
+    hero.unequip(0);  // `ice1` is now unequipped, but not deleted
+    hero.unequip(1);  // `cure1` is now unequipped, but not deleted
+
+    std::cout << "\n====== Manually Deleting Unequipped Materia ======" << std::endl;
+    // manually delete since unequip does not delete
+    delete ice1; 
+    delete cure1;
 
     std::cout << "\n====== Testing Deep Copy ======" << std::endl;
     Character copyHero = hero;
-    copyHero.use(0, villain);
-    copyHero.use(1, villain); // This was unequipped in hero, so should not have a valid Materia
-    std::cout << std::endl;
-
-    delete (clonedIce);
-    delete (clonedCure);
+    copyHero.use(0, villain); // Should do nothing as ice1 was unequipped
+    copyHero.use(1, villain); // Should do nothing as cure1 was unequipped
 
     return 0;
 }
