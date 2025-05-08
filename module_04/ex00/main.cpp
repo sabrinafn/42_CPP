@@ -13,6 +13,7 @@ int main() {
 
     const WrongAnimal* wrong_animal = new WrongAnimal();
     const WrongAnimal* wrong_cat = new WrongCat();
+    const WrongCat* only_wrong_cat = new WrongCat();
     std::cout << "===========================\n" << std::endl;
 
     std::cout << "========== types ==========" << std::endl;
@@ -22,6 +23,7 @@ int main() {
 
     std::cout << "wrong_animal type is: " << wrong_animal->getType() << " " << std::endl;
     std::cout << "wrong_cat type is: " << wrong_cat->getType() << " " << std::endl;
+    std::cout << "only_wrong_cat type is: " << only_wrong_cat->getType() << " " << std::endl;
     std::cout << "===========================\n" << std::endl;
 
     std::cout << "========== sounds =========" << std::endl;
@@ -36,6 +38,8 @@ int main() {
     wrong_animal->makeSound();
     std::cout << "wrong_cat sound is: ";
     wrong_cat->makeSound();
+    std::cout << "only_wrong_cat sound is: ";
+    only_wrong_cat->makeSound();
     std::cout << "===========================\n" << std::endl;
 
     std::cout << "======= destructors =======" << std::endl;
@@ -45,6 +49,7 @@ int main() {
 
     delete(wrong_animal);
     delete(wrong_cat);
+    delete(only_wrong_cat);
     std::cout << "===========================\n" << std::endl;
 
     return 0;

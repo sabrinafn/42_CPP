@@ -43,5 +43,5 @@ void    WrongCat::setType(const WrongCat &other) {
 
 // output the WrongCat sound
 void    WrongCat::makeSound() const {
-    std::cout << "MEOW" << std::endl;
+    std::cout << "MEOWMEOW" << std::endl;
 }

@@ -3,7 +3,7 @@
 // constructor
 Dog::Dog() : Animal("Dog") {
     brain = new Brain();
-    std::cout << "Dog: Default constructor called" << std::endl;
+    std::cout << "Dog: Constructor called" << std::endl;
 }
 
 // copy constructor

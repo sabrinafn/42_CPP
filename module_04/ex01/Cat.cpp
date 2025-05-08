@@ -3,7 +3,7 @@
 // constructor
 Cat::Cat() : Animal("Cat"){
     brain = new Brain();
-    std::cout << "Cat: Default constructor called" << std::endl;
+    std::cout << "Cat: Constructor called" << std::endl;
 }
 
 // copy constructor
