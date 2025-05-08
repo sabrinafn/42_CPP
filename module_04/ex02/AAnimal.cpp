@@ -40,8 +40,3 @@ const std::string AAnimal::getType() const {
 void    AAnimal::setType(const AAnimal &other) {
     this->type = other.type;
 } 
-
-// output the AAnimal sound
-void    AAnimal::makeSound() const {
-    std::cout << "abcdef" << std::endl;
-}

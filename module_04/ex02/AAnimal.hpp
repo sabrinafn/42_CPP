@@ -20,7 +20,7 @@ class AAnimal {
         const std::string  getType() const; // getter
         void    setType(const AAnimal &other); // setter
 
-        virtual void    makeSound() const; // output the AAnimal sound 
+        virtual void    makeSound() const = 0; // output the AAnimal sound 
 };
 
 #endif
