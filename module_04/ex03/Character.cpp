@@ -3,7 +3,7 @@
 
 // constructor
 Character::Character() : name("Default") {
-    std::cout << "Character: Constructor called" << std::endl;
+    //std::cout << "Character: Constructor called" << std::endl;
     for (int i = 0; i < 4; i++) {
         inventory[i] = NULL;
     }
@@ -11,7 +11,7 @@ Character::Character() : name("Default") {
 
 // copy constructor
 Character::Character(const Character &other) {
-    std::cout << "Character: Copy Constructor called" << std::endl;
+    //std::cout << "Character: Copy Constructor called" << std::endl;
     this->name = other.name;
 
     for (int i = 0; i < 4; i++) {
@@ -24,7 +24,7 @@ Character::Character(const Character &other) {
 
 // copy assignment operator
 Character& Character::operator=(const Character &other) {
-    std::cout << "Character: Copy Assignment operator called" << std::endl;
+    //std::cout << "Character: Copy Assignment operator called" << std::endl;
     for (int i = 0; i < 4; i++) {
         if (this->inventory[i]) {
             delete this->inventory[i];
@@ -43,7 +43,7 @@ Character& Character::operator=(const Character &other) {
 
 // destructor
 Character::~Character() {
-    std::cout << "Character: Destructor called" << std::endl;
+    //std::cout << "Character: Destructor called" << std::endl;
     for (int i = 0; i < 4; i++) {
         if (this->inventory[i]) {
             delete this->inventory[i];
@@ -54,7 +54,7 @@ Character::~Character() {
 
 // constructor that takes a string
 Character::Character(const std::string other) {
-    std::cout << "Character: Constructor that takes a string" << std::endl;
+    std::cout << "Character: " << other << " has been created!" << std::endl;
     this->name = other;
     for (int i = 0; i < 4; i++) {
         inventory[i] = NULL;
@@ -69,22 +69,22 @@ std::string const& Character::getName() const {
 // to equip a Materia
 void Character::equip(AMateria* m) {
 
-    std::cout << std::endl;
+    //std::cout << std::endl;
     for (int i = 0; i < 4; i++) {
         if (this->inventory[i] == NULL) {
-            std::cout << "Materia equipped in inventory" << std::endl;
+            std::cout << "Character: " << this->name << " equipped a Materia in inventory." << std::endl;
             this->inventory[i] = m;
             return;
         }
     }
-    std::cout << "Materia not equipped in inventory" << std::endl;
+    std::cout << "Character: " << this->name << "'s inventory is full. Materia not equipped." << std::endl;
 }
 
 // to unequip a Materia
 void Character::unequip(int idx) {
     
     if (idx >= 0 && idx < 4) {
-        std::cout << "Materia unequipped from inventory" << std::endl;
+        std::cout << "Character: " << this->name << " unequipped Materia from inventory." << std::endl;
         this->inventory[idx] = NULL;
     }
 }
@@ -95,6 +95,6 @@ void Character::use(int idx, ICharacter& target) {
     if (idx >= 0 && idx < 4 && this->inventory[idx]) {
         this->inventory[idx]->use(target);
     } else {
-        std::cout << "Invalid inventory slot or empty slot." << std::endl;
+        std::cout << "Character: " << this->name << " tried to use an invalid or empty inventory slot." << std::endl;
     }
 } 

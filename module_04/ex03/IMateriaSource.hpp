@@ -6,12 +6,8 @@
 
 class IMateriaSource
 {
-    public:
-        IMateriaSource(); // constructor
-        IMateriaSource(const IMateriaSource &other); // copy constructor
-        IMateriaSource &operator=(const IMateriaSource &other); // copy assignment operator
+    public: 
         virtual ~IMateriaSource() {}; // destructor
-
         virtual void learnMateria(AMateria*) = 0;
         virtual AMateria* createMateria(std::string const & type) = 0;
 };

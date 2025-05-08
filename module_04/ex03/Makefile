@@ -2,10 +2,9 @@ NAME := AMateria
 
 CC := c++
 
-FLAGS := -Wall -Wextra -Werror -std=c++98
+FLAGS := -Wall -Wextra -Werror -std=c++98 -g3
 
-CPPFILES := main.cpp AMateria.cpp Ice.cpp Cure.cpp IMateriaSource.cpp \
-			Character.cpp ICharacter.cpp MateriaSource.cpp
+CPPFILES := main.cpp AMateria.cpp Ice.cpp Cure.cpp Character.cpp MateriaSource.cpp
 
 OBJFILES := $(CPPFILES:.cpp=.o)
 
@@ -18,7 +17,7 @@ $(NAME): $(OBJFILES)
 	$(CC) $(FLAGS) $(OBJFILES) -o $(NAME)
 
 v:
-	valgrind --leak-check=full ./$(NAME)
+	valgrind --leak-check=full --show-leak-kinds=all ./$(NAME)
 
 clean: 
 	rm -f $(OBJFILES)

@@ -2,7 +2,7 @@
 
 // constructor
 MateriaSource::MateriaSource() {
-    std::cout << "MateriaSource: Constructor called" << std::endl;
+    //std::cout << "MateriaSource: Constructor called" << std::endl;
     for (int i = 0; i < 4; i++) {
         storage[i] = NULL;
     }
@@ -10,7 +10,7 @@ MateriaSource::MateriaSource() {
 
 // copy constructor
 MateriaSource::MateriaSource(const MateriaSource &other) {
-    std::cout << "MateriaSource: Copy Constructor called" << std::endl;
+    //std::cout << "MateriaSource: Copy Constructor called" << std::endl;
     for (int i = 0; i < 4; i++) {
         if (other.storage[i])
             storage[i] = other.storage[i]->clone();
@@ -21,7 +21,7 @@ MateriaSource::MateriaSource(const MateriaSource &other) {
 
 // copy assignment operator
 MateriaSource& MateriaSource::operator=(const MateriaSource &other) {
-    std::cout << "MateriaSource: Copy Assignment operator called" << std::endl;
+    //std::cout << "MateriaSource: Copy Assignment operator called" << std::endl;
     if (this != &other) {
         for (int i = 0; i < 4; i++) {
             delete storage[i];
@@ -36,7 +36,7 @@ MateriaSource& MateriaSource::operator=(const MateriaSource &other) {
 
 // destructor
 MateriaSource::~MateriaSource() {
-    std::cout << "MateriaSource: Destructor called" << std::endl;
+    //std::cout << "MateriaSource: Destructor called" << std::endl;
     for (int i = 0; i < 4; i++) {
         delete storage[i];
     }

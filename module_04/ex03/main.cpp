@@ -28,46 +28,65 @@
 //}
 
 int main() {
-    std::cout << "--- Creating MateriaSource and learning Materia ---" << std::endl;
+    std::cout << "====== Creating MateriaSource and learning Materia ======" << std::endl;
     MateriaSource src;
     src.learnMateria(new Ice());
     src.learnMateria(new Cure());
     src.learnMateria(new Ice());
     src.learnMateria(new Cure());
-    src.learnMateria(new Ice()); // Exceeds capacity
+    AMateria* extra_ice = new Ice();
+    src.learnMateria(extra_ice); // Exceeds capacity
+    delete(extra_ice);
 
-    std::cout << "\n--- Creating Characters ---" << std::endl;
+    std::cout << "\n====== Creating Characters ======" << std::endl;
     Character hero("Hero");
     Character villain("Villain");
 
-    std::cout << "\n--- Creating Materia and equipping Hero ---" << std::endl;
+    std::cout << "\n====== Creating Materia and equipping Hero ======" << std::endl;
     AMateria* ice1 = src.createMateria("Ice");
     AMateria* cure1 = src.createMateria("Cure");
-    AMateria* ice2 = src.createMateria("Ice");
-    AMateria* cure2 = src.createMateria("Cure");
 
-    hero.equip(ice1);
-    hero.equip(cure1);
-    hero.equip(ice2);
-    hero.equip(cure2);
-    hero.equip(new Ice()); // Inventory full
+    if (ice1) {
+        hero.equip(ice1);
+    }
+    if (cure1) {
+        hero.equip(cure1);
+    }
 
-    std::cout << "\n--- Using Materia ---" << std::endl;
+    std::cout << "\n====== Cloning Materia and equipping Hero ======" << std::endl;
+    AMateria* clonedIce = NULL;
+    AMateria* clonedCure = NULL;
+    
+    if (ice1) {
+        clonedIce = ice1->clone();
+    }
+    if (cure1) {
+        clonedCure = cure1->clone();
+    }    
+
+    if (clonedIce) {
+        hero.equip(clonedIce);
+    }
+    if (clonedCure) {
+        hero.equip(clonedCure);
+    }
+
+    std::cout << "\n====== Using Materia ======" << std::endl;
     hero.use(0, villain);
     hero.use(1, villain);
     hero.use(2, villain);
     hero.use(3, villain);
     hero.use(4, villain); // Invalid slot
 
-    std::cout << "\n--- Unequipping Materia ---" << std::endl;
+    std::cout << "\n====== Unequipping Materia ======" << std::endl;
     hero.unequip(1);
     hero.use(1, villain); // Should do nothing
 
-    std::cout << "\n--- Testing Deep Copy ---" << std::endl;
+    std::cout << "\n====== Testing Deep Copy ======" << std::endl;
     Character copyHero = hero;
     copyHero.use(0, villain);
-    copyHero.use(1, villain);
+    copyHero.use(1, villain); // This was unequipped in hero, so should not have a valid Materia
+    std::cout << std::endl;
 
-    std::cout << "\n--- Destructor Calls ---" << std::endl;
     return 0;
 }

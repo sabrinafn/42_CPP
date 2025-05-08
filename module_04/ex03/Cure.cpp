@@ -2,18 +2,18 @@
 
 // constructor
 Cure::Cure() : AMateria("Cure") {
-    std::cout << "Cure: Constructor called" << std::endl;
+    //std::cout << "Cure: Constructor called" << std::endl;
 }
 
 // copy constructor
 Cure::Cure(const Cure &other) {
-    std::cout << "Cure: Copy Constructor called" << std::endl;
+    //std::cout << "Cure: Copy Constructor called" << std::endl;
     *this = other;
 }
 
 // copy assignment operator
 Cure& Cure::operator=(const Cure &other) {
-    std::cout << "Cure: Copy assignment operator called" << std::endl;
+    //std::cout << "Cure: Copy assignment operator called" << std::endl;
     if (this != &other) {
         this->type = other.type;
     }
@@ -22,10 +22,11 @@ Cure& Cure::operator=(const Cure &other) {
 
 // destructor
 Cure::~Cure() {
-    std::cout << "Cure: Destructor called" << std::endl;
+    //std::cout << "Cure: Destructor called" << std::endl;
 }
 
 Cure* Cure::clone() const{
+    std::cout << "Cure: Cloning Ice Materia..." << std::endl;
     return (new Cure(*this));
 }
 
