@@ -47,10 +47,10 @@ int main() {
     AMateria* cure1 = src.createMateria("Cure");
 
     if (ice1) {
-        hero.equip(ice1);
+        hero.equip(ice1->clone());
     }
     if (cure1) {
-        hero.equip(cure1);
+        hero.equip(cure1->clone());
     }
 
     std::cout << "\n====== Cloning Materia and equipping Hero ======" << std::endl;
@@ -62,14 +62,15 @@ int main() {
     }
     if (cure1) {
         clonedCure = cure1->clone();
-    }    
+    }
+    delete cure1;
 
-    if (clonedIce) {
-        hero.equip(clonedIce);
-    }
-    if (clonedCure) {
-        hero.equip(clonedCure);
-    }
+    //if (clonedIce) {
+    //    hero.equip(clonedIce);
+    //}
+    //if (clonedCure) {
+    //    hero.equip(clonedCure);
+    //}
 
     std::cout << "\n====== Using Materia ======" << std::endl;
     hero.use(0, villain);
@@ -87,6 +88,9 @@ int main() {
     copyHero.use(0, villain);
     copyHero.use(1, villain); // This was unequipped in hero, so should not have a valid Materia
     std::cout << std::endl;
+
+    delete (clonedIce);
+    delete (clonedCure);
 
     return 0;
 }
