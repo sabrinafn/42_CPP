@@ -5,7 +5,7 @@
 int main() {
 
     std::cout << "====== constructors ===========" << std::endl;
-    //const AAnimal* animal = new AAnimal();
+    //AAnimal animal;
     const AAnimal* dog = new Dog();
     const AAnimal* cat = new Cat();
 
