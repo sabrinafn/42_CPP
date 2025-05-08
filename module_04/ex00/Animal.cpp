@@ -43,5 +43,5 @@ void    Animal::setType(const Animal &other) {
 
 // output the animal sound
 void    Animal::makeSound() const {
-    std::cout << "abcdef" << std::endl;
+    std::cout << "Generic Sound" << std::endl;
 }

@@ -43,5 +43,5 @@ void    WrongAnimal::setType(const WrongAnimal &other) {
 
 // output the WrongAnimal sound
 void    WrongAnimal::makeSound() const {
-    std::cout << "abcdef" << std::endl;
+    std::cout << "Generic sound" << std::endl;
 }

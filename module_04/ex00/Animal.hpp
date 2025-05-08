@@ -21,6 +21,7 @@ class Animal {
         void    setType(const Animal &other); // setter
 
         virtual void    makeSound() const; // output the animal sound 
+            // -> Virtual because this function will be overriden by its derived class (cat, dog)
 };
 
 #endif

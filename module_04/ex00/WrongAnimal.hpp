@@ -13,7 +13,7 @@ class WrongAnimal {
         WrongAnimal(); // constructor
         WrongAnimal(const WrongAnimal &other); // copy constructor
         WrongAnimal &operator=(const WrongAnimal &other); // copy assignment constructor
-        virtual ~WrongAnimal(); // destructor
+        ~WrongAnimal(); // destructor
 
         WrongAnimal(std::string other); // constructor that takes a string as parameter
         
