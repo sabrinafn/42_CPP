@@ -113,3 +113,5 @@ The purpose of an abstract class (often referred to as an ABC) is to provide an
 Abstract classes cannot be used to instantiate objects and serves only as an interface.
 
 
+Exception classes
+https://medium.com/@hixcoder/exception-classes-in-c-b57ecc8a7f2d
