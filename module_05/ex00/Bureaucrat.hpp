@@ -7,7 +7,7 @@
 class Bureaucrat {
 
     private:
-        std::string name;
+        const std::string name;
         int grade;
     public:
         Bureaucrat(); // constructor
@@ -16,20 +16,25 @@ class Bureaucrat {
         ~Bureaucrat(); // destructor
 
         Bureaucrat(const std::string name, const int grade); // constructor that takes a string
+        
         std::string     getName() const; // getter for the name
         int             getGrade() const; // getter for the grade
+        void            setGrade(const int grade); // setter for the grade
 
-        void    setName(const std::string name); // setter for the name
-        void    setGrade(const int grade); // setter for the grade
+        void    incrementGrade(int grade);
+        void    decrementGrade(int grade);
+
 };
+
+std::ostream &operator<<(std::ostream &out, const Bureaucrat &other); // insertion operator
 
 // Exception class
 class GradeTooHighException : public std::exception {
     
     private:
-        std::string message;
+        const char* message;
     public:
-        GradeTooHighException(const std::string& msg);
+        GradeTooHighException();
         virtual const char* what() const throw();
 };
 
@@ -37,9 +42,9 @@ class GradeTooHighException : public std::exception {
 class GradeTooLowException : public std::exception {
     
     private:
-        std::string message;
+        const char* message;
     public:
-        GradeTooLowException(const std::string& msg);
+        GradeTooLowException();
         virtual const char* what() const throw();
 };
 
