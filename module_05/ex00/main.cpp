@@ -7,7 +7,6 @@ int main(void) {
     int grade;
 
     while (true) {
-        std::cin.ignore();
         std::cout << "Enter your name: ";
         std::getline(std::cin, name);
 
@@ -17,16 +16,24 @@ int main(void) {
         try {
             Bureaucrat one = Bureaucrat(name, grade);
             std::cout << one << std::endl;
+            
+            std::cout << "Test: Incrementing Grade..." << std::endl;
+            std::cout << one << std::endl;
+            one.incrementGrade();
+            std::cout << one << std::endl;
+
+            //std::cout << "Test: Decrementing Grade..." << std::endl;
+            //std::cout << one << std::endl;
+            //one.decrementGrade();
+            //std::cout << one << std::endl;
         } 
         catch (const GradeTooHighException& e) {
             std::cerr << "Exception: " << e.what() << std::endl;
         } 
         catch (const GradeTooLowException& e) {
             std::cerr << "Exception: " << e.what() << std::endl;
-        } 
-        catch (const std::exception& e) { // generic exception if other errors are encountered
-            std::cerr << "Unexpected exception: " << e.what() << std::endl;
         }
+
         std::cout << "Press enter to continue or exit to quit." << std::endl;
         std::cin.ignore();
         std::getline(std::cin, name);

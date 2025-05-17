@@ -7,6 +7,8 @@
 class Bureaucrat {
 
     private:
+    	static const int	MAX_GRADE = 1; // static means that it does not belong to a object
+		static const int	MIN_GRADE = 150; // but to the whole class
         const std::string name;
         int grade;
     public:
@@ -19,33 +21,31 @@ class Bureaucrat {
         
         std::string     getName() const; // getter for the name
         int             getGrade() const; // getter for the grade
-        void            setGrade(const int grade); // setter for the grade
 
-        void    incrementGrade(int grade);
-        void    decrementGrade(int grade);
+        void    incrementGrade();
+        void    decrementGrade();
 
+        // Exception class for grades that are too high
+        class GradeTooHighException : public std::exception {
+
+            private:
+                const char* message;
+            public:
+                GradeTooHighException();
+                virtual const char* what() const throw();
+        };
+
+        // Exception class for grades that are too low
+        class GradeTooLowException : public std::exception {
+
+            private:
+                const char* message;
+            public:
+                GradeTooLowException();
+                virtual const char* what() const throw();
+        };
 };
 
 std::ostream &operator<<(std::ostream &out, const Bureaucrat &other); // insertion operator
-
-// Exception class
-class GradeTooHighException : public std::exception {
-    
-    private:
-        const char* message;
-    public:
-        GradeTooHighException();
-        virtual const char* what() const throw();
-};
-
-// Exception class
-class GradeTooLowException : public std::exception {
-    
-    private:
-        const char* message;
-    public:
-        GradeTooLowException();
-        virtual const char* what() const throw();
-};
 
 #endif
