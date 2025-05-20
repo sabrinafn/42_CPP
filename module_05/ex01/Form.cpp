@@ -7,6 +7,11 @@ Form::Form()
       is_signed(false),
       grade_required_to_sign(-1),
       grade_required_to_execute(-1) {
+
+    if (grade_required_to_sign < 1 || grade_required_to_execute < 1)
+        throw GradeTooHighException();
+    if (grade_required_to_sign < 1 || grade_required_to_execute < 1)
+        throw GradeTooLowException();
     std::cout << "Form: Constructor called" << std::endl;
 }
 
