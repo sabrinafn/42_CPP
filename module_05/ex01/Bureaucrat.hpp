@@ -27,14 +27,11 @@ class Bureaucrat {
         void    incrementGrade();
         void    decrementGrade();
 
-        // bureaucrat attempt to sign the form
-        void    signForm(Form &paper);
-
         // Exception class for grades that are too high
         class GradeTooHighException : public std::exception {
 
             private:
-                std::string message;
+                const char* message;
             public:
                 GradeTooHighException();
                 virtual const char* what() const throw();
@@ -44,11 +41,14 @@ class Bureaucrat {
         class GradeTooLowException : public std::exception {
 
             private:
-                std::string message;
+                const char* message;
             public:
                 GradeTooLowException();
                 virtual const char* what() const throw();
         };
+
+        // bureaucrat attempt to sign the form
+        void    signForm(Form &paper);
 };
 
 std::ostream &operator<<(std::ostream &out, const Bureaucrat &other); // insertion operator
