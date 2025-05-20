@@ -80,20 +80,12 @@ void    Form::beSigned(const Bureaucrat &guy) {
 
 // exception classes
 
-Form::GradeTooHighException::GradeTooHighException() {
-    message = "Form: Grade too high!";
-}
-
 const char* Form::GradeTooHighException::what() const throw() {
-    return message.c_str();
-}
-
-Form::GradeTooLowException::GradeTooLowException() {
-    message = "Form: Grade too low!";
+    return "Form: Grade too high!";
 }
 
 const char* Form::GradeTooLowException::what() const throw() {
-    return message.c_str();       
+    return "Form: Grade too low!";       
 }
 
 // insertion operator

@@ -68,22 +68,12 @@ std::ostream &operator<<(std::ostream &out, const Bureaucrat &other) {
     return out;
 }
 
-// Grade TOO HIGH exception
-Bureaucrat::GradeTooHighException::GradeTooHighException() {
-    message = "Bureaucrat: Grade too high!";
-}
-
 const char* Bureaucrat::GradeTooHighException::what() const throw() {
-    return message;
-}
-
-// Grade TOO LOW exception
-Bureaucrat::GradeTooLowException::GradeTooLowException() {
-        message = "Bureaucrat: Grade too low!";
+    return "Bureaucrat: Grade too high!";
 }
 
 const char* Bureaucrat::GradeTooLowException::what() const throw() {
-    return message;
+    return "Bureaucrat: Grade too low!";
 }
 
 // attempt to sign the form
