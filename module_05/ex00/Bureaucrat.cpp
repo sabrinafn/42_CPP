@@ -70,19 +70,19 @@ std::ostream &operator<<(std::ostream &out, const Bureaucrat &other) {
 }
 
 // Grade TOO HIGH exception
-GradeTooHighException::GradeTooHighException() {
+Bureaucrat::GradeTooHighException::GradeTooHighException() {
     message = "Grade too high!";
 }
 
-const char* GradeTooHighException::what() const throw() {
+const char* Bureaucrat::GradeTooHighException::what() const throw() {
     return message;
 }
 
 // Grade TOO LOW exception
-GradeTooLowException::GradeTooLowException() {
+Bureaucrat::GradeTooLowException::GradeTooLowException() {
         message = "Grade too low!";
 }
 
-const char* GradeTooLowException::what() const throw() {
+const char* Bureaucrat::GradeTooLowException::what() const throw() {
     return message;
 }

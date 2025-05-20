@@ -1,4 +1,5 @@
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 int main(void) {
 
@@ -27,10 +28,10 @@ int main(void) {
             //one.decrementGrade();
             //std::cout << one << std::endl;
         } 
-        catch (const GradeTooHighException& e) {
+        catch (const Bureaucrat::GradeTooHighException& e) {
             std::cerr << "Exception: " << e.what() << std::endl;
         } 
-        catch (const GradeTooLowException& e) {
+        catch (const Bureaucrat::GradeTooLowException& e) {
             std::cerr << "Exception: " << e.what() << std::endl;
         }
 

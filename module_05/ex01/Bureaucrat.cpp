@@ -1,4 +1,5 @@
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 // constructor
 Bureaucrat::Bureaucrat() : name("empty"), grade(-1) {
@@ -70,19 +71,33 @@ std::ostream &operator<<(std::ostream &out, const Bureaucrat &other) {
 }
 
 // Grade TOO HIGH exception
-GradeTooHighException::GradeTooHighException() {
+Bureaucrat::GradeTooHighException::GradeTooHighException() {
     message = "Grade too high!";
 }
 
-const char* GradeTooHighException::what() const throw() {
-    return message;
+const char* Bureaucrat::GradeTooHighException::what() const throw() {
+    return message.c_str();
 }
 
 // Grade TOO LOW exception
-GradeTooLowException::GradeTooLowException() {
+Bureaucrat::GradeTooLowException::GradeTooLowException() {
         message = "Grade too low!";
 }
 
-const char* GradeTooLowException::what() const throw() {
-    return message;
+const char* Bureaucrat::GradeTooLowException::what() const throw() {
+    return message.c_str();
+}
+
+
+
+// attempt to sign the form
+void    Bureaucrat::signForm(Form &paper) {
+    try {
+        paper.beSigned(*this);
+        std::cout << name << " signed " << paper.getName() << std::endl;
+    }
+    catch (const std::exception& e) {
+        std::cout << name << " couldn't sign " << paper.getName() 
+                  << " because " << e.what() << std::endl;
+    }
 }

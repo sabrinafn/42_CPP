@@ -1,10 +1,6 @@
 #include "Form.hpp"
+#include "Bureaucrat.hpp"
 
-    // private:
-    //     const std::string   name;
-    //     bool                is_signed;
-    //     const int           grade_required_to_sign;
-    //     const int           grade_required_to_execute;
 // constructor
 Form::Form()
     : name("empty"), 
@@ -15,9 +11,12 @@ Form::Form()
 }
 
 // copy constructor
-Form::Form(const Form &other) {
+Form::Form(const Form &other)
+    : name(other.name),
+      is_signed(other.is_signed),
+      grade_required_to_sign(other.grade_required_to_sign),
+      grade_required_to_execute(other.grade_required_to_execute) {
     std::cout << "Form: Copy construtor called" << std::endl;
-    *this = other;
 }
 
 // copy assignment operator
@@ -39,57 +38,76 @@ Form::Form(const std::string name, int gradeToSign, int gradeToExecute)
     grade_required_to_sign(gradeToSign),
     grade_required_to_execute(gradeToExecute) {
 
-    if (gradeToSign < 1 || gradeToExecute < 1)
+    std::cout << "Form: Constructor(parameters) called" << std::endl;
+    if (gradeToSign < 1 || gradeToExecute < 1) {
         throw GradeTooHighException();
-    if (gradeToSign > 150 || gradeToExecute > 150)
+    }
+    if (gradeToSign > 150 || gradeToExecute > 150) {
         throw GradeTooLowException();
-        std::cout << "Form: Constructor(parameters) called" << std::endl;
+    }
 }
-
 // GETTERS
 
-const std::string   Form::getName() {
+std::string   Form::getName() const {
     return this->name;
 }
 
-bool    Form::getIsSigned() {
+bool    Form::getIsSigned() const {
     return this->is_signed;
 }
 
-const int   Form::getGradeRequiredToSign() {
+int   Form::getGradeRequiredToSign() const {
     return this->grade_required_to_sign;
 }
 
-const int   Form::getGradeRequiredToExecute() {
+int   Form::getGradeRequiredToExecute() const {
     return this->grade_required_to_execute;
 }
 
 
 // changes form's status if bureaucrat's grade is high enough
 void    Form::beSigned(const Bureaucrat &guy) {
-    
+
+    // check if bureaucrat's grade is high enough to sign the form
+    if (guy.getGrade() > grade_required_to_sign) {
+        throw Form::GradeTooLowException();
+    }
+    else {
+        std::cout << "beSigned: grade high enough to sign. set is_signed to true" << std::endl;
+        is_signed = true;
+    }
 }
 
-        // attempt to sign the form
-        void    signForm(const Form &paper);
+// exception classes
 
-        // exception classes
-        class GradeTooHighException : public std::exception {
-            private:
-                const char* message;
-            public:
-                GradeTooHighException();
-                virtual const char* what() const throw();
-        };
+Form::GradeTooHighException::GradeTooHighException() {
+    message = "Form: Grade too high!";
+}
 
-        class GradeTooLowException : public std::exception {
-            private:
-                const char* message;
-            public:
-                GradeTooLowException();
-                virtual const char* what() const throw();
-        };
-};
+const char* Form::GradeTooHighException::what() const throw() {
+    return message.c_str();
+}
+
+Form::GradeTooLowException::GradeTooLowException() {
+    message = "Form: Grade too low!";
+}
+
+const char* Form::GradeTooLowException::what() const throw() {
+    return message.c_str();       
+}
 
 // insertion operator
-std::ostream &operator<<(std::ostream &out, const Form &other);
+std::ostream &operator<<(std::ostream &out, const Form &paper) {
+
+    if (paper.getIsSigned()) {
+        out << paper.getName() << ", form is signed, requires grade " 
+            << paper.getGradeRequiredToSign() << " to sign, " << paper.getGradeRequiredToExecute()
+            << " to execute." << std::endl;
+    }
+    else {
+        out << paper.getName() << ", form is unsigned, requires grade " 
+            << paper.getGradeRequiredToSign() << " to sign, " << paper.getGradeRequiredToExecute()
+            << " to execute." << std::endl;
+    }
+    return out;
+}
