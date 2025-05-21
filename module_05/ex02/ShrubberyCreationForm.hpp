@@ -1,55 +1,26 @@
-#ifndef AAForm_HPP
-#define AAForm_HPP
+#ifndef SHRUBBERYCREATIONFORM_HPP
+#define SHRUBBERYCREATIONFORM_HPP
 
 #include <iostream>
-#include <exception>
+#include <fstream>
+#include <string>
+#include "AForm.hpp"
+#include "Bureaucrat.hpp"
 
-class Bureaucrat;
-
-class AForm {
+class ShrubberyCreationForm : public AForm {
 
     private:
-        const std::string   name;
-        bool                is_signed;
-        const int           grade_required_to_sign;
-        const int           grade_required_to_execute;
-        AForm &operator=(const AForm &other); // copy assignment operator
-
+        std::string target;
     public:
-        AForm(); // constructor
-        AForm(const AForm &other); // copy constructor
-        ~AForm(); // destructor
-        AForm(const std::string name, int gradeToSign, int gradeToExecute); // constructor takes parameters
-
-        // GETTERS
-
-        std::string   getName() const;
-        bool          getIsSigned() const;
-        int           getGradeRequiredToSign() const;
-        int           getGradeRequiredToExecute() const;
-
-        // changes AForm's status if bureaucrat's grade is high enough
-        void    beSigned(const Bureaucrat &guy);
-
-        // attempt to sign the AForm
-        void    signForm(const AForm &paper);
-
-        // exception classes
-        class GradeTooHighException : public std::exception {
-            public:
-                virtual const char* what() const throw();
-        };
-
-        class GradeTooLowException : public std::exception {
-            public:
-                virtual const char* what() const throw();
-        };
+        ShrubberyCreationForm(); // constructor
+        ShrubberyCreationForm(const ShrubberyCreationForm &other); // copy constructor
+        ShrubberyCreationForm &operator=(const ShrubberyCreationForm &other); // copy assignment operator
+        ~ShrubberyCreationForm(); // destructor
+        ShrubberyCreationForm(const std::string target); // constructor takes parameters
     
-        virtual void execute(Bureaucrat const& executor) const = 0;
+        void execute(Bureaucrat const& executor) const;
+        void    drawTrees(std::ofstream output);
 
 };
-
-// insertion operator
-std::ostream &operator<<(std::ostream &out, const AForm &paper);
 
 #endif
