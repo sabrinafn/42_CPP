@@ -13,6 +13,8 @@ class AForm {
         bool                is_signed;
         const int           grade_required_to_sign;
         const int           grade_required_to_execute;
+        static const int	MAX_GRADE = 1; // static means that it does not belong to a object
+		static const int	MIN_GRADE = 150; // but to the whole class
 
     public:
         AForm(); // constructor
@@ -41,6 +43,11 @@ class AForm {
         };
 
         class GradeTooLowException : public std::exception {
+            public:
+                virtual const char* what() const throw();
+        };
+
+        class FormNotSignedException : public std::exception {
             public:
                 virtual const char* what() const throw();
         };

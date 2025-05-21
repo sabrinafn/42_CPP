@@ -8,9 +8,9 @@ AForm::AForm()
       grade_required_to_sign(-1),
       grade_required_to_execute(-1) {
 
-    if (grade_required_to_sign < 1 || grade_required_to_execute < 1)
+    if (grade_required_to_sign < MAX_GRADE || grade_required_to_execute < MAX_GRADE)
         throw GradeTooHighException();
-    if (grade_required_to_sign < 1 || grade_required_to_execute < 1)
+    if (grade_required_to_sign > MIN_GRADE || grade_required_to_execute > MIN_GRADE)
         throw GradeTooLowException();
     //std::cout << "AForm: Constructor called" << std::endl;
 }
@@ -44,10 +44,10 @@ AForm::AForm(const std::string name, int gradeToSign, int gradeToExecute)
     grade_required_to_execute(gradeToExecute) {
 
     //std::cout << "AForm: Constructor(parameters) called" << std::endl;
-    if (gradeToSign < 1 || gradeToExecute < 1) {
+    if (gradeToSign < MAX_GRADE || gradeToExecute < MAX_GRADE) {
         throw GradeTooHighException();
     }
-    if (gradeToSign > 150 || gradeToExecute > 150) {
+    if (gradeToSign > MIN_GRADE || gradeToExecute > MIN_GRADE) {
         throw GradeTooLowException();
     }
 }
@@ -74,10 +74,10 @@ int   AForm::getGradeRequiredToExecute() const {
 void    AForm::beSigned(const Bureaucrat &guy) {
 
     // check if bureaucrat's grade is high enough to sign the AForm
-    if (guy.getGrade() > grade_required_to_sign) {
+    if (guy.getGrade() > this->grade_required_to_sign) {
         throw AForm::GradeTooLowException();
     }
-    is_signed = true;
+    this->is_signed = true;
 }
 
 // exception classes
@@ -88,6 +88,10 @@ const char* AForm::GradeTooHighException::what() const throw() {
 
 const char* AForm::GradeTooLowException::what() const throw() {
     return "AForm: Grade too low!";       
+}
+
+const char* AForm::FormNotSignedException::what() const throw() {
+    return "AForm: Form not signed!";
 }
 
 // insertion operator
