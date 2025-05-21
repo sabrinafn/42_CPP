@@ -24,15 +24,8 @@ RobotomyRequestForm::~RobotomyRequestForm() {}
 RobotomyRequestForm::RobotomyRequestForm(const std::string target)
     : AForm("RobotomyRequestForm", 72, 45), target(target) {}
 
-void RobotomyRequestForm::execute(Bureaucrat const& executor) const {
-
-    if (!this->getIsSigned()) {
-        throw AForm::FormNotSignedException();
-    }
-    if (executor.getGrade() > this->getGradeRequiredToExecute()) {
-        throw AForm::GradeTooLowException();
-    }
-
+void RobotomyRequestForm::action() const {
+    
     static bool rand_exist = false;
 
     // seed the random generator

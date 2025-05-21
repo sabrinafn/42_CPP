@@ -23,16 +23,8 @@ ShrubberyCreationForm::~ShrubberyCreationForm() {}
 // constructor takes parameters
 ShrubberyCreationForm::ShrubberyCreationForm(const std::string target)
     : AForm("ShrubberyCreationForm", 145, 137), target(target) {} 
-    
-void    ShrubberyCreationForm::execute(Bureaucrat const& executor) const {
-    
-    if (!this->getIsSigned()) {
-        throw AForm::FormNotSignedException();
-    }
-    if (executor.getGrade() > this->getGradeRequiredToExecute()) {
-        throw AForm::GradeTooLowException();
-    }
-    
+
+void    ShrubberyCreationForm::action() const {
     std::string filename = this->target + "_shrubbery";
     std::ofstream output(filename.c_str());
     

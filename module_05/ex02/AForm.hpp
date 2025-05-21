@@ -16,6 +16,9 @@ class AForm {
         static const int	MAX_GRADE = 1; // static means that it does not belong to a object
 		static const int	MIN_GRADE = 150; // but to the whole class
 
+    protected:
+        virtual void action() const = 0;
+
     public:
         AForm(); // constructor
         AForm(const AForm &other); // copy constructor
@@ -52,7 +55,7 @@ class AForm {
                 virtual const char* what() const throw();
         };
     
-        virtual void execute(Bureaucrat const& executor) const = 0;
+        virtual void execute(Bureaucrat const& executor) const;
 
 };
 
