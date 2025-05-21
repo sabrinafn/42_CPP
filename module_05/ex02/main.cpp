@@ -47,6 +47,18 @@ int main() {
         std::cerr << "Exception: " << e.what() << std::endl;
     }
 
+        try {
+        std::cout << "\n=== Creating bureaucrat...\n" << std::endl;
+        Bureaucrat john2 = Bureaucrat("Second John", 100);
+        std::cout << john2 << std::endl;
+        RobotomyRequestForm robotomy("this_robot_guy");
+        std::cout << robotomy << std::endl;
+        robotomy.beSigned(john2);      // john2 must have grade <= 72
+        robotomy.execute(john2);       // john2 must have grade <= 45
+    }
+    catch (const std::exception& e) {
+        std::cerr << "Exception: " << e.what() << std::endl;
+    }
 
     return 0;
 }
