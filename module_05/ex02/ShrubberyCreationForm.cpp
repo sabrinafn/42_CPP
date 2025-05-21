@@ -1,7 +1,8 @@
 #include "ShrubberyCreationForm.hpp"
 
 // constructor
-ShrubberyCreationForm::ShrubberyCreationForm() : target("empty") {}
+ShrubberyCreationForm::ShrubberyCreationForm() 
+    : AForm("ShrubberyCreationForm", 145, 137), target("empty") {}
 
 // copy constructor
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &other) {
@@ -20,7 +21,8 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationF
 ShrubberyCreationForm::~ShrubberyCreationForm() {}
 
 // constructor takes parameters
-ShrubberyCreationForm::ShrubberyCreationForm(const std::string target) : target(target) {} 
+ShrubberyCreationForm::ShrubberyCreationForm(const std::string target)
+    : AForm("ShrubberyCreationForm", 145, 137), target(target) {} 
     
 void    ShrubberyCreationForm::execute(Bureaucrat const& executor) const {
     
@@ -28,7 +30,7 @@ void    ShrubberyCreationForm::execute(Bureaucrat const& executor) const {
         throw AForm::FormNotSignedException();
     }
     if (executor.getGrade() > this->getGradeRequiredToExecute()) {
-        throw Aform::GradeTooLowException();
+        throw AForm::GradeTooLowException();
     }
     
     std::string filename = this->target + "_shrubbery";
@@ -37,23 +39,23 @@ void    ShrubberyCreationForm::execute(Bureaucrat const& executor) const {
     if (output.is_open()) {
         drawTrees(output);
         output.close();
-        std::cout << "File " << filename << " created and written to successfully.\n" << std::endl;
+        std::cout << "File " << filename << " created and written to successfully." << std::endl;
     }
     else {
-        std::cerr << "error opening file " << filename << "for writing" << std::endl;
+        std::cerr << "Error opening file " << filename << " for writing." << std::endl;
     }
 }
 
-void    ShrubberyCreationForm::drawTrees(std::ofstream output) {
+void    ShrubberyCreationForm::drawTrees(std::ofstream &output) const{
 
-    output << "                   ,@@@@@@@,/n"
-    << "       ,,,.   ,@@@@@@/@@,  .oo8888o./n"
-    << "    ,&%%&%&&%,@@@@@/@@@@@@,8888\88/8o/n"
-    << "   ,%&\%&&%&&%,@@@\@@@/@@@88\88888/88'/n"
-    << "   %&&%&%&/%&&%@@\@@/ /@@@88888\88888'/n"
-    << "   %&&%/ %&%%&&@@\ V /@@' `88\8 `/88'/n"
-    << "   `&%\ ` /%&'    |.|        \ '|8'/n"
-    << "       |o|        | |         | |/n"
-    << "       |.|        | |         | |/n"
-    << "jgs \\/ ._\//_/__/  ,\_//__\\/.  \_//__/_/n"
+    output << "      /\\      \n"
+           << "     /\\/\\     \n"
+           << "    /\\/\\/\\    \n"
+           << "   /\\/\\/\\/\\   \n"
+           << "  /\\/\\/\\/\\/\\  \n"
+           << " /\\/\\/\\/\\/\\/\\ \n"
+           << "/\\/\\/\\/\\/\\/\\/\\\n"
+           << "      ||      \n"
+           << "      ||      \n"
+           << "      ||";
 }

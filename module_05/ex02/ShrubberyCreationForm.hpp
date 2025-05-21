@@ -10,7 +10,7 @@
 class ShrubberyCreationForm : public AForm {
 
     private:
-        std::string target;
+        std::string         target;
     public:
         ShrubberyCreationForm(); // constructor
         ShrubberyCreationForm(const ShrubberyCreationForm &other); // copy constructor
@@ -19,7 +19,7 @@ class ShrubberyCreationForm : public AForm {
         ShrubberyCreationForm(const std::string target); // constructor takes parameters
     
         void execute(Bureaucrat const& executor) const;
-        void    drawTrees(std::ofstream output);
+        void    drawTrees(std::ofstream &output) const;
 
 };
 
