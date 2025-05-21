@@ -12,7 +12,7 @@ Form::Form()
         throw GradeTooHighException();
     if (grade_required_to_sign < 1 || grade_required_to_execute < 1)
         throw GradeTooLowException();
-    std::cout << "Form: Constructor called" << std::endl;
+    //std::cout << "Form: Constructor called" << std::endl;
 }
 
 // copy constructor
@@ -21,19 +21,19 @@ Form::Form(const Form &other)
       is_signed(other.is_signed),
       grade_required_to_sign(other.grade_required_to_sign),
       grade_required_to_execute(other.grade_required_to_execute) {
-    std::cout << "Form: Copy construtor called" << std::endl;
+    //std::cout << "Form: Copy construtor called" << std::endl;
 }
 
 // copy assignment operator
 Form& Form::operator=(const Form &other) {
-    std::cout << "Form: Copy assignment operator called" << std::endl;
+    //std::cout << "Form: Copy assignment operator called" << std::endl;
     (void)other;
     return *this;
 } 
 
 // destructor
 Form::~Form() {
-    std::cout << "Form: Destructor called" << std::endl;
+    //std::cout << "Form: Destructor called" << std::endl;
 }
 
 // constructor takes parameters
@@ -43,7 +43,7 @@ Form::Form(const std::string name, int gradeToSign, int gradeToExecute)
     grade_required_to_sign(gradeToSign),
     grade_required_to_execute(gradeToExecute) {
 
-    std::cout << "Form: Constructor(parameters) called" << std::endl;
+    //std::cout << "Form: Constructor(parameters) called" << std::endl;
     if (gradeToSign < 1 || gradeToExecute < 1) {
         throw GradeTooHighException();
     }
@@ -77,10 +77,7 @@ void    Form::beSigned(const Bureaucrat &guy) {
     if (guy.getGrade() > grade_required_to_sign) {
         throw Form::GradeTooLowException();
     }
-    else {
-        std::cout << "beSigned: grade high enough to sign. set is_signed to true" << std::endl;
-        is_signed = true;
-    }
+    is_signed = true;
 }
 
 // exception classes

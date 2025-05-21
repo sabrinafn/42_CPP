@@ -1,65 +1,72 @@
 #include "Bureaucrat.hpp"
 #include <cstdlib>
 
-// Helper function to check if a string is numeric
-bool isNumeric(const std::string& str) {
-    
-    if (str.empty())
-        return false;
+#include "Bureaucrat.hpp"
+#include "Form.hpp"
 
-    int len = str.length();
-    for (int i = 0; i < len; i++) {
-        if (!std::isdigit(str[i]))
-            return false;
+int main() {
+
+    // Valid form
+    std::cout << "===== Creating a valid form... =====\n" << std::endl;
+    try {
+        Form validForm("ValidForm", 50, 30);
+        std::cout << validForm << std::endl;
+    } catch (const std::exception& e) {
+        std::cerr << "Failed to create validForm: " << e.what() << std::endl;
     }
-    return true;
-}
 
-int main(void) {
-
-    std::cout << "\tWelcome.\n\nLet's create a new Bureaucrat profile.\n" << std::endl;
-    
-    std::string name;
-    std::string grade_str;
-    int         grade;
-
-    while (true) {
-        std::cout << "Enter your name: ";
-        std::getline(std::cin, name);
-
-        std::cout << "Enter your grade: ";
-        std::getline(std::cin, grade_str);
-
-        if (!isNumeric(grade_str)) {
-            std::cerr << "Invalid grade: grade must be a number." << std::endl;
-            continue;
-        }
-        grade = std::atoi(grade_str.c_str());
-
-        try {
-            Bureaucrat one = Bureaucrat(name, grade);
-            std::cout << one << std::endl;
-            
-            std::cout << "Test: Incrementing Grade..." << std::endl;
-            one.incrementGrade();
-            std::cout << one << std::endl;
-
-            //std::cout << "Test: Decrementing Grade..." << std::endl;
-            //one.decrementGrade();
-            //std::cout << one << std::endl;
-        } 
-        catch (const Bureaucrat::GradeTooHighException& e) {
-            std::cerr << "Exception: " << e.what() << std::endl;
-        } 
-        catch (const Bureaucrat::GradeTooLowException& e) {
-            std::cerr << "Exception: " << e.what() << std::endl;
-        }
-
-        std::cout << "Press enter to continue or type 'exit' to quit." << std::endl;
-        std::cin.ignore();
-        std::getline(std::cin, name);
-        if (name == "exit")
-            break ;
+    // Too high grade to sign
+    std::cout << "===== Creating invalid forms... =====\n" << std::endl;
+    std::cout << "=== Form with a grade 0 to sign." << std::endl;
+    try {
+        Form badForm("TooHighToSign", 0, 50);
+    } catch (const std::exception& e) {
+        std::cerr << "Exception: " << e.what() << std::endl;
     }
+
+    // Too low grade to execute
+    std::cout << "=== Form with a grade 200 to execute." << std::endl;
+    try {
+        Form invalidForm("TooLowToExecute", 100, 200);
+    } catch (const std::exception& e) {
+        std::cerr << "Exception: " << e.what() << std::endl;
+    }
+
+    std::cout << "\n===== Creating valid bureaucrats to sign a valid form... =====\n" << std::endl;
+
+    std::cout << "=== Bureaucrat grade matches Form's requirements.\n" << std::endl;
+
+    Bureaucrat Alice("Alice", 30);
+    std::cout << Alice << "\n" << std::endl;
+
+    Form form_one("THIS_IS_A_FORM", 50, 50);
+    std::cout << form_one << std::endl;
+
+    // Signing with high enough grade
+    try {
+        form_one.beSigned(Alice);
+        std::cout << "Form signed successfully by " << Alice.getName() << std::endl;
+    } catch (const std::exception& e) {
+        std::cerr << "Exception: " << e.what() << std::endl;
+    }
+
+    std::cout << "\n=== Bureaucrat grade does not match Form's requirements.\n" << std::endl;
+
+    Bureaucrat Bob("Bob", 100);
+    std::cout << Bob << "\n" <<std::endl;
+
+    // Attempt to sign with low grade
+    Form form_two("HELLO_I_AM_A_FORM", 90, 100);
+    try {
+        form_two.beSigned(Bob);
+        std::cout << "Form signed successfully by " << Bob.getName() << std::endl;
+    } catch (const std::exception& e) {
+        std::cerr << "Exception: " << e.what() << std::endl;
+    }
+
+    std::cout << "\n==== FINAL FORM STATES ====\n" << std::endl;
+    std::cout << form_one << std::endl;
+    std::cout << form_two << std::endl;
+
     return 0;
 }
