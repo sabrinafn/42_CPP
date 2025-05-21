@@ -41,6 +41,10 @@ class Bureaucrat {
 
         // bureaucrat attempt to sign the AForm
         void    signAForm(AForm &paper);
+
+        // try to execute the form
+        void executeForm(AForm const &form) const;
+
 };
 
 std::ostream &operator<<(std::ostream &out, const Bureaucrat &other); // insertion operator
