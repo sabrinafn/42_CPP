@@ -13,12 +13,11 @@ class Form {
         bool                is_signed;
         const int           grade_required_to_sign;
         const int           grade_required_to_execute;
-        Form &operator=(const Form &other); // copy assignment operator
 
     public:
         Form(); // constructor
         Form(const Form &other); // copy constructor
-        
+        Form &operator=(const Form &other); // copy assignment operator
         ~Form(); // destructor
         Form(const std::string name, int gradeToSign, int gradeToExecute); // constructor takes parameters
 

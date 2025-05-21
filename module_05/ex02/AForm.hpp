@@ -13,11 +13,11 @@ class AForm {
         bool                is_signed;
         const int           grade_required_to_sign;
         const int           grade_required_to_execute;
-        AForm &operator=(const AForm &other); // copy assignment operator
 
     public:
         AForm(); // constructor
         AForm(const AForm &other); // copy constructor
+        AForm &operator=(const AForm &other); // copy assignment operator
         ~AForm(); // destructor
         AForm(const std::string name, int gradeToSign, int gradeToExecute); // constructor takes parameters
 
