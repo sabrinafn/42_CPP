@@ -15,6 +15,8 @@ int main() {
         std::cout << tree << std::endl;
         tree.beSigned(bob);      // bob must have grade <= 145
         //tree.execute(bob);       // bob must have grade <= 137
+        bob.executeForm(tree);
+
     }
     catch (const std::exception& e) {
         std::cerr << "Exception: " << e.what() << std::endl;
@@ -28,6 +30,7 @@ int main() {
         std::cout << tree << std::endl;
         tree.beSigned(bob);      // bob must have grade <= 145
         //tree.execute(bob);       // bob must have grade <= 137
+        bob.executeForm(tree);
     }
     catch (const std::exception& e) {
         std::cerr << "Exception: " << e.what() << std::endl;
@@ -43,6 +46,7 @@ int main() {
         std::cout << robotomy << std::endl;
         robotomy.beSigned(john);      // john must have grade <= 72
         //robotomy.execute(john);       // john must have grade <= 45
+        john.executeForm(robotomy);
     }
     catch (const std::exception& e) {
         std::cerr << "Exception: " << e.what() << std::endl;
@@ -56,6 +60,7 @@ int main() {
         std::cout << robotomy << std::endl;
         robotomy.beSigned(john);      // john must have grade <= 72
         //robotomy.execute(john);       // john must have grade <= 45
+        john.executeForm(robotomy);
     }
     catch (const std::exception& e) {
         std::cerr << "Exception: " << e.what() << std::endl;
@@ -71,6 +76,7 @@ int main() {
         std::cout << pardon << std::endl;
         pardon.beSigned(anna);      // anna must have grade <= 25
         //pardon.execute(anna);       // anna must have grade <= 5
+        anna.executeForm(pardon);
     }
     catch (const std::exception& e) {
         std::cerr << "Exception: " << e.what() << std::endl;
@@ -84,10 +90,10 @@ int main() {
         std::cout << pardon << std::endl;
         pardon.beSigned(anna);      // anna must have grade <= 25
         //pardon.execute(anna);       // anna must have grade <= 5
+        anna.executeForm(pardon);
     }
     catch (const std::exception& e) {
         std::cerr << "Exception: " << e.what() << std::endl;
     }
-
     return 0;
 }

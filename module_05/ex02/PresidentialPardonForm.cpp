@@ -5,8 +5,9 @@ PresidentialPardonForm::PresidentialPardonForm()
     : AForm("PresidentialPardonForm", 25, 5) {}
 
 // copy constructor
-PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& other) {
-    *this = other;
+PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& other)
+    : AForm(other), target(other.target) {
+    //*this = other;
 }
 
 // copy assignment operator

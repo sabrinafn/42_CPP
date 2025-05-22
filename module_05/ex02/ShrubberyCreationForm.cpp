@@ -5,8 +5,9 @@ ShrubberyCreationForm::ShrubberyCreationForm()
     : AForm("ShrubberyCreationForm", 145, 137), target("empty") {}
 
 // copy constructor
-ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &other) {
-    *this = other;
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &other) 
+    : AForm(other), target(other.target) { // home laptop compiler needs this
+    //*this = other; //school 42 computer compiler allows this
 } 
 
 // copy assignment operator

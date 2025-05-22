@@ -5,8 +5,9 @@ RobotomyRequestForm::RobotomyRequestForm()
     : AForm("RobotomyRequestForm", 72, 45), target("empty") {}
 
 // copy constructor
-RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &other) {
-    *this = other;
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &other)
+    : AForm(other), target(other.target) {
+    //*this = other;
 }
 
 // copy assignment operator
