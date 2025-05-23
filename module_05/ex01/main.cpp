@@ -64,7 +64,7 @@ int main() {
         std::cerr << "Exception: " << e.what() << std::endl;
     }
 
-    std::cout << "\n==== FINAL FORM STATES ====\n" << std::endl;
+    std::cout << "\n==== FINAL FORM ====\n" << std::endl;
     std::cout << form_one << std::endl;
     std::cout << form_two << std::endl;
 

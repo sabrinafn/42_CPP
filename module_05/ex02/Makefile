@@ -1,4 +1,4 @@
-NAME := AForms
+NAME := AForm
 
 CC := c++
 

@@ -10,7 +10,7 @@ int main() {
     std::cout << "===== Testing ShrubberyCreationForm =====\n" << std::endl;
     try {
         std::cout << "=== Creating bureaucrat...\n" << std::endl;
-        Bureaucrat bob = Bureaucrat("Bob", 100);
+        Bureaucrat bob = Bureaucrat("Bob", 150);
         std::cout << bob << std::endl;
         Intern guy;
         AForm* tree = guy.makeForm("ShrubberyCreationForm", "tree");

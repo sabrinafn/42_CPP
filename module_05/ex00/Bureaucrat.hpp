@@ -11,6 +11,7 @@ class Bureaucrat {
 		static const int	MIN_GRADE = 150; // but to the whole class
         const std::string name;
         int grade;
+
     public:
         Bureaucrat(); // constructor
         Bureaucrat(const Bureaucrat &other); // copy constructor
