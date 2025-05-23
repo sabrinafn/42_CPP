@@ -23,7 +23,7 @@ class AForm {
         AForm(); // constructor
         AForm(const AForm &other); // copy constructor
         AForm &operator=(const AForm &other); // copy assignment operator
-        ~AForm(); // destructor
+        virtual ~AForm(); // destructor
         AForm(const std::string name, int gradeToSign, int gradeToExecute); // constructor takes parameters
 
         // GETTERS

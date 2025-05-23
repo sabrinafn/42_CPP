@@ -5,7 +5,7 @@ CC := c++
 FLAGS := -Wall -Wextra -Werror -std=c++98 -g3
 
 CPPFILES := main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp \
-			RobotomyRequestForm.cpp PresidentialPardonForm.cpp
+			RobotomyRequestForm.cpp PresidentialPardonForm.cpp Intern.cpp
 
 OBJFILES := $(CPPFILES:.cpp=.o)
 

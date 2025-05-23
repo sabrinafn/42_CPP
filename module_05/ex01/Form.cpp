@@ -96,12 +96,12 @@ std::ostream &operator<<(std::ostream &out, const Form &paper) {
     if (paper.getIsSigned()) {
         out << paper.getName() << ", form is signed, requires grade " 
             << paper.getGradeRequiredToSign() << " to sign, " << paper.getGradeRequiredToExecute()
-            << " to execute." << std::endl;
+            << " to execute.";
     }
     else {
         out << paper.getName() << ", form is unsigned, requires grade " 
             << paper.getGradeRequiredToSign() << " to sign, " << paper.getGradeRequiredToExecute()
-            << " to execute." << std::endl;
+            << " to execute.";
     }
     return out;
 }
