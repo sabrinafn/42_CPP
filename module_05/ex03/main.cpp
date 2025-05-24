@@ -56,9 +56,9 @@ int main() {
     delete john;
     delete guy;
     delete robotomy;
-    bob = NULL;
+    john = NULL;
     guy = NULL;
-    tree = NULL;
+    robotomy = NULL;
 
 
     std::cout << "\n===== Testing PresidentialPardonForm =====\n" << std::endl;

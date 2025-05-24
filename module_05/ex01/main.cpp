@@ -11,7 +11,7 @@ int main() {
     Form* validForm = NULL;
     try {
         validForm = new Form("ValidForm", 50, 30);
-        std::cout << validForm << std::endl;
+        std::cout << *validForm << std::endl;
     } catch (const std::exception& e) {
         std::cerr << "Failed to create validForm: " << e.what() << std::endl;
     }
@@ -52,12 +52,12 @@ int main() {
     // Signing with high enough grade
     try {
         Alice = new Bureaucrat("Alice", 30);
-        std::cout << Alice << "\n" << std::endl;
+        std::cout << *Alice << "\n" << std::endl;
         form_one = new Form("THIS_IS_A_FORM", 50, 50);
-        std::cout << form_one << std::endl;
+        std::cout << *form_one << std::endl;
         form_one->beSigned(*Alice);
         std::cout << "Form signed successfully by " << Alice->getName() << std::endl;
-        std::cout << form_one << std::endl;
+        std::cout << *form_one << std::endl;
     } catch (const std::exception& e) {
         std::cerr << "Exception: " << e.what() << std::endl;
     }
@@ -72,12 +72,12 @@ int main() {
     // Attempt to sign with low grade
     try {
         Bob = new Bureaucrat("Bob", 100);
-        std::cout << Bob << "\n" <<std::endl;
+        std::cout << *Bob << "\n" <<std::endl;
         form_two = new Form("HELLO_I_AM_A_FORM", 90, 100);
-        std::cout << form_two << std::endl;
+        std::cout << *form_two << std::endl;
         form_two->beSigned(*Bob);
         std::cout << "Form signed successfully by " << Bob->getName() << std::endl;
-        std::cout << form_two << std::endl;
+        std::cout << *form_two << std::endl;
     } catch (const std::exception& e) {
         std::cerr << "Exception: " << e.what() << std::endl;
     }
