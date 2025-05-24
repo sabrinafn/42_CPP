@@ -16,14 +16,14 @@ int main(void) {
     
     try {
         one = new Bureaucrat(name, grade);
-        std::cout << one << std::endl;
+        std::cout << *one << std::endl;
         
         std::cout << "Test: Incrementing Grade..." << std::endl;
-        one.incrementGrade();
-        std::cout << one << std::endl;
+        one->incrementGrade();
+        std::cout << *one << std::endl;
         //std::cout << "Test: Decrementing Grade..." << std::endl;
-        //one.decrementGrade();
-        //std::cout << one << std::endl;
+        //one->decrementGrade();
+        //std::cout << *one << std::endl;
     } 
     catch (const Bureaucrat::GradeTooHighException& e) {
         std::cerr << "Exception: " << e.what() << std::endl;
