@@ -11,9 +11,11 @@ int main(void) {
     std::getline(std::cin, name);
     std::cout << "Enter your grade: ";
     std::cin >> grade;
+
+    Bureaucrat* one = NULL;
     
     try {
-        Bureaucrat one = Bureaucrat(name, grade);
+        one = new Bureaucrat(name, grade);
         std::cout << one << std::endl;
         
         std::cout << "Test: Incrementing Grade..." << std::endl;
@@ -29,6 +31,8 @@ int main(void) {
     catch (const Bureaucrat::GradeTooLowException& e) {
         std::cerr << "Exception: " << e.what() << std::endl;
     }
+    delete one;
+    one = NULL;
 
     return 0;
 }
