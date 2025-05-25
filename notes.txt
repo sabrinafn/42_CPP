@@ -115,3 +115,37 @@ Abstract classes cannot be used to instantiate objects and serves only as an int
 
 Exception classes
 https://medium.com/@hixcoder/exception-classes-in-c-b57ecc8a7f2d
+
+C-style cast -> char a; (int)a;
+
+casting operators:
+
+static_cast -> 
+    - static_cast<type>(expression)
+    - non-polymorphic type conversion
+    - can be used to upcast and downcast a 
+        pointer/reference of a derived class to a base class
+    - it does not perform safety checks, it can lead to undefined behavior.
+    
+    float f = 10.5;
+    int i;
+    i = f; // implicit conversion
+    i = static_cast<int>(f) // static cast
+
+const_cast ->
+    - const_cast<type>(expression)
+    - it does not change types.
+    - it changes if a variable is const or not.
+
+reintepret_cast ->
+    - reintepret_cast<type>(expression)
+    - do the conversion no matter what. (dangerous cast)
+    - produces a value of new type with the same bit pattern
+        as the previous patten
+
+
+dynamic_cast ->
+    - dynamic_cast<type>(expression)
+    - downcasting
+    - converting a derived class to a base class
+
