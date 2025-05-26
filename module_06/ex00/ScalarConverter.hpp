@@ -15,8 +15,6 @@ class ScalarConverter {
         // accept a string representation of a scalar literal and
         // print its corresponding values interpreted as char, int, float or double
         static void convert(std::string &literal);
-
-
 };
 
 #endif
