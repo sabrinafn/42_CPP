@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include <iomanip>
 
 class ScalarConverter {
     
@@ -13,13 +14,20 @@ class ScalarConverter {
         ScalarConverter& operator=(const ScalarConverter &other); // copy assignment operator
         ~ScalarConverter(void); // destructor
 
+        static bool IsCharLiteral(std::string &literal);
+        static bool IsIntLiteral(std::string &literal);
+        static bool IsFloatLiteral(std::string &literal);
+        static bool IsDoubleLiteral(std::string &literal);
+
+        static void ConvertCharLiteral(std::string &literal);
+        static void ConvertIntLiteral(std::string &literal);
+        static void ConvertFloatLiteral(std::string &literal);
+        static void ConvertDoubleLiteral(std::string &literal);
+
     public:
         // accept a string representation of a scalar literal and
         // print its corresponding values interpreted as char, int, float or double
         static void convert(std::string &literal);
-
-        static bool ConvertToChar(std::string &literal);
-        static bool ConvertToInt(std::string &literal);
 };
 
 #endif
