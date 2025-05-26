@@ -1,10 +1,10 @@
-NAME := Bureaucrat
+NAME := ScalarConverter
 
 CC := c++
 
 FLAGS := -Wall -Wextra -Werror -std=c++98 -g3
 
-CPPFILES := main.cpp Bureaucrat.cpp
+CPPFILES := main.cpp ScalarConverter.cpp
 
 OBJFILES := $(CPPFILES:.cpp=.o)
 
