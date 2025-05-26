@@ -72,34 +72,33 @@ bool ScalarConverter::IsIntLiteral(std::string &literal) {
 
 void ScalarConverter::ConvertIntLiteral(std::string &literal) {    
     
+    std::cout << "int identified" << std::endl;
+
     int num = 0;
     std::stringstream ss(literal);
     ss >> num;
     //std::cout << "int: " << num << std::endl;
 
-    std::cout << "int identified" << std::endl;
-
     // char
-    if (isprint(num)) {
+    if (isprint(static_cast<char>(num)) != 0) {
         char c = static_cast<char>(num);
         std::cout << "char: " << c << std::endl;
     }
-    else
+    else if (isprint(static_cast<char>(num)) == 0)
         std::cout << "char: Non displayable" << std::endl;
     
     // int
-    int i = static_cast<int>(literal[0]);
-    std::cout << "int: " << i << std::endl;
+    std::cout << "int: " << num << std::endl;
 
     // float
-    float f = static_cast<float>(literal[0]);
+    float f = static_cast<float>(num);
     std::cout << "float: "
               << std::fixed << std::setprecision(1)
               << f << "f" << std::endl;
     std::cout.unsetf(std::ios::fixed);
 
     // double
-    double d = static_cast<double>(literal[0]);
+    double d = static_cast<double>(num);
     std::cout << "double: "
               << std::fixed << std::setprecision(1)
               << d << std::endl;
@@ -111,8 +110,10 @@ bool ScalarConverter::IsFloatLiteral(std::string &literal) {
         int sign = 0;
         if (literal[0] == '-')
             sign = 1;
-        for (size_t i = sign; i < literal.length(); i++) {
-            if (!isdigit(literal[i]))
+        if (literal[literal.length() - 1] != 'f')
+            return false;
+        for (size_t i = sign; i < literal.length() - 1; i++) {
+            if (!isdigit(literal[i]) && literal[i] != '.')
                 return false;
         }
         return true;
@@ -120,25 +121,53 @@ bool ScalarConverter::IsFloatLiteral(std::string &literal) {
     return false;
 }
 
+void ScalarConverter::ConvertFloatLiteral(std::string &literal) {    
+    
+    std::cout << "float identified" << std::endl;
+
+    std::stringstream ss(literal);
+    float num = 0.0f;
+    ss >> num;
+    //std::cout << "int: " << num << std::endl;
+
+    // char
+    if (isprint(static_cast<char>(num)) != 0) {
+        char c = static_cast<char>(num);
+        std::cout << "char: " << c << std::endl;
+    }
+    else if (isprint(static_cast<char>(num)) == 0)
+        std::cout << "char: Non displayable" << std::endl;
+    
+    // int
+    std::cout << "int: " << num << std::endl;
+
+    // float
+    float f = static_cast<float>(num);
+    std::cout << "float: "
+              << std::fixed << std::setprecision(1)
+              << f << "f" << std::endl;
+    std::cout.unsetf(std::ios::fixed);
+
+    // double
+    double d = static_cast<double>(num);
+    std::cout << "double: "
+              << std::fixed << std::setprecision(1)
+              << d << std::endl;
+    std::cout.unsetf(std::ios::fixed);
+}
+
 
 // accept a string representation of a scalar literal and
 // print its corresponding values interpreted as char, int, float or double
 void ScalarConverter::convert(std::string &literal) {
-    
-    // char 
-    if (IsCharLiteral(literal) == true) {
+     
+    if (IsCharLiteral(literal) == true) { // char
         ConvertCharLiteral(literal);
-        return;
     }
-
-    // int 
-    if (IsIntLiteral(literal) == true) {
+    else if (IsIntLiteral(literal) == true) { // int
         ConvertIntLiteral(literal);
-        return;
     }
-
-    // float
-    if (IsFloatLiteral(literal) == true) {
-
+    if (IsFloatLiteral(literal) == true) { // float
+        ConvertFloatLiteral(literal);
     }
 }
