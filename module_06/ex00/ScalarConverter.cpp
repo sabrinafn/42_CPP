@@ -17,9 +17,15 @@ ScalarConverter& ScalarConverter::operator=(const ScalarConverter &other) {
 // destructor
 ScalarConverter::~ScalarConverter(void) {}
 
+
 bool ScalarConverter::IsCharLiteral(std::string &literal) {
+
     if (literal.length() == 1 && !isdigit(literal[0])) {
         return true;
+    }
+    else if (literal.length() == 3 && literal[0] == '\''
+            && literal[2] == '\'' && !isdigit(literal[1])) {
+            return true;
     }
     return false;
 }
@@ -27,15 +33,26 @@ bool ScalarConverter::IsCharLiteral(std::string &literal) {
 void ScalarConverter::ConvertCharLiteral(std::string &literal) {    
     
     std::cout << "char identified" << std::endl;
+
     // convert to char
     char c = '\0';
-    if (isprint(literal[0])) {
-        c = static_cast<char>(literal[0]);
-        std::cout << "char: " << c << std::endl;
+    if (literal[0] == '\'' && literal [2] == '\'') {
+        if (isprint(literal[1])) {
+            c = static_cast<char>(literal[1]);
+        std::cout << "char: '" << c << "'" << std::endl;
+        }
+        else
+            std::cout << "char: Non displayable" << std::endl;
     }
-    else
-        std::cout << "char: Non displayable" << std::endl;
-    
+    else {
+        char c = '\0';
+        if (isprint(literal[0])) {
+            c = static_cast<char>(literal[0]);
+            std::cout << "char: '" << c << "'" << std::endl;
+        }
+        else
+            std::cout << "char: Non displayable" << std::endl;
+    }
 
     // int
     int i = static_cast<int>(c);
@@ -82,7 +99,7 @@ void ScalarConverter::ConvertIntLiteral(std::string &literal) {
     // char
     if (isprint(static_cast<char>(num)) != 0) {
         char c = static_cast<char>(num);
-        std::cout << "char: " << c << std::endl;
+        std::cout << "char: '" << c << "'" << std::endl;
     }
     else if (isprint(static_cast<char>(num)) == 0)
         std::cout << "char: Non displayable" << std::endl;
@@ -140,7 +157,7 @@ void ScalarConverter::ConvertFloatLiteral(std::string &literal) {
     // char
     if (isprint(static_cast<char>(f)) != 0 || !is_pseudo) {
         char c = static_cast<char>(f);
-        std::cout << "char: " << c << std::endl;
+        std::cout << "char: '" << c << "'" << std::endl;
     }
     else if (isprint(static_cast<char>(f)) == 0 && !is_pseudo)
         std::cout << "char: Non displayable" << std::endl;
@@ -189,7 +206,7 @@ void ScalarConverter::ConvertDoubleLiteral(std::string &literal) {
     std::cout << "double identified" << std::endl;
 
     bool is_pseudo = false;
-    
+
     if (literal == "nan" || literal == "+inf" || literal == "-inf") {
         std::cout << "char: impossible" << std::endl;
         std::cout << "int: impossible" << std::endl;
@@ -198,16 +215,18 @@ void ScalarConverter::ConvertDoubleLiteral(std::string &literal) {
     double d = strtod(literal.c_str(), NULL);
 
     // char
-    if (isprint(static_cast<char>(d)) != 0) {
+    if (isprint(static_cast<char>(d)) != 0 || !is_pseudo)  {
         char c = static_cast<char>(d);
-        std::cout << "char: " << c << std::endl;
+        std::cout << "char: '" << c << "'" << std::endl;
     }
-    else if (isprint(static_cast<char>(d)) == 0)
+    else if (isprint(static_cast<char>(d)) == 0 && !is_pseudo) 
         std::cout << "char: Non displayable" << std::endl;
     
     // int
+    if (!is_pseudo) {
     int i = static_cast<int>(d);
     std::cout << "int: " << i << std::endl;
+    }
 
     // float
     float f = static_cast<float>(d);
@@ -238,5 +257,8 @@ void ScalarConverter::convert(std::string &literal) {
     }
     else if (IsDoubleLiteral(literal) == true) { // double
         ConvertDoubleLiteral(literal);
+    }
+    else {
+        std::cout << "Error: input is not a valid scalar literal. Conversion impossible." << std::endl;
     }
 }
