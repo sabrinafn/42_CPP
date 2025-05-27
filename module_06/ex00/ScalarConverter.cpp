@@ -43,6 +43,7 @@ void ScalarConverter::ConvertCharLiteral(std::string &literal) {
         }
         else
             std::cout << "char: Non displayable" << std::endl;
+            //comment
     }
     else {
         char c = '\0';
