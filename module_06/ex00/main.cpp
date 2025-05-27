@@ -2,7 +2,7 @@
 
 int main(void) {
 
-    std::string str = "42.42f";
+    std::string str = "nan";
 
     ScalarConverter::convert(str);
 }

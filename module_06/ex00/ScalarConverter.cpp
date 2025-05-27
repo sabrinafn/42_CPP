@@ -18,7 +18,7 @@ ScalarConverter& ScalarConverter::operator=(const ScalarConverter &other) {
 ScalarConverter::~ScalarConverter(void) {}
 
 bool ScalarConverter::IsCharLiteral(std::string &literal) {
-    if (literal.length() == 1) {
+    if (literal.length() == 1 && !isdigit(literal[0])) {
         return true;
     }
     return false;
@@ -106,6 +106,9 @@ void ScalarConverter::ConvertIntLiteral(std::string &literal) {
 }
 
 bool ScalarConverter::IsFloatLiteral(std::string &literal) {
+    if (literal == "nanf" || literal == "+inff" || literal == "-inff") {
+        return true;
+    }
     if (literal.find('f') != std::string::npos && literal.find('.') != std::string::npos) {
         int sign = 0;
         if (literal[0] == '-')
@@ -125,37 +128,100 @@ void ScalarConverter::ConvertFloatLiteral(std::string &literal) {
     
     std::cout << "float identified" << std::endl;
 
-    std::stringstream ss(literal);
-    float num = 0.0f;
-    ss >> num;
-    //std::cout << "int: " << num << std::endl;
+    bool is_pseudo = false;
+
+    if (literal == "nanf" || literal == "+inff" || literal == "-inff") {
+        std::cout << "char: impossible" << std::endl;
+        std::cout << "int: impossible" << std::endl;
+        is_pseudo = true;
+    }
+    float f = strtof(literal.c_str(), NULL);
 
     // char
-    if (isprint(static_cast<char>(num)) != 0) {
-        char c = static_cast<char>(num);
+    if (isprint(static_cast<char>(f)) != 0 || !is_pseudo) {
+        char c = static_cast<char>(f);
         std::cout << "char: " << c << std::endl;
     }
-    else if (isprint(static_cast<char>(num)) == 0)
+    else if (isprint(static_cast<char>(f)) == 0 && !is_pseudo)
         std::cout << "char: Non displayable" << std::endl;
     
     // int
-    std::cout << "int: " << num << std::endl;
-
+    if (!is_pseudo) {
+        int i = static_cast<int>(f);
+        std::cout << "int: " << i << std::endl;
+    }
     // float
-    float f = static_cast<float>(num);
     std::cout << "float: "
               << std::fixed << std::setprecision(1)
               << f << "f" << std::endl;
     std::cout.unsetf(std::ios::fixed);
 
     // double
-    double d = static_cast<double>(num);
+    double d = static_cast<double>(f);
     std::cout << "double: "
               << std::fixed << std::setprecision(1)
               << d << std::endl;
     std::cout.unsetf(std::ios::fixed);
 }
 
+bool ScalarConverter::IsDoubleLiteral(std::string &literal) {
+
+    if (literal == "nan" || literal == "+inf" || literal == "-inf") {
+        return true;
+    }
+    if (literal.find('f') == std::string::npos && literal.find('.') != std::string::npos) {
+        int sign = 0;
+        if (literal[0] == '-')
+            sign = 1;
+        if (literal[literal.length() - 1] == 'f')
+            return false;
+        for (size_t i = sign; i < literal.length(); i++) {
+            if (!isdigit(literal[i]) && literal[i] != '.')
+                return false;
+        }
+        return true;
+    }
+    return false;
+}
+
+void ScalarConverter::ConvertDoubleLiteral(std::string &literal) {    
+    
+    std::cout << "double identified" << std::endl;
+
+    bool is_pseudo = false;
+    
+    if (literal == "nan" || literal == "+inf" || literal == "-inf") {
+        std::cout << "char: impossible" << std::endl;
+        std::cout << "int: impossible" << std::endl;
+        is_pseudo = true;
+    }
+    double d = strtod(literal.c_str(), NULL);
+
+    // char
+    if (isprint(static_cast<char>(d)) != 0) {
+        char c = static_cast<char>(d);
+        std::cout << "char: " << c << std::endl;
+    }
+    else if (isprint(static_cast<char>(d)) == 0)
+        std::cout << "char: Non displayable" << std::endl;
+    
+    // int
+    int i = static_cast<int>(d);
+    std::cout << "int: " << i << std::endl;
+
+    // float
+    float f = static_cast<float>(d);
+    std::cout << "float: "
+              << std::fixed << std::setprecision(1)
+              << f << "f" << std::endl;
+    std::cout.unsetf(std::ios::fixed);
+
+    // double
+    std::cout << "double: "
+              << std::fixed << std::setprecision(1)
+              << d << std::endl;
+    std::cout.unsetf(std::ios::fixed);
+}
 
 // accept a string representation of a scalar literal and
 // print its corresponding values interpreted as char, int, float or double
@@ -167,7 +233,10 @@ void ScalarConverter::convert(std::string &literal) {
     else if (IsIntLiteral(literal) == true) { // int
         ConvertIntLiteral(literal);
     }
-    if (IsFloatLiteral(literal) == true) { // float
+    else if (IsFloatLiteral(literal) == true) { // float
         ConvertFloatLiteral(literal);
+    }
+    else if (IsDoubleLiteral(literal) == true) { // double
+        ConvertDoubleLiteral(literal);
     }
 }
