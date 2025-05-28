@@ -81,6 +81,7 @@ int ScalarConverter::GetIntLiteral(std::string &literal, int &i) {
 
 void ScalarConverter::ConvertFromIntLiteral(int i) {
 
+    // verificar range de 0 to 255 and it's impossible to print
     // char
     if (isprint(static_cast<char>(i)) != 0) {
         char c = static_cast<char>(i);
