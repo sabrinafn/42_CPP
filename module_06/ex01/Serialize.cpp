@@ -1,0 +1,32 @@
+#include "Serialize.hpp"
+
+// constructor
+Serializer::Serializer(void) {
+
+}
+
+// copy constructor
+Serializer::Serializer(const Serializer &other) {
+    
+}
+
+// copy assignment operator
+Serializer& Serializer::operator=(const Serializer &other) {
+
+}
+
+// destructor
+Serializer::~Serializer(void) {
+
+} 
+    
+
+// It takes a pointer and converts it to the unsigned integer type uintptr_t
+uintptr_t Serializer::serialize(Data* ptr) {
+
+}
+
+// It takes an unsigned integer parameter and converts it to a pointer to Data
+Data* Serializer::deserialize(uintptr_t raw) {
+    
+}
