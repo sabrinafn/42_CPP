@@ -18,8 +18,8 @@ class ScalarConverter {
 
         static char GetCharLiteral(std::string &literal);
         static bool GetIntLiteral(std::string &literal, int &i);
-        static float GetFloatLiteral(std::string &literal);
-        static double GetDoubleLiteral(std::string &literal);
+        static bool GetFloatLiteral(std::string &literal, float &f);
+        static bool GetDoubleLiteral(std::string &literal, double &d);
 
         static void ConvertFromCharLiteral(char c);
         static void ConvertFromIntLiteral(int i);

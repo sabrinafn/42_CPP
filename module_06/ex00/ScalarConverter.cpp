@@ -89,7 +89,7 @@ void ScalarConverter::ConvertFromIntLiteral(int i) {
         char c = static_cast<char>(i);
         std::cout << "char: '" << c << "'" << std::endl;
     }
-    else if (isprint(static_cast<char>(i)) == 0)
+    else
         std::cout << "char: Non displayable" << std::endl;
     
     // int
@@ -121,9 +121,10 @@ bool ScalarConverter::FindCharOneOccurrence(std::string& literal, char c) {
     return false;
 }
 
-float ScalarConverter::GetFloatLiteral(std::string &literal) {
+bool ScalarConverter::GetFloatLiteral(std::string &literal, float &f) {
     if (literal == "nanf" || literal == "+inff" || literal == "-inff") {
-        return strtof(literal.c_str(), NULL);
+        f = strtof(literal.c_str(), NULL);
+        return true;
     }
     if (FindCharOneOccurrence(literal, '.') == true && literal.find('f') != std::string::npos) {
         int sign = 0;
@@ -133,7 +134,8 @@ float ScalarConverter::GetFloatLiteral(std::string &literal) {
             if (!isdigit(literal[i]) && literal[i] != '.')
                 return false;
         }
-        return strtof(literal.c_str(), NULL);
+        f = strtof(literal.c_str(), NULL);
+        return true;
     }
     return false;
 }
@@ -177,10 +179,11 @@ void ScalarConverter::ConvertFromFloatLiteral(float f) {
     std::cout.unsetf(std::ios::fixed);
 }
 
-double ScalarConverter::GetDoubleLiteral(std::string &literal) {
+bool ScalarConverter::GetDoubleLiteral(std::string &literal, double &d) {
 
     if (literal == "nan" || literal == "+inf" || literal == "-inf") {
-        return strtod(literal.c_str(), NULL);
+        d = strtod(literal.c_str(), NULL);
+        return true;
     }
     if (FindCharOneOccurrence(literal, '.') == true) {
         int sign = 0;
@@ -190,7 +193,8 @@ double ScalarConverter::GetDoubleLiteral(std::string &literal) {
             if (!isdigit(literal[i]) && literal[i] != '.')
                 return false;
         }
-        return strtod(literal.c_str(), NULL);
+        d = strtod(literal.c_str(), NULL);
+        return true;
     }
     return false;
 }
