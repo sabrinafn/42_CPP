@@ -26,6 +26,8 @@ class ScalarConverter {
         static void ConvertFromFloatLiteral(float f);
         static void ConvertFromDoubleLiteral(double d);
 
+        static bool FindCharOneOccurrence(std::string& literal, char c);
+
     public:
         // accept a string representation of a scalar literal and
         // print its corresponding values interpreted as char, int, float or double

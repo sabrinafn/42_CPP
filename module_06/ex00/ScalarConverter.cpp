@@ -21,7 +21,7 @@ ScalarConverter::~ScalarConverter(void) {}
 
 char ScalarConverter::GetCharLiteral(std::string &literal) {
 
-    if (literal.length() == 1 && !isdigit(literal[0]) && isprint(literal[0])) {
+    if (literal.length() == 1 && !isdigit(literal[0])) {
         if (isprint(literal[0])) {
             char c = static_cast<char>(literal[0]);
             std::cout << "char: '" << c << "'" << std::endl;
@@ -30,8 +30,7 @@ char ScalarConverter::GetCharLiteral(std::string &literal) {
         else 
             std::cout << "char: Non displayable" << std::endl;
     }
-    else if (literal.length() == 3 && literal[0] == '\''
-            && literal[2] == '\'' && !isdigit(literal[1])) {
+    else if (literal.length() == 3 && literal[0] == '\'' && literal[2] == '\'') {
            if (isprint(literal[1])) {
                char c = static_cast<char>(literal[1]);
                std::cout << "char: '" << c << "'" << std::endl;
@@ -43,7 +42,7 @@ char ScalarConverter::GetCharLiteral(std::string &literal) {
     return '\0';
 }
 
-void ScalarConverter::ConvertFromCharLiteral(char c) {    
+void ScalarConverter::ConvertFromCharLiteral(char c) {
 
     // int
     int i = static_cast<int>(c);
@@ -108,16 +107,25 @@ void ScalarConverter::ConvertFromIntLiteral(int i) {
     std::cout.unsetf(std::ios::fixed);
 }
 
+bool ScalarConverter::FindCharOneOccurrence(std::string& literal, char c) {
+    int count = 0;
+    for (size_t i = 0; i < literal.length(); ++i) {
+        if (literal[i] == c)
+            ++count;
+    }
+    if (count > 1)
+        return false;
+    return true;
+}
+
 float ScalarConverter::GetFloatLiteral(std::string &literal) {
     if (literal == "nanf" || literal == "+inff" || literal == "-inff") {
         return strtof(literal.c_str(), NULL);
     }
-    if (literal.find('f') != std::string::npos && literal.find('.') != std::string::npos) {
+    if (FindCharOneOccurrence(literal, '.') == true && FindCharOneOccurrence(literal, 'f') == true) {
         int sign = 0;
         if (literal[0] == '-')
             sign = 1;
-        if (literal[literal.length() - 1] != 'f')
-            return false;
         for (size_t i = sign; i < literal.length() - 1; i++) {
             if (!isdigit(literal[i]) && literal[i] != '.')
                 return false;
@@ -168,12 +176,10 @@ double ScalarConverter::GetDoubleLiteral(std::string &literal) {
     if (literal == "nan" || literal == "+inf" || literal == "-inf") {
         return strtod(literal.c_str(), NULL);
     }
-    if (literal.find('f') == std::string::npos && literal.find('.') != std::string::npos) {
+    if (FindCharOneOccurrence(literal, '.') == true) {
         int sign = 0;
         if (literal[0] == '-')
             sign = 1;
-        if (literal[literal.length() - 1] == 'f')
-            return false;
         for (size_t i = sign; i < literal.length(); i++) {
             if (!isdigit(literal[i]) && literal[i] != '.')
                 return false;
