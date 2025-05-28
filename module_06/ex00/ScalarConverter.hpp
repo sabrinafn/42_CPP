@@ -6,6 +6,7 @@
 #include <sstream>
 #include <iomanip>
 #include <cstdlib>
+#include <cmath>
 
 class ScalarConverter {
     
@@ -15,15 +16,15 @@ class ScalarConverter {
         ScalarConverter& operator=(const ScalarConverter &other); // copy assignment operator
         ~ScalarConverter(void); // destructor
 
-        static bool IsCharLiteral(std::string &literal);
-        static bool IsIntLiteral(std::string &literal);
-        static bool IsFloatLiteral(std::string &literal);
-        static bool IsDoubleLiteral(std::string &literal);
+        static char GetCharLiteral(std::string &literal);
+        static int GetIntLiteral(std::string &literal, int &i);
+        static float GetFloatLiteral(std::string &literal);
+        static double GetDoubleLiteral(std::string &literal);
 
-        static void ConvertCharLiteral(std::string &literal);
-        static void ConvertIntLiteral(std::string &literal);
-        static void ConvertFloatLiteral(std::string &literal);
-        static void ConvertDoubleLiteral(std::string &literal);
+        static void ConvertFromCharLiteral(char c);
+        static void ConvertFromIntLiteral(int i);
+        static void ConvertFromFloatLiteral(float f);
+        static void ConvertFromDoubleLiteral(double d);
 
     public:
         // accept a string representation of a scalar literal and
