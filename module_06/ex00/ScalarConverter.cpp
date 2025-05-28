@@ -63,7 +63,7 @@ void ScalarConverter::ConvertFromCharLiteral(char c) {
     std::cout.unsetf(std::ios::fixed);
 }
 
-int ScalarConverter::GetIntLiteral(std::string &literal, int &i) {
+bool ScalarConverter::GetIntLiteral(std::string &literal, int &i) {
     if (literal.find('f') == std::string::npos && literal.find('.') == std::string::npos) {
         int sign = 0;
         if (literal[0] == '-')
@@ -82,9 +82,10 @@ int ScalarConverter::GetIntLiteral(std::string &literal, int &i) {
 void ScalarConverter::ConvertFromIntLiteral(int i) {
 
     // verificar range de 0 to 255 and it's impossible to print
-    //bool isChar = i >= 0 && i <= 255;
-    // char
-    if ( isprint(static_cast<char>(i)) != 0) {
+    if (i < 0 || i > 255) {
+        std::cout << "char: impossible" << std::endl;
+    }
+    else if ( isprint(static_cast<char>(i)) != 0) { // char
         char c = static_cast<char>(i);
         std::cout << "char: '" << c << "'" << std::endl;
     }
@@ -115,16 +116,16 @@ bool ScalarConverter::FindCharOneOccurrence(std::string& literal, char c) {
         if (literal[i] == c)
             ++count;
     }
-    if (count > 1)
-        return false;
-    return true;
+    if (count == 1)
+        return true;
+    return false;
 }
 
 float ScalarConverter::GetFloatLiteral(std::string &literal) {
     if (literal == "nanf" || literal == "+inff" || literal == "-inff") {
         return strtof(literal.c_str(), NULL);
     }
-    if (FindCharOneOccurrence(literal, '.') == true && FindCharOneOccurrence(literal, 'f') == true) {
+    if (FindCharOneOccurrence(literal, '.') == true && literal.find('f') != std::string::npos) {
         int sign = 0;
         if (literal[0] == '-')
             sign = 1;
@@ -139,6 +140,8 @@ float ScalarConverter::GetFloatLiteral(std::string &literal) {
 
 void ScalarConverter::ConvertFromFloatLiteral(float f) {
 
+    std::cout << "FLOATTTTTT" << std::endl;
+
     if (std::isnan(f) || std::isinf(f)) {
         // char
         std::cout << "char: impossible" << std::endl;
@@ -147,7 +150,10 @@ void ScalarConverter::ConvertFromFloatLiteral(float f) {
     }
     else {
         // char
-        if (isprint(static_cast<char>(f)) != 0) {
+        if (static_cast<int>(f) < 0 || static_cast<int>(f) > 255) {
+            std::cout << "char: impossible" << std::endl;
+        }
+        else if (isprint(static_cast<char>(f)) != 0) {
             char c = static_cast<char>(f);
             std::cout << "char: '" << c << "'" << std::endl;
         }
@@ -193,6 +199,7 @@ double ScalarConverter::GetDoubleLiteral(std::string &literal) {
 
 void ScalarConverter::ConvertFromDoubleLiteral(double d) {    
 
+    std::cout << "DOUBLEEEEE" << std::endl;
      if (std::isnan(((d))) || std::isinf(((d)))) {
         // char
         std::cout << "char: impossible" << std::endl;
@@ -201,7 +208,10 @@ void ScalarConverter::ConvertFromDoubleLiteral(double d) {
     }
     else {
         // char
-        if (isprint(static_cast<char>(((d)))) != 0) {
+        if (static_cast<int>(d) < 0 || static_cast<int>(d) > 255) {
+            std::cout << "char: impossible" << std::endl;
+        }
+        else if (isprint(static_cast<char>(((d)))) != 0) {
             char c = static_cast<char>(((d)));
             std::cout << "char: '" << c << "'" << std::endl;
         }

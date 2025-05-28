@@ -17,7 +17,7 @@ class ScalarConverter {
         ~ScalarConverter(void); // destructor
 
         static char GetCharLiteral(std::string &literal);
-        static int GetIntLiteral(std::string &literal, int &i);
+        static bool GetIntLiteral(std::string &literal, int &i);
         static float GetFloatLiteral(std::string &literal);
         static double GetDoubleLiteral(std::string &literal);
 
