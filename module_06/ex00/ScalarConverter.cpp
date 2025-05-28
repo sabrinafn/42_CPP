@@ -140,8 +140,6 @@ float ScalarConverter::GetFloatLiteral(std::string &literal) {
 
 void ScalarConverter::ConvertFromFloatLiteral(float f) {
 
-    std::cout << "FLOATTTTTT" << std::endl;
-
     if (std::isnan(f) || std::isinf(f)) {
         // char
         std::cout << "char: impossible" << std::endl;
@@ -199,7 +197,6 @@ double ScalarConverter::GetDoubleLiteral(std::string &literal) {
 
 void ScalarConverter::ConvertFromDoubleLiteral(double d) {    
 
-    std::cout << "DOUBLEEEEE" << std::endl;
      if (std::isnan(((d))) || std::isinf(((d)))) {
         // char
         std::cout << "char: impossible" << std::endl;
