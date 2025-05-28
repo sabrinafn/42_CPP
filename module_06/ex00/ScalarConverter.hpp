@@ -16,17 +16,25 @@ class ScalarConverter {
         ScalarConverter& operator=(const ScalarConverter &other); // copy assignment operator
         ~ScalarConverter(void); // destructor
 
-        static char GetCharLiteral(std::string &literal);
-        static bool GetIntLiteral(std::string &literal, int &i);
-        static bool GetFloatLiteral(std::string &literal, float &f);
-        static bool GetDoubleLiteral(std::string &literal, double &d);
+        // IDENTIFY AND RETURN TYPE
+        static char GetCharLiteral(const std::string &literal);
+        static bool GetIntLiteral(const std::string &literal, int &i);
+        static bool GetFloatLiteral(const std::string &literal, float &f);
+        static bool GetDoubleLiteral(const std::string &literal, double &d);
 
+        // CONVERSION FUNCTIONS
         static void ConvertFromCharLiteral(char c);
         static void ConvertFromIntLiteral(int i);
         static void ConvertFromFloatLiteral(float f);
         static void ConvertFromDoubleLiteral(double d);
+        static void ConvertFloatAndDouble(double d);
 
-        static bool FindCharOneOccurrence(std::string& literal, char c);
+        // HELPER FUNCTIONS
+        static bool FindCharOneOccurrence(const std::string& literal, char c);
+        static void PrintChar(char c);
+        static void PrintInt(int i);
+        static void PrintFloat(float f);
+        static void PrintDouble(double d);
 
     public:
         // accept a string representation of a scalar literal and
