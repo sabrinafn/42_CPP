@@ -229,19 +229,22 @@ void ScalarConverter::convert(std::string &literal) {
     int i = 0;
     float f = 0.0f;
     double d = 0.0;
+    
     if (char c = GetCharLiteral(literal)) { // char
         ConvertFromCharLiteral(c);
+        return ;
     }
-    else if (GetIntLiteral(literal, i)) { // int
+    if (GetIntLiteral(literal, i)) { // int
         ConvertFromIntLiteral(i);
+        return ;
     }
-    else if (GetFloatLiteral(literal, f)) { // float
+    if (GetFloatLiteral(literal, f)) { // float
         ConvertFromFloatLiteral(f);
+        return ;
     }
-    else if (GetDoubleLiteral(literal, d)) { // double
+    if (GetDoubleLiteral(literal, d)) { // double
         ConvertFromDoubleLiteral(d);
+        return ;
     }
-    else {
-        std::cout << "Error: input is not a valid scalar literal. Conversion impossible." << std::endl;
-    }
+    std::cout << "Error: input is not a valid scalar literal. Conversion impossible." << std::endl;
 }
