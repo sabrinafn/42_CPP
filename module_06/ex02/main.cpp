@@ -1,15 +1,20 @@
 #include "Base.hpp"
-#include "A.hpp"
-#include "B.hpp"
-#include "C.hpp"
 
 int main() {
 
-    Base* random = generate();
+    std::cout << "=== Generating 10 Bases randomically ===\n" << std::endl;
+    Base* random = NULL;
+    for (int i = 0; i < 10; i++) {
+        std::cout << "= " << i + 1 << " ========================" << std::endl;
+        random = generate();
 
-    identify(random);
-    identify(random);
+        std::cout << "Type of object pointed:    ";
+        identify(random);
+        std::cout << "Type of object referenced: ";
+        identify(*random);
 
-    delete random;
+        std::cout << "=============================" << std::endl;
+        delete random;
+    }
     return 0;
 }

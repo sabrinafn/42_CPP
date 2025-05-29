@@ -6,7 +6,9 @@
 class C : public Base {
 
     public:
-
+        C(void) {};
+        ~C(void) {};
+        
 };
 
 #endif

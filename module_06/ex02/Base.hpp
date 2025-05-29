@@ -4,13 +4,17 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
+#include <exception>
+#include <typeinfo>
 
 class Base {
     public:
-        virtual ~Base(void); // destructor
-        Base*   generate(void);
-        void    identify(Base* p);
-        void    identify(Base& p);
+        Base(void) {}; 
+        virtual ~Base(void) {}; // destructor
 };
+
+Base*   generate(void);
+void    identify(Base* p);
+void    identify(Base& p);
 
 #endif

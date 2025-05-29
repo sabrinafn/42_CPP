@@ -3,7 +3,7 @@
 #include "B.hpp"
 #include "C.hpp"
 
-Base*   Base::generate(void) {
+Base*   generate(void) {
 
     static bool rand_exist = false;
 
@@ -13,7 +13,7 @@ Base*   Base::generate(void) {
         rand_exist = true;
     }
 
-    int random = std::rand();
+    int random = std::rand() % 3;
     
     switch (random) {
         case 0:
@@ -24,5 +24,39 @@ Base*   Base::generate(void) {
             return new C();
         default:
             return NULL;
+    }
+}
+
+void    identify(Base* p) {
+
+    if (dynamic_cast<A*>(p))
+        std::cout << "A" << std::endl;
+    else if (dynamic_cast<B*>(p))
+        std::cout << "B" << std::endl;
+    else if (dynamic_cast<C*>(p))
+        std::cout << "C" << std::endl;
+}
+
+void identify(Base& p) {
+    
+    try {
+        (void)dynamic_cast<A&>(p);
+        std::cout << "A" << std::endl;
+    } catch (std::bad_cast&) {
+        //std::cout << "(not A type)" << std::endl;
+    }
+
+    try {
+        (void)dynamic_cast<B&>(p);
+        std::cout << "B" << std::endl;
+    } catch (std::bad_cast&) {
+        //std::cout << "(not B type)" << std::endl;
+    }
+
+    try {
+        (void)dynamic_cast<C&>(p);
+        std::cout << "C" << std::endl;
+    } catch (std::bad_cast&) {
+        //std::cout << "(not C type)" << std::endl;
     }
 }
