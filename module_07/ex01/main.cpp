@@ -14,5 +14,17 @@ int main(void) {
     // iter function
     ::iter(str, string_len, printArray);
     
+    // array
+    std::cout << "\n=== Creating int array..." << std::endl;
+    int arr[4] = {4, 3, 2, 1};
+    std::cout << "int arr[4] = {4, 3, 2, 1};\n" << std::endl;
+
+    // array length
+    size_t arr_len = sizeof(arr) / sizeof(arr[0]);
+
+    std::cout << "=== Values found in int array using function iter:" << std::endl;
+    // iter function
+    ::iter(arr, arr_len, printArray);
+    
     return 0;
 }
