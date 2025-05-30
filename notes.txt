@@ -156,3 +156,7 @@ scalar type
     examples: char, int, float, double
 
     scalar literal -> it's when you write a value of scalar type in the code
+
+Templates
+    - Templates let you write a function or class that works with 
+        different data types.
