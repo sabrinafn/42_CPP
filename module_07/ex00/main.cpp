@@ -1,6 +1,8 @@
 #include "whatever.hpp"
 
 int main( void ) {
+
+    // subject main
     int a = 2;
     int b = 3;
     ::swap( a, b );
