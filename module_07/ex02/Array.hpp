@@ -19,7 +19,7 @@ class Array {
         Array& operator=(const Array<T>& other); // copy assignment operator - deep copy
 
         T& operator[](size_t index); // [] subscript operator
-        size_t size(void) const;
+        size_t size(void);
 };
 
 #endif
