@@ -44,6 +44,7 @@ char ScalarConverter::GetCharLiteral(const std::string &literal) {
 }
 
 bool ScalarConverter::GetIntLiteral(const std::string &literal, int &i) {
+
     if (literal.find('f') == std::string::npos && literal.find('.') == std::string::npos) {
         int sign = 0;
         if (literal[0] == '-' || literal[0] == '+')
@@ -52,8 +53,8 @@ bool ScalarConverter::GetIntLiteral(const std::string &literal, int &i) {
             if (!isdigit(literal[j]))
                 return false;
         }
-        std::stringstream ss(literal);
-        ss >> i;
+        std::stringstream txt_file(literal); // stringstream acts likea file
+        txt_file >> i;
         return true;
     }
     return false;
@@ -208,14 +209,14 @@ void    ScalarConverter::PrintInt(int i) {
 
 void    ScalarConverter::PrintFloat(float f) {
     std::cout << "float: "
-              << std::fixed << std::setprecision(1)
+              << std::fixed << std::setprecision(2)
               << f << "f" << std::endl;
     std::cout.unsetf(std::ios::fixed);
 }
 
 void    ScalarConverter::PrintDouble(double d) {
     std::cout << "double: "
-              << std::fixed << std::setprecision(1)
+              << std::fixed << std::setprecision(2)
               << d << std::endl;
     std::cout.unsetf(std::ios::fixed);
 }
@@ -225,7 +226,7 @@ void    ScalarConverter::PrintDouble(double d) {
 // print its corresponding values interpreted as char, int, float or double
 
 void ScalarConverter::convert(std::string &literal) {
-     
+
     int i = 0;
     float f = 0.0f;
     double d = 0.0;
