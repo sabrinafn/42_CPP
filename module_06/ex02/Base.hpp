@@ -5,7 +5,6 @@
 #include <cstdlib>
 #include <ctime>
 #include <exception>
-#include <typeinfo>
 
 class Base {
     public:

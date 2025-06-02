@@ -42,21 +42,21 @@ void identify(Base& p) {
     try {
         (void)dynamic_cast<A&>(p);
         std::cout << "A" << std::endl;
-    } catch (std::bad_cast&) {
+    } catch (std::exception&) {
         //std::cout << "(not A type)" << std::endl;
     }
 
     try {
         (void)dynamic_cast<B&>(p);
         std::cout << "B" << std::endl;
-    } catch (std::bad_cast&) {
+    } catch (std::exception&) {
         //std::cout << "(not B type)" << std::endl;
     }
 
     try {
         (void)dynamic_cast<C&>(p);
         std::cout << "C" << std::endl;
-    } catch (std::bad_cast&) {
+    } catch (std::exception&) {
         //std::cout << "(not C type)" << std::endl;
     }
 }
