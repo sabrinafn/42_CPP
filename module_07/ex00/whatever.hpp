@@ -3,6 +3,10 @@
 
 #include <iostream>
 
+// examples without template
+// void swap(int a, int b);
+// void swap(float a, float b);
+
 template <typename T>
 void swap(T& a, T& b) {
     T temp;
