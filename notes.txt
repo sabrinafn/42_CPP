@@ -160,3 +160,6 @@ scalar type
 Templates
     - Templates let you write a function or class that works with 
         different data types.
+
+list of exceptions:
+    https://en.cppreference.com/w/cpp/error/exception.html
