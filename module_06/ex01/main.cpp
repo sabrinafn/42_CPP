@@ -8,9 +8,10 @@ int main(void){
 
     Data* ptr_new = Serializer::deserialize(raw);
 
-    std::cout << "Original pointer:   " << ptr << std::endl;
-    std::cout << "Serialized value:   " << raw << std::endl;
-    std::cout << "Deserialized ptr:   " << ptr_new << std::endl;
+    std::cout << "Original pointer:   " << ptr << std::endl; // hex
+    std::cout << "Serialized value:   " << raw << std::endl; // same address but converted to a type int 
+                                                             // decimal
+    std::cout << "Deserialized ptr:   " << ptr_new << std::endl; // hex
 
     if (ptr == ptr_new)
         std::cout << "\nThe return value of deserialize() "
