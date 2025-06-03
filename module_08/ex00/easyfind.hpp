@@ -2,9 +2,9 @@
 #define EASYFIND_HPP
 
 template <typename T>
-void easyfind(T& a, int i) {
+void easyfind(T& container, int i) {
 
-    
+
 };
 
 #endif
