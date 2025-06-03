@@ -40,6 +40,6 @@ Array<T>::~Array(void) {
 }
 
 template <typename T>
-size_t Array<T>::size(void){
+size_t Array<T>::size(void) const{
     return (this->len);
 }

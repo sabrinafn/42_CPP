@@ -1,7 +1,7 @@
 #include "Array.hpp"
 #include "Array.tpp"
 #include <sstream>
-#define max_size 5
+#define max_size 3
 
 int main(int, char**)
 {   
@@ -17,7 +17,9 @@ int main(int, char**)
         for (int i = 0; i < max_size; i++) {
             std::cout << "[" << i << "]: " << myArrays2[i] << " ";
         }
-        std::cout << "\n" << std::endl;
+        std::cout << "\nNumber of elements in the array using size(): " << myArrays2.size() << std::endl;
+
+        std::cout << std::endl;
 
         Array<int> myArrayDeepCopy = myArrays2;
         Array<int> test(myArrayDeepCopy);
@@ -67,7 +69,7 @@ int main(int, char**)
 
     }
 
-    /*****************************************************************************/
+    std::cout << "**********************************************\n" << std::endl;
 
     // SCOPE FOR STRING ARRAY
     {
@@ -85,7 +87,8 @@ int main(int, char**)
         for (int i = 0; i < max_size; i++) {
             std::cout << "[" << i << "]: " << myStringArray[i] << " ";
         }
-        std::cout << "\n\n";
+        std::cout << "\nNumber of elements in the array using size(): " << myStringArray.size() << std::endl;
+        std::cout << "\n";
 
         // Testando cópia profunda
         Array<std::string> myStringCopy = myStringArray;

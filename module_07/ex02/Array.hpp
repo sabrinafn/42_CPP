@@ -20,7 +20,7 @@ class Array {
         ~Array(void); // destructor
 
         T& operator[](size_t index); // [] subscript operator
-        size_t size(void);
+        size_t size(void) const;
 };
 
 #endif
