@@ -35,6 +35,11 @@ T& Array<T>::operator[](size_t index) {
 }
 
 template <typename T>
+Array<T>::~Array(void) {
+    delete[] this->array;
+}
+
+template <typename T>
 size_t Array<T>::size(void){
     return (this->len);
 }
