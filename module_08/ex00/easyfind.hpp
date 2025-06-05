@@ -1,19 +1,23 @@
 #ifndef EASYFIND_HPP
 #define EASYFIND_HPP
 
+#include <iostream>
+#include <sstream> 
 #include <algorithm>
+#include <vector>
+#include <exception>
 
 template <typename T>
-void easyfind(T& container, int i) {
+typename T::iterator easyfind(T& container, int value) {
 
-    std::vector<int>::iterator it;
+    typename T::iterator it = std::find(container.begin(), container.end(), value);
 
-    it = find(container.begin(), container.end(), i);
-
-    if (it != container.end())
-        std::cout << "element found in T container: " << *it << std::endl;
-    else
-        std::cout << "element not found in T container." << std::endl;
+    if (it == container.end()) {
+        std::stringstream ss;
+        ss << value;
+        throw std::runtime_error("Element [" + ss.str() + "] not found in container.");
+    }
+    return it;
 };
 
 #endif
