@@ -170,4 +170,11 @@ Data Structures
     https://www.w3schools.com/cpp/cpp_data_structures.asp
     https://cplusplus.com/reference/algorithm/
 
-    
+
+Containers c++98:
+
+    Vector: resizable dynamic array
+
+    Deque: dynamic array of fixed-size; allows insertion both ends.
+
+    List: double linked list
