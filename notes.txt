@@ -98,6 +98,7 @@ Fixed Point Number
     - A classe Fixed que criei eh uma maneira de representar numeros 
         nao-inteiros usando apenas inteiros.
 
+        https://www.h-schmidt.net/FloatConverter/IEEE754.html
 
 Operator overloading (sobrecarga de operador)
 
@@ -107,49 +108,47 @@ Operator overloading (sobrecarga de operador)
         word followed by the symbol of the operator, and operator
         functions are called when the corresponding operator is used.
 
-A pure virtual function is specified by placing "= 0" in its declaration.
-The purpose of an abstract class (often referred to as an ABC) is to provide an 
-    appropriate base class from which other classes can inherit.
-Abstract classes cannot be used to instantiate objects and serves only as an interface.
-
+Pure Virtual Function
+    A pure virtual function is specified by placing "= 0" in its declaration.
+    The purpose of an abstract class (often referred to as an ABC) is to provide an appropriate base class from which other classes can inherit.
+    Abstract classes cannot be used to instantiate objects and serves only as an interface.
 
 Exception classes
-https://medium.com/@hixcoder/exception-classes-in-c-b57ecc8a7f2d
+    https://medium.com/@hixcoder/exception-classes-in-c-b57ecc8a7f2d
 
-C-style cast -> char a; (int)a;
+Casts
+    C-style cast -> char a; (int)a;
 
-casting operators:
+    casting operators:
 
-static_cast -> 
-    - static_cast<type>(expression)
-    - non-polymorphic type conversion
-    - can be used to upcast and downcast a 
-        pointer/reference of a derived class to a base class
-    - it does not perform safety checks, it can lead to undefined behavior.
-    
-    float f = 10.5;
-    int i;
-    i = f; // implicit conversion
-    i = static_cast<int>(f) // static cast
+    static_cast -> 
+        - static_cast<type>(expression)
+        - non-polymorphic type conversion
+        - can be used to upcast and downcast a 
+            pointer/reference of a derived class to a base class
+        - it does not perform safety checks, it can lead to undefined behavior.
 
-const_cast ->
-    - const_cast<type>(expression)
-    - it does not change types.
-    - it changes if a variable is const or not.
+        float f = 10.5;
+        int i;
+        i = f; // implicit conversion
+        i = static_cast<int>(f) // static cast
 
-reintepret_cast ->
-    - reintepret_cast<type>(expression)
-    - do the conversion no matter what. (dangerous cast)
-    - produces a value of new type with the same bit pattern
-        as the previous patten
+    const_cast ->
+        - const_cast<type>(expression)
+        - it does not change types.
+        - it changes if a variable is const or not.
 
-
-dynamic_cast ->
-    - dynamic_cast<type>(expression)
-    - downcasting
-    - converting a derived class to a base class
+    reintepret_cast ->
+        - reintepret_cast<type>(expression)
+        - do the conversion no matter what. (dangerous cast)
+        - produces a value of new type with the same bit pattern
+            as the previous patten
 
 
+    dynamic_cast ->
+        - dynamic_cast<type>(expression)
+        - downcasting
+        - converting a derived class to a base class
 
 scalar type
     - a variable type that holds a single value inside of it
@@ -164,12 +163,10 @@ Templates
 list of exceptions:
     https://en.cppreference.com/w/cpp/error/exception.html
 
-
 Data Structures 
 
     https://www.w3schools.com/cpp/cpp_data_structures.asp
     https://cplusplus.com/reference/algorithm/
-
 
 Containers c++98:
 
