@@ -4,7 +4,6 @@
 #include <iostream>
 #include <sstream> 
 #include <algorithm>
-#include <vector>
 #include <exception>
 
 template <typename T>
@@ -19,5 +18,14 @@ typename T::iterator easyfind(T& container, int value) {
     }
     return it;
 };
+
+template <typename T>
+void printContainer(const T& container) {
+    typename T::const_iterator it;
+    for (it = container.begin(); it != container.end(); ++it) {
+        std::cout << *it << " ";
+    }
+    std::cout << std::endl;
+}
 
 #endif
