@@ -48,6 +48,13 @@ int Span::shortestSpan(void) {
     if (this->vec.size() <= 1)
         throw std::range_error("Span can't be found - Not enough elements.");
     
+    std::vector<int>::iterator it;
+
+    for (it = this->vec.begin(); it != vec.end(); it++) {
+        
+    }
+
+
     return 0;
 }
 
