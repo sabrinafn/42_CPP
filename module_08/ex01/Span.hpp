@@ -2,6 +2,8 @@
 #define SPAN_HPP
 
 #include <vector>
+#include <exception>
+#include <algorithm>
 #include "iostream"
 
 class Span {
@@ -24,8 +26,8 @@ class Span {
 
         void addNumber(int N); // add number to Span
         //void addRange();
-        void shortestSpan(void); // shortest distance between all numbers
-        void longestSpan(void); // longest distance between all numbers
+        int shortestSpan(void); // shortest distance between all numbers
+        int longestSpan(void); // longest distance between all numbers
 };
 
 #endif
