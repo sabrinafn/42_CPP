@@ -24,7 +24,7 @@ class Span {
         /* OPERATORS */
         Span& operator=(const Span& other); // copy assignment operator
 
-        void addNumber(int N); // add number to Span
+        void addNumber(int value); // add number to Span
         //void addRange();
         int shortestSpan(void); // shortest distance between all numbers
         int longestSpan(void); // longest distance between all numbers

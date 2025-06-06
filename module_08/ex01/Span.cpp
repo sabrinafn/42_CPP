@@ -33,14 +33,14 @@ Span& Span::operator=(const Span& other) {
 
     /* METHODS */
 
-void Span::addNumber(int N) {
+void Span::addNumber(int value) {
 
     if (this->vec.size() >= this->max_size)
         throw std::range_error("Container is at maximum limit.");
-    this->vec.push_back(N);
+    this->vec.push_back(value);
 }
 
-//void Span::addRange() {}
+void Span::addRange() {}
 
 // shortest distance between all numbers
 int Span::shortestSpan(void) {
@@ -50,12 +50,14 @@ int Span::shortestSpan(void) {
     
     std::vector<int>::iterator it;
 
-    for (it = this->vec.begin(); it != vec.end(); it++) {
-        
+    int span_found = std::abs(this->vec[1] - this->vec[0]);
+
+    for (it = this->vec.begin(); it + 1!= vec.end(); it++) {
+        int temp = std::abs(*(it + 1) - *it);
+        if (span_found > temp)
+            span_found = temp;
     }
-
-
-    return 0;
+    return span_found;
 }
 
 // longest distance between all numbers
