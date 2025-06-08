@@ -6,10 +6,10 @@
     /* CONSTRUCTORS */
 
 // constructor
-Span::Span(void) : max_size(0), vec(max_size) {}
+Span::Span(void) : max_size(0) {}
 
 // constructor unsigned int
-Span::Span(unsigned int N) : max_size(N), vec(N){} // wrong
+Span::Span(unsigned int N) : max_size(N) {} 
 
 // copy constructor
 Span::Span(const Span& other) {
@@ -36,11 +36,17 @@ Span& Span::operator=(const Span& other) {
 void Span::addNumber(int value) {
 
     if (this->vec.size() >= this->max_size)
-        throw std::range_error("Container is at maximum limit.");
+        throw std::range_error("Cannot add number - Container is at maximum limit.");
     this->vec.push_back(value);
 }
 
-void Span::addRange() {}
+void Span::addRange(std::vector<int>::iterator begin, std::vector<int>::iterator end) {
+
+    std::vector<int>::iterator it;
+    for (it = begin; it != end; it++) {
+        addNumber(*it);
+    }
+}
 
 // shortest distance between all numbers
 int Span::shortestSpan(void) {
@@ -52,7 +58,7 @@ int Span::shortestSpan(void) {
 
     int span_found = std::abs(this->vec[1] - this->vec[0]);
 
-    for (it = this->vec.begin(); it + 1!= vec.end(); it++) {
+    for (it = this->vec.begin(); it + 1 != vec.end(); it++) {
         int temp = std::abs(*(it + 1) - *it);
         if (span_found > temp)
             span_found = temp;
@@ -76,3 +82,25 @@ int Span::longestSpan(void) {
 
     return span_found;
 }
+
+void Span::printVec(void) {
+
+    std::vector<int>::iterator it;
+    std::cout << "Values stored in container: { ";
+    for (it = this->vec.begin(); it != this->vec.end(); it++) {
+        std::cout << *it;
+        if (it != this->vec.end() - 1)
+            std::cout << ", ";
+    }
+    std::cout << " }" << std::endl;
+}
+
+// // insertion operator
+// std::ostream &operator<<(std::ostream &out, const Span &other) {
+
+//     std::vector<int>::iterator it;
+
+//     for (it = &other.vec.begin(); it != other.end())
+//     out << ;
+//     return out;
+// }

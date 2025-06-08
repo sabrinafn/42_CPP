@@ -24,10 +24,18 @@ class Span {
         /* OPERATORS */
         Span& operator=(const Span& other); // copy assignment operator
 
-        void addNumber(int value); // add number to Span
-        //void addRange();
-        int shortestSpan(void); // shortest distance between all numbers
-        int longestSpan(void); // longest distance between all numbers
+        // Add numbers to vec
+        void addNumber(int value);
+        void addRange(std::vector<int>::iterator begin, std::vector<int>::iterator end);
+
+        // get shortest/longest span(distance) between all numbers
+        int shortestSpan(void);
+        int longestSpan(void);
+
+        // getter for vec
+        void printVec(void);
 };
+
+//std::ostream &operator<<(std::ostream &out, const Span &other); // insertion operator
 
 #endif
