@@ -75,24 +75,6 @@ void Span::addRange(std::vector<int>::iterator begin, std::vector<int>::iterator
     }
 }
 
-std::vector<int>  generateRandomDigits(int size) {
-
-    std::vector<int> vec;
-    static bool rand_exist = false;
-
-    // seed the random generator
-    if (!rand_exist) {
-        std::srand(std::time(0));
-        rand_exist = true;
-    }
-
-    for (int i = 0; i < size; i++) {
-        int random = std::rand() % 10;
-        vec.push_back(random);
-    }
-    return vec;
-}
-
 // shortest distance between all numbers
 int Span::shortestSpan(void) {
 
@@ -126,4 +108,21 @@ int Span::longestSpan(void) {
     int span_found = max_it - min_it;
 
     return span_found;
+}
+
+std::vector<int>  generateRandomDigits(int size) {
+
+    std::vector<int> vec;
+    static bool rand_exist = false;
+
+    if (!rand_exist) {
+        std::srand(std::time(0));
+        rand_exist = true;
+    }
+
+    for (int i = 0; i < size; i++) {
+        int random = std::rand() % size;
+        vec.push_back(random);
+    }
+    return vec;
 }

@@ -29,9 +29,10 @@ int main()
         std::cerr << e.what() << std::endl;
     }
     std::cout << std::endl;
-    try { 
-        Span sp = Span(100);
-        std::vector<int> random_vec = generateRandomDigits(100);
+    try {
+        int size = 10000;
+        Span sp = Span(size);
+        std::vector<int> random_vec = generateRandomDigits(size);
         sp.addRange(random_vec.begin(), random_vec.end());
         std::cout << sp << std::endl;
         std::cout << "Shortest span: " << sp.shortestSpan() << std::endl;
