@@ -32,10 +32,11 @@ class Span {
         int shortestSpan(void);
         int longestSpan(void);
 
-        // getter for vec
-        void printVec(void);
+        // getters
+        std::vector<int> getVec(void) const;
+        unsigned int     getMaxSize(void) const;
 };
 
-//std::ostream &operator<<(std::ostream &out, const Span &other); // insertion operator
+std::ostream &operator<<(std::ostream &out, const Span &other); // insertion operator
 
 #endif

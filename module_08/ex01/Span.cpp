@@ -31,6 +31,33 @@ Span& Span::operator=(const Span& other) {
     return *this;
 }
 
+
+// insertion operator
+std::ostream& operator<<(std::ostream& os, const Span& span) {
+
+    std::vector<int> temp_vec = span.getVec();
+    std::vector<int>::iterator it;
+
+    os << "Span (" << temp_vec.size() << "/" << span.getMaxSize() << "): { ";
+    for (it = temp_vec.begin(); it != temp_vec.end(); it++) {
+        os << *it;
+        if (it != temp_vec.end() - 1)
+            os << ", ";
+    }
+    os << " }";
+    return os;
+}
+
+    /* GETTERS */
+
+std::vector<int> Span::getVec(void) const {
+    return this->vec;
+}
+
+unsigned int     Span::getMaxSize(void) const {
+    return this->max_size;
+}
+
     /* METHODS */
 
 void Span::addNumber(int value) {
@@ -82,25 +109,3 @@ int Span::longestSpan(void) {
 
     return span_found;
 }
-
-void Span::printVec(void) {
-
-    std::vector<int>::iterator it;
-    std::cout << "Values stored in container: { ";
-    for (it = this->vec.begin(); it != this->vec.end(); it++) {
-        std::cout << *it;
-        if (it != this->vec.end() - 1)
-            std::cout << ", ";
-    }
-    std::cout << " }" << std::endl;
-}
-
-// // insertion operator
-// std::ostream &operator<<(std::ostream &out, const Span &other) {
-
-//     std::vector<int>::iterator it;
-
-//     for (it = &other.vec.begin(); it != other.end())
-//     out << ;
-//     return out;
-// }
