@@ -28,5 +28,17 @@ int main()
     catch (std::exception &e) {
         std::cerr << e.what() << std::endl;
     }
+    std::cout << std::endl;
+    try { 
+        Span sp = Span(100);
+        std::vector<int> random_vec = generateRandomDigits(100);
+        sp.addRange(random_vec.begin(), random_vec.end());
+        std::cout << sp << std::endl;
+        std::cout << "Shortest span: " << sp.shortestSpan() << std::endl;
+        std::cout << "Longest span: " << sp.longestSpan() << std::endl;
+    }
+    catch (std::exception &e) {
+        std::cerr << e.what() << std::endl;
+    }
     return 0;
 }

@@ -4,6 +4,8 @@
 #include <vector>
 #include <exception>
 #include <algorithm>
+#include <cstdlib>
+#include <ctime>
 #include "iostream"
 
 class Span {
@@ -38,5 +40,6 @@ class Span {
 };
 
 std::ostream &operator<<(std::ostream &out, const Span &other); // insertion operator
+std::vector<int>   generateRandomDigits(int size);
 
 #endif
