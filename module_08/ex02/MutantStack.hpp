@@ -26,7 +26,8 @@ class MutantStack : public std::stack<T> {
         /* OPERATORS */
         // copy assignment operator
         MutantStack& operator=(const MutantStack& other) {
-            (void)other;
+            if (this != &other)
+                std::stack<T>::operator=(other); // using base class assignment operator
             return *this;
         }
 
@@ -36,5 +37,24 @@ class MutantStack : public std::stack<T> {
         iterator begin() { return this->c.begin(); }
         iterator end() { return this->c.end(); }
 };
+
+// insertion operator
+template <typename T>
+std::ostream& operator<<(std::ostream& os, MutantStack<T> &other) {
+
+    MutantStack<int>::iterator it = other.begin(); // able to access begin()
+    MutantStack<int>::iterator ite = other.end(); // and end()
+
+    os << "Mutant Stack: { ";
+    while (it != ite)
+    {
+        os << *it;
+        if (it != ite - 1)
+            os << ", ";
+        it++;
+    }
+    os << " }";
+    return os;
+}
 
 #endif
