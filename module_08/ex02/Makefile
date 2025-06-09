@@ -4,7 +4,7 @@ CC := c++
 
 FLAGS := -Wall -Wextra -Werror -std=c++98 -g3
 
-CPPFILES := main.cpp MutantStack.cpp
+CPPFILES := main.cpp
 
 OBJFILES := $(CPPFILES:.cpp=.o)
 
