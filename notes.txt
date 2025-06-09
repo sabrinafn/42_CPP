@@ -175,3 +175,5 @@ Containers c++98:
     Deque: dynamic array of fixed-size; allows insertion both ends.
 
     List: double linked list
+
+    https://medium.com/sisgrammers/stl-containers-in-c-a95d0b0aa45a
