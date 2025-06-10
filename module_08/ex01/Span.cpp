@@ -121,7 +121,7 @@ std::vector<int>  generateRandomDigits(int size) {
     }
 
     for (int i = 0; i < size; i++) {
-        int random = std::rand() % size;
+        int random = std::rand() % (size * 3);
         vec.push_back(random);
     }
     return vec;

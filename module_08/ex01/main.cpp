@@ -30,7 +30,7 @@ int main()
     }
     std::cout << std::endl;
     try {
-        int size = 10000;
+        int size = 15;
         Span sp = Span(size);
         std::vector<int> random_vec = generateRandomDigits(size);
         sp.addRange(random_vec.begin(), random_vec.end());
