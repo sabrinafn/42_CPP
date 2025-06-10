@@ -177,3 +177,5 @@ Containers c++98:
     List: double linked list
 
     https://medium.com/sisgrammers/stl-containers-in-c-a95d0b0aa45a
+    https://hackingcpp.com/cpp/cheat_sheets.html
+    
