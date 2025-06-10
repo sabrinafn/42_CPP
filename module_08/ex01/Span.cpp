@@ -81,7 +81,6 @@ int Span::shortestSpan(void) {
     if (this->vec.size() <= 1)
         throw std::range_error("Span can't be found - Not enough elements.");
     
-
     std::vector<int> temp_vec = this->getVec();
     std::sort(temp_vec.begin(), temp_vec.end());
     std::vector<int>::iterator it;
@@ -110,6 +109,7 @@ int Span::longestSpan(void) {
     return span_found;
 }
 
+// helper function to generate random digits when testing the vector
 std::vector<int>  generateRandomDigits(int size) {
 
     std::vector<int> vec;
