@@ -12,10 +12,8 @@ int main()
 
         std::cout << mstack << std::endl;
 
-        std::cout << "\nprinting value at the top: ";
+        std::cout << "\nprinting and removing value at the top: ";
         std::cout << mstack.top() << std::endl;
-
-        std::cout << "removing value at the top: 17" << std::endl;
         mstack.pop();
 
         std::cout << "printing stack size: ";
@@ -46,16 +44,15 @@ int main()
 
         std::cout << '\n' << mstack << std::endl;
         
+        // copying mutantstack back into base class stack, then it loses its ability to iterate
         std::stack<int> s(mstack);
 
-        //std::cout << s << std::endl;
-        //MutantStack<int>::iterator it = s.begin();
-        //MutantStack<int>::iterator ite = s.end();
-//
-        //std::cout << "\niterator stack.begin(): " << *it << std::endl;
-        //ite--;
-        //std::cout << "iterator stack.end(): " << *ite << std::endl; // points to one before last
-        //ite++;
+        //std::stack::iterator s_it = s.begin();
+        //std::stack::iterator s_ite = s.end();
+        //std::cout << "\niterator s.begin(): " << *s_it << std::endl;
+        //s_ite--;
+        //std::cout << "iterator s.end(): " << *s_ite << std::endl; // points to one before last
+        //s_ite++;
         
     }
         std::cout << "=============================================================" << std::endl;
@@ -69,10 +66,8 @@ int main()
 
         std::cout << str << std::endl;
 
-        std::cout << "\nprinting value at the top: ";
+        std::cout << "\nprinting and removing value at the top: ";
         std::cout << str.top() << std::endl;
-
-        std::cout << "removing value at the top: hello world" << std::endl;
         str.pop();
 
         std::cout << "printing stack size: ";
@@ -102,8 +97,6 @@ int main()
         std::cout << "after decrementing iterator stack.begin(): " << *it << std::endl;
 
         std::cout << '\n' << str << std::endl;
-        std::stack<std::string> s(str);
-
     }
     return 0;
 }

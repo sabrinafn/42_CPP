@@ -29,9 +29,13 @@ class MutantStack : public std::stack<T> {
             return *this;
         }
 
-        typedef typename std::stack<T>::container_type::iterator iterator;
+        // declaring iterator 
+        // std::stack<T>::container_type == std::deque<T>
+        //typedef typename std::stack<T>::container_type::iterator iterator;
+        typedef typename std::deque<T>::iterator iterator;
 
-        // c = container interno de std::stack
+
+        // c = object holding elements inside of std::stack
         iterator begin() {
             return this->c.begin();}
         iterator end() {
@@ -42,6 +46,7 @@ class MutantStack : public std::stack<T> {
 template <typename T>
 std::ostream& operator<<(std::ostream& os, MutantStack<T> &other) {
 
+    // compiler needs typename to identify that iterator is a type
     typename MutantStack<T>::iterator it = other.begin(); // able to access begin()
     typename MutantStack<T>::iterator ite = other.end(); // and end()
 
