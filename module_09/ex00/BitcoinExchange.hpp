@@ -21,6 +21,7 @@ class MyMap {
         /* OPERATORS */
         MyMap& operator=(const MyMap &other);
 
+        /* METHODS */
         
 };
 
