@@ -16,9 +16,7 @@ class MutantStack : public std::stack<T> {
     public: 
         /* CONSTRUCTORS */
         MutantStack(void) {} // constructor
-        MutantStack(const MutantStack& other) {
-            *this = other;
-        } // copy constructor
+        MutantStack(const MutantStack& other) { *this = other; } // copy constructor
 
         /* DESTRUCTOR */
         ~MutantStack(void) {} // destructor
@@ -34,24 +32,26 @@ class MutantStack : public std::stack<T> {
         typedef typename std::stack<T>::container_type::iterator iterator;
 
         // c = container interno de std::stack
-        iterator begin() { return this->c.begin(); }
-        iterator end() { return this->c.end(); }
+        iterator begin() {
+            return this->c.begin();}
+        iterator end() {
+            return this->c.end();}
 };
 
 // insertion operator
 template <typename T>
 std::ostream& operator<<(std::ostream& os, MutantStack<T> &other) {
 
-    MutantStack<int>::iterator it = other.begin(); // able to access begin()
-    MutantStack<int>::iterator ite = other.end(); // and end()
+    typename MutantStack<T>::iterator it = other.begin(); // able to access begin()
+    typename MutantStack<T>::iterator ite = other.end(); // and end()
 
     os << "Mutant Stack: { ";
     while (it != ite)
     {
         os << *it;
-        if (it != ite - 1)
-            os << ", ";
         it++;
+        if (it != ite)
+            os << ", ";
     }
     os << " }";
     return os;
