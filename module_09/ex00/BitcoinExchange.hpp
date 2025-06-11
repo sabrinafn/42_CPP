@@ -3,23 +3,26 @@
 
 #include <iostream>
 #include <map>
+#include <fstream>
+#include <sstream>
 
-class MyMap {
+class BitcoinExchange {
 
     private:
-        std::map<std::string, double> container;
+        std::map<std::string, float> container;
     
     public:
         
         /* CONSTRUCTORS */
-        MyMap(void);
-        MyMap(const MyMap &other);
+        BitcoinExchange(void);
+        BitcoinExchange(std::map<std::string, float> &data);
+        BitcoinExchange(const BitcoinExchange &other);
 
         /* DESTRUCTORS */
-        ~MyMap(void);
+        ~BitcoinExchange(void);
 
         /* OPERATORS */
-        MyMap& operator=(const MyMap &other);
+        BitcoinExchange& operator=(const BitcoinExchange &other);
 
         /* METHODS */
         
