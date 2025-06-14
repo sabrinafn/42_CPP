@@ -23,12 +23,3 @@ BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange &other) {
     }
     return *this;
 }
-
-bool BitcoinExchange::data_valid(std::map<std::string, float> data) {
-    
-    // check if date is YYYY-MM-DD
-    if (data.string[])
-    // check if value is positive, float/int, 0 to 1000
-    
-    return true;
-}
