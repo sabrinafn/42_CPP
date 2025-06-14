@@ -102,7 +102,7 @@ std::map<std::string, float> parse_data_file(std::string arg) {
     
     std::ifstream file(arg.c_str()); // std::ifstream == open file
     if (!file.is_open()) { // is_open == check if file is open
-        std::cerr << "Error. Could not open file." << std::endl;
+        std::cerr << "Error. Could not open data file." << std::endl;
         return temp;
     }
     std::string line; // variable to store lines read from file
@@ -128,11 +128,17 @@ std::map<std::string, float> parse_data_file(std::string arg) {
 
 int main(int ac, char **av) {
 
-    if (ac != 2) {
-        std::cerr << "Error! Wrong number of arguments." << std::endl;
-        return 1;
+    {
+        if (ac != 2) {
+            std::cerr << "Error! Wrong number of arguments." << std::endl;
+            return 1;
+        }
+        std::ifstream input_file(av[1]); // std::ifstream == open file
+        if (!input_file.is_open()) { // is_open == check if file is open
+            std::cerr << "Error. Could not open file received as argument." << std::endl;
+            return 1;
+        }
     }
-    (void)av;
     // parse data.csv received
     std::map<std::string, float> data_file = parse_data_file("data.csv");
     
@@ -144,6 +150,7 @@ int main(int ac, char **av) {
     // store in class MyMap
     BitcoinExchange data = BitcoinExchange(data_file);
 
+    
 
     return 0;
 }
