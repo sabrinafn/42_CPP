@@ -180,4 +180,12 @@ Containers c++98:
     https://hackingcpp.com/cpp/cheat_sheets.html
     https://stackoverflow.com/questions/10699265/how-can-i-efficiently-select-a-standard-library-container-in-c11
     
-    
+
+Random:
+
+    1. Divisible by 4:
+    If a year is evenly divisible by 4, it's generally a leap year (e.g., 1992, 2000, 2004). 
+    2. Divisible by 100:
+    However, if a year is divisible by 100 (e.g., 1900, 2000), it's not a leap year, unless it also meets the next condition. 
+    3. Divisible by 400:
+    If a year is divisible by both 100 and 400 (e.g., 1600, 2000), it is a leap year. 
