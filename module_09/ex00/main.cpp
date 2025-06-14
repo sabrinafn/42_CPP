@@ -47,8 +47,52 @@ bool is_date_valid(std::string date) {
     return true;
 }
 
+bool FindCharOneOccurrence(const std::string& value, char c) {
+    
+    int count = 0;
+    for (size_t i = 0; i < value.length(); i++) {
+        if (value[i] == c)
+            ++count;
+    }
+    if (count == 1)
+        return true;
+    return false;
+}
+
+bool get_float(const std::string &value, float &f) {
+
+    if (FindCharOneOccurrence(value, '.') == true) {
+        int sign = 0;
+        if (value[0] == '-' || value[0] == '+')
+            sign = 1;
+        for (size_t i = sign; i < value.length(); i++) {
+            if (!isdigit(value[i]) && value[i] != '.')
+                return false;
+        }
+        f = strtof(value.c_str(), NULL);
+        return true;
+    }
+    else {
+        int sign = 0;
+        if (value[0] == '-' || value[0] == '+')
+            sign = 1;
+        for (size_t i = sign; i < value.length(); i++) {
+            if (!isdigit(value[i]))
+                return false;
+        }
+        f = strtof(value.c_str(), NULL);
+        return true;
+    }
+    return false;
+}
+
 bool is_value_valid(std::string value) {
-    (void)value;
+    
+    float f;
+    if (!get_float(value, f)) { 
+        std::cerr << "error. not possible to convert string to float" << std::endl;
+        return false;
+    }
     return true;
 }
 
@@ -74,13 +118,9 @@ std::map<std::string, float> parse_data_file(std::string arg) {
         
         // validate data before storing
         if (!is_date_valid(date) || !is_value_valid(value)) {
-            std::cerr << "Invalid data file" << std::endl;
-            temp.clear();
             return temp;
         }
-
-        //temp[date] = std::atof(value.c_str()); // convert value to float to store in map
-        temp[date] = strtof(value.c_str(), NULL);
+        temp[date] = strtof(value.c_str(), NULL);  // convert value to float to store in map
     }
     std::cout << "all good here" << std::endl;
     return temp;
