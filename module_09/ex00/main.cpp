@@ -1,14 +1,5 @@
 #include "BitcoinExchange.hpp"
 
-bool data_valid(std::map<std::string, float> data) {
-    
-    // check if date is YYYY-MM-DD
-
-    // check if value is positive, float/int, 0 to 1000
-    
-    return true;
-}
-
 bool validade_data(std::string arg) {
 
     std::ifstream file(arg); // std::ifstream == open file

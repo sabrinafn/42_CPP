@@ -25,7 +25,8 @@ class BitcoinExchange {
         BitcoinExchange& operator=(const BitcoinExchange &other);
 
         /* METHODS */
-        
+        // validate data in data.csv
+        bool BitcoinExchange::data_valid(std::map<std::string, float> data);
 };
 
 #endif
