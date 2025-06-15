@@ -26,8 +26,11 @@ class BitcoinExchange {
         BitcoinExchange& operator=(const BitcoinExchange &other);
 
         /* METHODS */
-        void runBitcoinExchange(std::string input);
+        void runBitcoinExchange(std::ifstream file);
 
 };
+
+bool is_date_valid(std::string date);
+bool is_value_valid(std::string value);
 
 #endif
