@@ -26,6 +26,7 @@ class BitcoinExchange {
         BitcoinExchange& operator=(const BitcoinExchange &other);
 
         /* METHODS */
+        void runBitcoinExchange(std::string input);
 
 };
 

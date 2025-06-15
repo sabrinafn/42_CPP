@@ -150,7 +150,7 @@ int main(int ac, char **av) {
     // store in class MyMap
     BitcoinExchange data = BitcoinExchange(data_file);
 
-
+    data.runBitcoinExchange(av[1]);
 
     return 0;
 }
@@ -160,5 +160,5 @@ int main(int ac, char **av) {
 * given date based on historical exchange rates.
 * 
 * data.csv = database of Bitcoin prices over time
-* input files = how much a certain amount of Bitcoin was worth on a date
+* input files = how much X Bitcoin was worth on Y date
 */
