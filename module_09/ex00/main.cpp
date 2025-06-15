@@ -150,7 +150,15 @@ int main(int ac, char **av) {
     // store in class MyMap
     BitcoinExchange data = BitcoinExchange(data_file);
 
-    
+
 
     return 0;
 }
+
+/* 
+* Calculates how much a certain amount of Bitcoin was worth on a
+* given date based on historical exchange rates.
+* 
+* data.csv = database of Bitcoin prices over time
+* input files = how much a certain amount of Bitcoin was worth on a date
+*/
