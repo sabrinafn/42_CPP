@@ -1,4 +1,23 @@
 #include "MutantStack.hpp"
+#include <list>
+
+// insertion operator for std::list example
+std::ostream& operator<<(std::ostream& os, std::list<std::string> &other) {
+
+    std::list<std::string>::iterator it = other.begin();
+    std::list<std::string>::iterator ite = other.end();
+
+    os << "iterators list: { ";
+    while (it != ite)
+    {
+        os << *it;
+        it++;
+        if (it != ite)
+            os << ", ";
+    }
+    os << " }";
+    return os;
+}
 
 int main()
 {
@@ -85,6 +104,49 @@ int main()
         std::cout << str << std::endl;
         MutantStack<std::string>::iterator it = str.begin();
         MutantStack<std::string>::iterator ite = str.end(); // points to one before last
+
+        std::cout << "\niterator stack.begin(): " << *it << std::endl;
+        ite--;
+        std::cout << "iterator stack.end(): " << *ite << std::endl;
+        ite++;
+
+        it++;
+        std::cout << "after incrementing iterator stack.begin(): " << *it << std::endl;
+        it--;
+        std::cout << "after decrementing iterator stack.begin(): " << *it << std::endl;
+
+        std::cout << '\n' << str << std::endl;
+    }
+            std::cout << "=============================================================" << std::endl;
+    {
+        std::list<std::string> str;
+        std::cout << str << '\n' << std::endl;
+        std::cout << "adding watermelon to the stack" << std::endl;
+        str.push_back("watermelon");
+        std::cout << "adding hello world to the stack\n" << std::endl;
+        str.push_back("hello world");
+
+        std::cout << str << std::endl;
+
+        std::cout << "\nprinting and removing value at the top: ";
+        std::cout << str.back() << std::endl;
+        str.pop_back();
+
+        std::cout << "printing stack size: ";
+        std::cout << str.size() << std::endl;
+
+        std::cout << "\nadding apple to the stack" << std::endl;
+        str.push_back("apple");
+        std::cout << "adding banana to the stack" << std::endl;
+        str.push_back("banana");
+        std::cout << "adding grape to the stack" << std::endl;
+        str.push_back("grape");
+        std::cout << "adding orange to the stack\n" << std::endl;
+        str.push_back("orange");
+
+        std::cout << str << std::endl;
+        std::list<std::string>::iterator it = str.begin();
+        std::list<std::string>::iterator ite = str.end(); // points to one before last
 
         std::cout << "\niterator stack.begin(): " << *it << std::endl;
         ite--;
