@@ -57,12 +57,12 @@ bool is_value_valid(std::string value) {
     for (size_t i = sign; i < value.length(); i++) {
         if (value[i] == '.') {
             if (has_dot) { // more than 1 dot 
-                std::cerr << "error. not possible to convert string to float" << std::endl;
+                std::cerr << "xxerror. not possible to convert string to float" << std::endl;
                 return false;
             }
             has_dot = true;
         } else if (!isdigit(value[i])) {
-            std::cerr << "error. not possible to convert string to float" << std::endl;
+            std::cerr << "yyerror. not possible to convert string to float" << std::endl;
             return false;
         }
     }

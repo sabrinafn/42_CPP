@@ -6,6 +6,7 @@
 #include <fstream>
 #include <sstream>
 #include <cstdlib>
+#include <algorithm>
 
 class BitcoinExchange {
 
@@ -28,10 +29,11 @@ class BitcoinExchange {
         /* METHODS */
         void runBitcoinExchange(std::ifstream &file);
 
-        bool is_date_valid(std::string date);
-        int get_february_days(int year);
-        bool is_value_valid(std::string value);
-
 };
+
+bool is_date_valid(std::string date);
+int get_february_days(int year);
+bool is_value_valid(std::string value);
+bool is_input_value_valid(std::string value);
 
 #endif
