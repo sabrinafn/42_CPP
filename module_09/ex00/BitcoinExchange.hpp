@@ -28,6 +28,7 @@ class BitcoinExchange {
 
         /* METHODS */
         void runBitcoinExchange(std::ifstream &file);
+        float find_exchange_rate(std::string date);
 
 };
 

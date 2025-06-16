@@ -66,14 +66,39 @@ void BitcoinExchange::runBitcoinExchange(std::ifstream &file) {
         //std::cout << "value parsed: [" << value << "]" << std::endl;
 
         // search for date
+        float exchange_rate = find_exchange_rate(date);
         
-
         // calculate the value in input * value in data
+        std::stringstream txt_file(value); // stringstream acts likea file
+        float f;
+        txt_file >> f;
+        std::cout << "exchange rate: " << exchange_rate << std::endl;
+        std::cout << "value in i: " << f << std::endl;
+        int result = exchange_rate * f;
+
         // printe result line by line
-        std::cerr << date << " => " << value << " = X" << std::endl;
+        std::cerr << date << " => " << value << " = " << result << std::endl;
         date.clear();
         value.clear();
     }
+}
+
+float BitcoinExchange::find_exchange_rate(std::string date) {
+    
+    std::map<std::string, float>::iterator it = container.lower_bound(date);
+
+    if (it != container.end() && it->first != date) {
+        if (it == container.begin())
+            std::cerr << "no earlier date available" << std::endl;
+        else {
+            it--;
+            std::cout << "closest found: " << it->first << std::endl;
+        }
+    }
+    else if (it != container.end()) {
+        std::cout << "exact date found: " << it->first << std::endl;
+    }
+    return it->second;
 }
 
 bool is_input_value_valid(std::string value) {
