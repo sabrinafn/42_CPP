@@ -26,6 +26,8 @@ class Span {
         /* OPERATORS */
         Span& operator=(const Span& other); // copy assignment operator
 
+        /* METHODS */
+
         // Add numbers to vec
         void addNumber(int value);
         void addRange(std::vector<int>::iterator begin, std::vector<int>::iterator end);
