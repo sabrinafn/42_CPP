@@ -26,6 +26,6 @@ void printContainer(const T& container) {
         std::cout << *it << " ";
     }
     std::cout << std::endl;
-}
+};
 
 #endif
