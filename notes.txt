@@ -170,16 +170,69 @@ Data Structures
 
 Containers c++98:
 
-    Vector: resizable dynamic array
+    Array<T, size>
+        - fixed size array
+        - elements can be accessed by index and iterator
 
-    Deque: dynamic array of fixed-size; allows insertion both ends.
+    Vector<T>:
+        - resizable dynamic array
+        - elements can be accessed by index and iterator
 
-    List: double linked list
+    List<T>:
+        - double linked list like in c
+        - elements cannot be accessed by index, only iterator
+
+    Deque<T>:
+        - dynamic array of fixed-size
+        - elements can be accessed by index and iterator
+        - almost same interface as Vector
+        - double ended like list
+
+    Stack<T>:
+        - stack of plates
+        - LIFO: last in - first out
+        - elements cannot be accessed by index or iterator
+
+    Queue<T>:
+        - people lining up at the cashier
+        - container adaptor, inherit from std::deque or std::list
+        - FIFO: first in - first out
+        - sequential order
+        - elements cannot be accessed by index or iterator
+
+    Set<T>:
+        - implemented using Red-Black Tree
+        - sorted automatically in ascending order
+        - unique values only
+        - values cannot be changed
+        - elements cannot be accessed by index, only with iterator
+
+    Map<T>:
+        - implemented using Red-Black Tree
+        - stores elements like 'map[key] = value'
+        - accessible by keys and iterator
+        - allows duplicate values
+        - sorted elements
+
+    methods beign and end
+        begin(): points to the first element
+        end(): points to one position after last element
+
+    Iterators
+        - used to access elements of data structures
+
+    Some algorithms methods:
+        - sort()
+        - find()
+
 
     https://medium.com/sisgrammers/stl-containers-in-c-a95d0b0aa45a
     https://hackingcpp.com/cpp/cheat_sheets.html
     https://stackoverflow.com/questions/10699265/how-can-i-efficiently-select-a-standard-library-container-in-c11
-    
+    https://www.w3schools.com/cpp/cpp_data_structures.asp
+    https://stackoverflow.com/questions/1436020/whats-the-difference-between-deque-and-list-stl-containers
+
+
 
 Random:
 
