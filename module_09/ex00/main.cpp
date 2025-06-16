@@ -15,7 +15,7 @@ bool is_date_valid(std::string date) {
     int year, month, day;
 
     if (date.length() != 10) {
-        std::cerr << "error. data.length is different than 10." << std::endl;
+        //std::cerr << "error. data.length is different than 10." << std::endl;
         return false;
     }
     if (date[4] != '-' && date[7] != '-') {
@@ -95,7 +95,7 @@ std::map<std::string, float> parse_data_file(std::string arg) {
         }
         temp[date] = strtof(value.c_str(), NULL);  // convert value to float to store in map
     }
-    std::cout << "all good here" << std::endl;
+    //std::cout << "all good here" << std::endl;
     return temp;
 }
 

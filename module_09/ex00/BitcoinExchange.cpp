@@ -43,33 +43,44 @@ void BitcoinExchange::runBitcoinExchange(std::ifstream &file) {
             value = line.substr(delimeter_pos + 3); // skips 3 characters " | "
         } else {
             std::cerr << "Error: bad input => " << line << std::endl;
+            continue ;
         }
 
         // remove '\r' at the end of every line
         value.erase(std::remove(value.begin(), value.end(), '\r'), value.end());
 
-        std::cout << "date parsed: [" << date << "]" << std::endl;
-        std::cout << "value parsed: [" << value << "]" << std::endl;
         // validate data before storing
         if (!is_date_valid(date)) {
             std::cerr << "Error: bad input => " << line << std::endl;
+            date.clear();
+            value.clear();
             continue ;
         }
         else if (!is_input_value_valid(value)) {
-            std::cerr << "error. date or value invalid from input file." << std::endl;
+            date.clear();
+            value.clear();
             continue ;
         }
+
+        //std::cout << "date parsed: [" << date << "] ";
+        //std::cout << "value parsed: [" << value << "]" << std::endl;
+
         // search for date
         
 
         // calculate the value in input * value in data
         // printe result line by line
+        std::cerr << date << " => " << value << " = X" << std::endl;
+        date.clear();
+        value.clear();
     }
 }
 
-
 bool is_input_value_valid(std::string value) {
     
+    if (value.empty()) {
+        return false;
+    }
     int sign = 0;
     if (value[0] == '-' || value[0] == '+')
         sign = 1;
@@ -91,7 +102,13 @@ bool is_input_value_valid(std::string value) {
     std::stringstream ss(value); // stringstream acts like a file
     int i;
     ss >> i;
-    if (i < 0 || i > 1000)
-        std::cerr << "error 1 to 1000" << std::endl;
+    if (i < 0) {
+        std::cerr << "Error: not a positive number." << std::endl;
+        return false;
+    }
+    if (i > 1000) {
+        std::cerr << "Error: too large a number." << std::endl;
+        return false;
+    }
     return true;
 }
