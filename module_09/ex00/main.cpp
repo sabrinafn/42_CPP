@@ -11,8 +11,7 @@ int main(int ac, char **av) {
         std::cerr << "Error. Could not open file received as argument." << std::endl;
         return 1;
     }
-
-    // store in object data from class BitcoinExchange
+    // create object with data file
     BitcoinExchange data = BitcoinExchange("data.csv");
 
     data.runBitcoinExchange(input_file);

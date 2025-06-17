@@ -8,7 +8,7 @@ BitcoinExchange::BitcoinExchange(void) : container(){}
 BitcoinExchange::BitcoinExchange(std::string data_file) {
 
     // parse data.csv received
-    std::map<std::string, float> data = parse_data_file(data_file);
+    std::map<std::string, float> data = parseDataFile(data_file);
     
     if (data.empty()) {
         std::cerr << "Error! Data file is wrongly formatted." << std::endl;
@@ -59,20 +59,16 @@ void BitcoinExchange::runBitcoinExchange(std::ifstream &file) {
         // validate data before storing
         int year;
         sscanf(date.c_str(), "%d-%*d-%*d", &year);
-        if (!is_date_valid(date) || year < 2009) {
+        if (!isDateValid(date) || year < 2009) {
             printBadInput(date);
-            date.clear();
-            value.clear();
             continue ;
         }
-        else if (!is_value_valid(value, true)) {
-            date.clear();
-            value.clear();
+        else if (!isValueValid(value, true)) {
             continue ;
         }
 
         // search for date
-        float exchange_rate = find_exchange_rate(date);
+        float exchange_rate = findExchangeRate(date);
         
         // calculate the value in input * value in data
         std::stringstream txt_file(value); // stringstream acts likea file
@@ -82,16 +78,10 @@ void BitcoinExchange::runBitcoinExchange(std::ifstream &file) {
 
         // printe result line by line
         std::cout << GREEN << date << " => " << value << " = " << result << RESET << std::endl;
-        date.clear();
-        value.clear();
     }
 }
 
-void BitcoinExchange::printBadInput(std::string &line) const {
-    std::cerr << RED << "Error: bad input => " << line << RESET << std::endl;
-}
-
-float BitcoinExchange::find_exchange_rate(std::string date) const {
+float BitcoinExchange::findExchangeRate(std::string date) const {
     
     std::map<std::string, float>::const_iterator it = container.lower_bound(date);
 
@@ -109,16 +99,7 @@ float BitcoinExchange::find_exchange_rate(std::string date) const {
     return it->second;
 }
 
-int BitcoinExchange::get_february_days(int year) const {
-
-    if (year % 4 == 0 && year % 100 != 0)
-        return 29;
-    if (year % 400 == 0 && year % 100 == 0)
-        return 29;
-    return 28;
-}
-
-bool BitcoinExchange::is_date_valid(std::string date) const {
+bool BitcoinExchange::isDateValid(std::string date) const {
 
     // YYYY-MM-DD
     int year, month, day;
@@ -146,7 +127,7 @@ bool BitcoinExchange::is_date_valid(std::string date) const {
     }
     
     // days of the month
-    int feb = get_february_days(year);
+    int feb = getFebruaryDays(year);
     int days_array[] = {31, feb, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
     if (day < 1 || day > days_array[month - 1]) {
@@ -156,7 +137,7 @@ bool BitcoinExchange::is_date_valid(std::string date) const {
     return true;
 }
 
-bool BitcoinExchange::is_value_valid(std::string value, bool check_limits) const {
+bool BitcoinExchange::isValueValid(std::string value, bool check_limits) const {
     
     if (value.empty())
         return false;
@@ -194,7 +175,7 @@ bool BitcoinExchange::is_value_valid(std::string value, bool check_limits) const
     return true;
 }
 
-std::map<std::string, float> BitcoinExchange::parse_data_file(std::string arg) const {
+std::map<std::string, float> BitcoinExchange::parseDataFile(std::string arg) const {
 
     std::map<std::string, float> temp; // map to store date and value
     
@@ -209,17 +190,35 @@ std::map<std::string, float> BitcoinExchange::parse_data_file(std::string arg) c
    
     std::getline(file, line); // skip header from data file
     while (std::getline(file, line)) { // gets one line at a time from file
-        std::istringstream ss(line); // splits string into tokens
-
-        std::getline(ss, date, ','); // get line data before the comma
-        std::getline(ss, value); // get line data that is leftover
         
+        // parse date and value
+        size_t delimeter_pos = line.find(" | ");
+        if (delimeter_pos != std::string::npos) {
+            date = line.substr(0, delimeter_pos);
+            value = line.substr(delimeter_pos + 3); // skips 3 characters " | "
+        }
+
         // validate data before storing
-        if (!is_date_valid(date) || !is_value_valid(value, false)) {
+        if (!isDateValid(date) || !isValueValid(value, false)) {
             return temp;
         }
         temp[date] = strtof(value.c_str(), NULL);  // convert value to float to store in map
     }
     //std::cout << "all good here" << std::endl;
     return temp;
+}
+
+// Helper short-functions
+
+void BitcoinExchange::printBadInput(std::string &line) const {
+    std::cerr << RED << "Error: bad input => " << line << RESET << std::endl;
+}
+
+int BitcoinExchange::getFebruaryDays(int year) const {
+
+    if (year % 4 == 0 && year % 100 != 0)
+        return 29;
+    if (year % 400 == 0 && year % 100 == 0)
+        return 29;
+    return 28;
 }
