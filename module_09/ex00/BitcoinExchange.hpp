@@ -20,6 +20,7 @@ class BitcoinExchange {
         bool                            isDateValid(std::string date) const;
         int                             getFebruaryDays(int year) const;
         bool                            isValueValid(std::string value, bool check_limits) const;
+        float                           strToFloat(std::string &str) const;
     
     public:
         
