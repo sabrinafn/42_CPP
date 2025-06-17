@@ -36,7 +36,7 @@ class BitcoinExchange {
         BitcoinExchange& operator=(const BitcoinExchange &other);
 
         /* METHODS */
-        void                            runBitcoinExchange(std::ifstream &file);
+        void    runBitcoinExchange(std::ifstream &file);
 
 };
 

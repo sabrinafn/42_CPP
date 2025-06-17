@@ -6,6 +6,7 @@ int main(int ac, char **av) {
         std::cerr << "Error! Wrong number of arguments." << std::endl;
         return 1;
     }
+    
     std::ifstream input_file(av[1]); // std::ifstream == open file
     if (!input_file.is_open()) { // is_open == check if file is open
         std::cerr << "Error. Could not open file received as argument." << std::endl;

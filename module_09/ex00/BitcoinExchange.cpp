@@ -1,7 +1,5 @@
 #include "BitcoinExchange.hpp"
 
-// std::map<std::string, float> container;
-    
 /* CONSTRUCTORS */
 
 BitcoinExchange::BitcoinExchange(void) : container(){}
