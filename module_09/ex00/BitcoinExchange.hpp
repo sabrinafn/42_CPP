@@ -15,7 +15,7 @@ class BitcoinExchange {
         std::map<std::string, float> container;
 
         float                           findExchangeRate(std::string date) const;
-        void                            printBadInput(std::string &line) const;
+        //void                            printBadInput(std::string &line) const;
         std::map<std::string, float>    parseDataFile(std::string arg) const;
         bool                            isDateValid(std::string date) const;
         int                             getFebruaryDays(int year) const;

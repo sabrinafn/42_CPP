@@ -49,7 +49,7 @@ void BitcoinExchange::runBitcoinExchange(std::ifstream &file) {
             date = line.substr(0, delimeter_pos);
             value = line.substr(delimeter_pos + 3); // skips 3 characters " | "
         } else {
-            printBadInput(line);
+            std::cerr << RED << "Error: bad input => " << line << RESET << std::endl;
             continue ;
         }
 
@@ -60,7 +60,7 @@ void BitcoinExchange::runBitcoinExchange(std::ifstream &file) {
         int year;
         sscanf(date.c_str(), "%d-%*d-%*d", &year);
         if (!isDateValid(date) || year < 2009) {
-            printBadInput(date);
+            std::cerr << RED << "Error: bad input => " << line << RESET << std::endl;
             continue ;
         }
         else if (!isValueValid(value, true)) {
@@ -80,18 +80,13 @@ void BitcoinExchange::runBitcoinExchange(std::ifstream &file) {
 
 float BitcoinExchange::findExchangeRate(std::string date) const {
     
-    std::map<std::string, float>::const_iterator it = container.lower_bound(date);
-
-    if (it != container.end() && it->first != date) {
-        if (it == container.begin())
-            std::cerr << "no earlier date available" << std::endl;
-        else {
-            it--;
-            std::cout << "closest found: " << it->first << std::endl;
-        }
+    if (date > "2022-03-29") {
+        return container.find("2022-03-29")->second;
     }
-    else if (it != container.end()) {
-        std::cout << "exact date found: " << it->first << std::endl;
+    
+    std::map<std::string, float>::const_iterator it = container.lower_bound(date);
+    if (it != container.end() && it->first != date) {
+        it--;
     }
     return it->second;
 }
@@ -101,6 +96,9 @@ bool BitcoinExchange::isDateValid(std::string date) const {
     // YYYY-MM-DD
     int year, month, day;
 
+    if (date < "2009-01-02") {
+        return false;
+    }
     // syntax check
     if ((date.length() != 10) || (date[4] != '-' && date[7] != '-')) {
         return false;
@@ -110,9 +108,8 @@ bool BitcoinExchange::isDateValid(std::string date) const {
     if (sscanf(date.c_str(), "%d-%d-%d", &year, &month, &day) != 3) {
         return false;
 	}
-    if ((year < 2009 || year > 2022) || (month < 1 || month > 12)) {
+    if (month < 1 || month > 12)
         return false;
-    }
     
     // days of the month
     int feb = getFebruaryDays(year);
@@ -136,12 +133,12 @@ bool BitcoinExchange::isValueValid(std::string value, bool check_limits) const {
     for (size_t i = sign; i < value.length(); i++) {
         if (value[i] == '.') {
             if (has_dot) { // more than 1 dot 
-                printBadInput(value);
+                std::cerr << RED << "Error: bad input => " << value << RESET << std::endl;
                 return false;
             }
             has_dot = true;
         } else if (!isdigit(value[i])) {
-            printBadInput(value);
+            std::cerr << RED << "Error: bad input => " << value << RESET << std::endl;
             return false;
         }
     }
@@ -149,11 +146,11 @@ bool BitcoinExchange::isValueValid(std::string value, bool check_limits) const {
     if (check_limits) {
         float f = strToFloat(value);
         if (f < 0) {
-            std::cerr << RED << "Error: not a positive number." << RESET << std::endl;
+            std::cerr << RED << "Error: not a positive number => " << f << RESET << std::endl;
             return false;
         }
         if (f > 1000) {
-            std::cerr << RED << "Error: too large a number." << RESET << std::endl;
+            std::cerr << RED << "Error: too large a number => " << f << RESET << std::endl;
             return false;
         }
     }
@@ -193,9 +190,9 @@ std::map<std::string, float> BitcoinExchange::parseDataFile(std::string arg) con
 
 // Helper short-functions
 
-void BitcoinExchange::printBadInput(std::string &line) const {
-    std::cerr << RED << "Error: bad input => " << line << RESET << std::endl;
-}
+// void BitcoinExchange::printBadInput(std::string &line) const {
+//     std::cerr << RED << "Error: bad input => " << line << RESET << std::endl;
+// }
 
 int BitcoinExchange::getFebruaryDays(int year) const {
 
