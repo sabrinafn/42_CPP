@@ -1,6 +1,7 @@
 #ifndef BITCOINEXCHANGE_HPP
 #define BITCOINEXCHANGE_HPP
 
+#include "colors.hpp"
 #include <iostream>
 #include <map>
 #include <fstream>
@@ -12,12 +13,19 @@ class BitcoinExchange {
 
     private:
         std::map<std::string, float> container;
+
+        float find_exchange_rate(std::string date) const;
+        void printBadInput(std::string &line) const;
+        std::map<std::string, float> parse_data_file(std::string arg) const;
+        bool is_date_valid(std::string date) const;
+        int get_february_days(int year) const;
+        bool is_value_valid(std::string value, bool check_limits) const;
     
     public:
         
         /* CONSTRUCTORS */
         BitcoinExchange(void);
-        BitcoinExchange(std::map<std::string, float> &data);
+        BitcoinExchange(std::string data_file);
         BitcoinExchange(const BitcoinExchange &other);
 
         /* DESTRUCTORS */
@@ -28,13 +36,7 @@ class BitcoinExchange {
 
         /* METHODS */
         void runBitcoinExchange(std::ifstream &file);
-        float find_exchange_rate(std::string date);
 
 };
-
-bool is_date_valid(std::string date);
-int get_february_days(int year);
-bool is_value_valid(std::string value);
-bool is_input_value_valid(std::string value);
 
 #endif
