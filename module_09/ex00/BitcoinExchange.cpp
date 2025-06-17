@@ -87,11 +87,11 @@ float BitcoinExchange::findExchangeRate(std::string date) const {
             std::cerr << "no earlier date available" << std::endl;
         else {
             it--;
-            //std::cout << "closest found: " << it->first << std::endl;
+            std::cout << "closest found: " << it->first << std::endl;
         }
     }
     else if (it != container.end()) {
-        //std::cout << "exact date found: " << it->first << std::endl;
+        std::cout << "exact date found: " << it->first << std::endl;
     }
     return it->second;
 }
@@ -177,10 +177,10 @@ std::map<std::string, float> BitcoinExchange::parseDataFile(std::string arg) con
     while (std::getline(file, line)) { // gets one line at a time from file
         
         // parse date and value
-        size_t delimeter_pos = line.find(" | ");
+        size_t delimeter_pos = line.find(",");
         if (delimeter_pos != std::string::npos) {
             date = line.substr(0, delimeter_pos);
-            value = line.substr(delimeter_pos + 3); // skips 3 characters " | "
+            value = line.substr(delimeter_pos + 1); // 1 for ','
         }
         // validate data before storing
         if (!isDateValid(date) || !isValueValid(value, false)) {
