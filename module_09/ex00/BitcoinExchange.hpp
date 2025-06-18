@@ -9,9 +9,6 @@
 #include <cstdlib>
 #include <algorithm>
 
-#define LOWEST_DATE "2009-01-02"
-#define HIGHEST_DATE "2022-03-29"
-
 class BitcoinExchange {
 
     private:
@@ -27,6 +24,10 @@ class BitcoinExchange {
         float                           strToFloat(const std::string &str) const;
         void                            printBadInputMessage(const std::string &msg, const std::string &error) const;
     
+        /* consts */
+        const std::string LOWEST_DATE;
+        const std::string HIGHEST_DATE;
+
     public:
         
         /* CONSTRUCTORS */
