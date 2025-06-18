@@ -5,7 +5,7 @@
 BitcoinExchange::BitcoinExchange(void)
     : exchange_rates(), LOWEST_DATE("2009-01-02"), HIGHEST_DATE("2022-03-29") {}
 
-BitcoinExchange::BitcoinExchange(std::string data_file) {
+BitcoinExchange::BitcoinExchange(std::string data_file) : LOWEST_DATE("2009-01-02"), HIGHEST_DATE("2022-03-29") {
 
     // parse data.csv received
     std::map<std::string, float> data = parseDataFile(data_file);
