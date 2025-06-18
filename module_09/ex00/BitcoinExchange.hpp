@@ -12,15 +12,17 @@
 class BitcoinExchange {
 
     private:
+        /* CONTAINER */
         std::map<std::string, float> container;
 
-        float                           findExchangeRate(std::string date) const;
-        //void                            printBadInput(std::string &line) const;
-        std::map<std::string, float>    parseDataFile(std::string arg) const;
-        bool                            isDateValid(std::string date) const;
-        int                             getFebruaryDays(int year) const;
-        bool                            isValueValid(std::string value, bool check_limits) const;
+        /* PRIVATE METHODS */
+        float                           findExchangeRate(std::string &date) const;
+        std::map<std::string, float>    parseDataFile(std::string &arg) const;
+        bool                            isDateValid(std::string &date) const;
+        bool                            isValueValid(std::string &value, bool check_limits) const;
+        int                             getFebruaryDays(int &year) const;
         float                           strToFloat(std::string &str) const;
+        void                            printBadInputMessage(const std::string &msg, const std::string &error) const;
     
     public:
         
@@ -35,9 +37,8 @@ class BitcoinExchange {
         /* OPERATORS */
         BitcoinExchange& operator=(const BitcoinExchange &other);
 
-        /* METHODS */
+        /* PUBLIC METHODS */
         void    runBitcoinExchange(std::ifstream &file);
-
 };
 
 #endif

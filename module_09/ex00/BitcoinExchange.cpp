@@ -9,7 +9,7 @@ BitcoinExchange::BitcoinExchange(std::string data_file) {
     std::map<std::string, float> data = parseDataFile(data_file);
     
     if (data.empty()) {
-        std::cerr << "Error! Data file is wrongly formatted." << std::endl;
+        printBadInputMessage("Error! Data file is wrongly formatted", NULL);
         return;
     }
     container = data;
@@ -47,7 +47,7 @@ void BitcoinExchange::runBitcoinExchange(std::ifstream &file) {
             date = line.substr(0, delimeter_pos);
             value = line.substr(delimeter_pos + 3); // skips 3 characters " | "
         } else {
-            std::cerr << RED << "Error: bad input => " << line << RESET << std::endl;
+            printBadInputMessage("bad input", line);
             continue ;
         }
 
@@ -58,7 +58,7 @@ void BitcoinExchange::runBitcoinExchange(std::ifstream &file) {
         int year;
         sscanf(date.c_str(), "%d-%*d-%*d", &year);
         if (!isDateValid(date) || year < 2009) {
-            std::cerr << RED << "Error: not a valid date => " << date << RESET << std::endl;
+            printBadInputMessage("not a valid date", date);
             continue ;
         }
         else if (!isValueValid(value, true)) {
@@ -76,7 +76,7 @@ void BitcoinExchange::runBitcoinExchange(std::ifstream &file) {
     }
 }
 
-float BitcoinExchange::findExchangeRate(std::string date) const {
+float BitcoinExchange::findExchangeRate(std::string &date) const {
     
     if (date > "2022-03-29") {
         return container.find("2022-03-29")->second;
@@ -89,13 +89,13 @@ float BitcoinExchange::findExchangeRate(std::string date) const {
     return it->second;
 }
 
-bool BitcoinExchange::isDateValid(std::string date) const {
+bool BitcoinExchange::isDateValid(std::string &date) const {
 
     // YYYY-MM-DD
     int year, month, day;
 
     if (date.empty()) {
-        std::cerr << RED << "Error: not a valid value => " << date << RESET << std::endl;
+        printBadInputMessage("not a valid date", date);
         return false;
     }
     if (date < "2009-01-02") {
@@ -123,10 +123,10 @@ bool BitcoinExchange::isDateValid(std::string date) const {
     return true;
 }
 
-bool BitcoinExchange::isValueValid(std::string value, bool check_limits) const {
+bool BitcoinExchange::isValueValid(std::string &value, bool check_limits) const {
     
     if (value.empty()) {
-        std::cerr << RED << "Error: not a valid value => " << value << RESET << std::endl;
+        printBadInputMessage("not a valid value", value);
         return false;
     }
     int sign = 0;
@@ -136,13 +136,13 @@ bool BitcoinExchange::isValueValid(std::string value, bool check_limits) const {
     bool has_dot = false;
     for (size_t i = sign; i < value.length(); i++) {
         if (value[i] == '.') {
-            if (has_dot) { // more than 1 dot 
-                std::cerr << RED << "Error: not a valid value => " << value << RESET << std::endl;
+            if (has_dot) { // more than 1 dot
+                printBadInputMessage("not a valid value", value);
                 return false;
             }
             has_dot = true;
         } else if (!isdigit(value[i])) {
-            std::cerr << RED << "Error: not a valid value => " << value << RESET << std::endl;
+            printBadInputMessage("not a valid value", value);
             return false;
         }
     }
@@ -152,18 +152,18 @@ bool BitcoinExchange::isValueValid(std::string value, bool check_limits) const {
         int i;
         txt_file >> i;
         if (i < 0) {
-            std::cerr << RED << "Error: not a positive number => " << value << RESET << std::endl;
+            printBadInputMessage("not a positive number", value);
             return false;
         }
         if (i > 1000) {
-            std::cerr << RED << "Error: too large a number => " << value << RESET << std::endl;
+            printBadInputMessage("too large a number", value);
             return false;
         }
     }
     return true;
 }
 
-std::map<std::string, float> BitcoinExchange::parseDataFile(std::string arg) const {
+std::map<std::string, float> BitcoinExchange::parseDataFile(std::string &arg) const {
 
     std::map<std::string, float>    temp; // map to store date and value
     std::string                     line; // variable to store lines read from file
@@ -172,7 +172,7 @@ std::map<std::string, float> BitcoinExchange::parseDataFile(std::string arg) con
     
     std::ifstream file(arg.c_str()); // std::ifstream == open file
     if (!file.is_open()) { // is_open == check if file is open
-        std::cerr << "Error. Could not open data file." << std::endl;
+        printBadInputMessage("Could not open data file", NULL);
         return temp;
     }
 
@@ -196,11 +196,11 @@ std::map<std::string, float> BitcoinExchange::parseDataFile(std::string arg) con
 
 // Helper short-functions
 
-//void BitcoinExchange::printBadInput(std::string &line) const {
-//   std::cerr << RED << "Error: bad input => " << line << RESET << std::endl;
-//}
+void BitcoinExchange::printBadInputMessage(const std::string &msg, const std::string &error) const {
+   std::cerr << RED << "Error: " << msg << " => " << error << RESET << std::endl;
+}
 
-int BitcoinExchange::getFebruaryDays(int year) const {
+int BitcoinExchange::getFebruaryDays(int &year) const {
 
     if (year % 4 == 0 && year % 100 != 0)
         return 29;

@@ -12,9 +12,9 @@ int main(int ac, char **av) {
         std::cerr << "Error. Could not open file received as argument." << std::endl;
         return 1;
     }
+
     // create object with data file
     BitcoinExchange data = BitcoinExchange("data.csv");
-
     data.runBitcoinExchange(input_file);
 
     return 0;
@@ -25,5 +25,5 @@ int main(int ac, char **av) {
 * given date based on historical exchange rates.
 * 
 * data.csv = database of Bitcoin prices over time
-* input files = how much X Bitcoin was worth on Y date
+* input file received on command line = how many Bitcoin we had on a certain date
 */
