@@ -232,8 +232,6 @@ Containers c++98:
     https://www.w3schools.com/cpp/cpp_data_structures.asp
     https://stackoverflow.com/questions/1436020/whats-the-difference-between-deque-and-list-stl-containers
 
-
-
 Random:
 
     1. Divisible by 4:
@@ -242,3 +240,6 @@ Random:
     However, if a year is divisible by 100 (e.g., 1900, 2000), it's not a leap year, unless it also meets the next condition. 
     3. Divisible by 400:
     If a year is divisible by both 100 and 400 (e.g., 1600, 2000), it is a leap year. 
+
+    RPN: 
+    https://medium.com/@interviewbuddies/reverse-polish-notation-b88524252960
