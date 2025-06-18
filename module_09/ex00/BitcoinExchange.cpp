@@ -2,18 +2,20 @@
 
 /* CONSTRUCTORS */
 
-BitcoinExchange::BitcoinExchange(void) : container(){}
+BitcoinExchange::BitcoinExchange(void) : exchange_rates(){}
+
 BitcoinExchange::BitcoinExchange(std::string data_file) {
 
     // parse data.csv received
     std::map<std::string, float> data = parseDataFile(data_file);
     
     if (data.empty()) {
-        printBadInputMessage("Error! Data file is wrongly formatted", NULL);
+        std::cerr << RED << "Error: data file is wrongly formatted" << RESET << std::endl;
         return;
     }
-    container = data;
+    exchange_rates = data;
 }
+
 BitcoinExchange::BitcoinExchange(const BitcoinExchange &other) {
     *this = other;
 }
@@ -24,7 +26,7 @@ BitcoinExchange::~BitcoinExchange(void) {}
 /* OPERATORS */
 BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange &other) {
     if (this != &other) {
-        this->container = other.container;
+        this->exchange_rates = other.exchange_rates;
     }
     return *this;
 }
@@ -66,30 +68,30 @@ void BitcoinExchange::runBitcoinExchange(std::ifstream &file) {
         }
 
         // search for date
-        float exchange_rate = findExchangeRate(date);
+        float rate_found = findExchangeRate(date);
         
         // calculate the value in input * value in data
-        float result = exchange_rate * strToFloat(value);
+        float result = rate_found * strToFloat(value);
 
         // printe result line by line
         std::cout << GREEN << date << " => " << value << " = " << result << RESET << std::endl;
     }
 }
 
-float BitcoinExchange::findExchangeRate(std::string &date) const {
+float BitcoinExchange::findExchangeRate(const std::string &date) const {
     
-    if (date > "2022-03-29") {
-        return container.find("2022-03-29")->second;
+    if (date > HIGHEST_DATE) {
+        return exchange_rates.find(HIGHEST_DATE)->second;
     }
     
-    std::map<std::string, float>::const_iterator it = container.lower_bound(date);
-    if (it != container.end() && it->first != date) {
+    std::map<std::string, float>::const_iterator it = exchange_rates.lower_bound(date);
+    if (it != exchange_rates.end() && it->first != date) {
         it--;
     }
     return it->second;
 }
 
-bool BitcoinExchange::isDateValid(std::string &date) const {
+bool BitcoinExchange::isDateValid(const std::string &date) const {
 
     // YYYY-MM-DD
     int year, month, day;
@@ -98,11 +100,11 @@ bool BitcoinExchange::isDateValid(std::string &date) const {
         printBadInputMessage("not a valid date", date);
         return false;
     }
-    if (date < "2009-01-02") {
+    if (date < LOWEST_DATE) {
         return false;
     }
     // syntax check
-    if ((date.length() != 10) || (date[4] != '-' && date[7] != '-')) {
+    if ((date.length() != 10) || (date[4] != '-' || date[7] != '-')) {
         return false;
     }
     
@@ -123,12 +125,13 @@ bool BitcoinExchange::isDateValid(std::string &date) const {
     return true;
 }
 
-bool BitcoinExchange::isValueValid(std::string &value, bool check_limits) const {
+bool BitcoinExchange::isValueValid(const std::string &value, bool check_limits) const {
     
     if (value.empty()) {
         printBadInputMessage("not a valid value", value);
         return false;
     }
+
     int sign = 0;
     if (value[0] == '-' || value[0] == '+')
         sign = 1;
@@ -148,14 +151,12 @@ bool BitcoinExchange::isValueValid(std::string &value, bool check_limits) const 
     }
 
     if (check_limits) {
-        std::stringstream txt_file(value);
-        int i;
-        txt_file >> i;
-        if (i < 0) {
+        float f = strToFloat(value);
+        if (f < 0) {
             printBadInputMessage("not a positive number", value);
             return false;
         }
-        if (i > 1000) {
+        if (f > 1000) {
             printBadInputMessage("too large a number", value);
             return false;
         }
@@ -163,7 +164,7 @@ bool BitcoinExchange::isValueValid(std::string &value, bool check_limits) const 
     return true;
 }
 
-std::map<std::string, float> BitcoinExchange::parseDataFile(std::string &arg) const {
+std::map<std::string, float> BitcoinExchange::parseDataFile(const std::string &arg) const {
 
     std::map<std::string, float>    temp; // map to store date and value
     std::string                     line; // variable to store lines read from file
@@ -172,7 +173,7 @@ std::map<std::string, float> BitcoinExchange::parseDataFile(std::string &arg) co
     
     std::ifstream file(arg.c_str()); // std::ifstream == open file
     if (!file.is_open()) { // is_open == check if file is open
-        printBadInputMessage("Could not open data file", NULL);
+        std::cerr << RED << "Error: Could not open data file" << RESET << std::endl;
         return temp;
     }
 
@@ -194,7 +195,7 @@ std::map<std::string, float> BitcoinExchange::parseDataFile(std::string &arg) co
     return temp;
 }
 
-// Helper short-functions
+// short-helper functions
 
 void BitcoinExchange::printBadInputMessage(const std::string &msg, const std::string &error) const {
    std::cerr << RED << "Error: " << msg << " => " << error << RESET << std::endl;
@@ -202,6 +203,7 @@ void BitcoinExchange::printBadInputMessage(const std::string &msg, const std::st
 
 int BitcoinExchange::getFebruaryDays(int &year) const {
 
+    // calculations to identify if a year is a leap year or not
     if (year % 4 == 0 && year % 100 != 0)
         return 29;
     if (year % 400 == 0 && year % 100 == 0)
@@ -209,7 +211,7 @@ int BitcoinExchange::getFebruaryDays(int &year) const {
     return 28;
 }
 
-float BitcoinExchange::strToFloat(std::string &str) const{
+float BitcoinExchange::strToFloat(const std::string &str) const{
     std::stringstream txt_file(str);
     float f;
     txt_file >> f;

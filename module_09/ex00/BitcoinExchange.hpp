@@ -9,19 +9,22 @@
 #include <cstdlib>
 #include <algorithm>
 
+#define LOWEST_DATE "2009-01-02"
+#define HIGHEST_DATE "2022-03-29"
+
 class BitcoinExchange {
 
     private:
         /* CONTAINER */
-        std::map<std::string, float> container;
+        std::map<std::string, float> exchange_rates;
 
         /* PRIVATE METHODS */
-        float                           findExchangeRate(std::string &date) const;
-        std::map<std::string, float>    parseDataFile(std::string &arg) const;
-        bool                            isDateValid(std::string &date) const;
-        bool                            isValueValid(std::string &value, bool check_limits) const;
+        float                           findExchangeRate(const std::string &date) const;
+        std::map<std::string, float>    parseDataFile(const std::string &arg) const;
+        bool                            isDateValid(const std::string &date) const;
+        bool                            isValueValid(const std::string &value, bool check_limits) const;
         int                             getFebruaryDays(int &year) const;
-        float                           strToFloat(std::string &str) const;
+        float                           strToFloat(const std::string &str) const;
         void                            printBadInputMessage(const std::string &msg, const std::string &error) const;
     
     public:
