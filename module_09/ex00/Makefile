@@ -16,8 +16,8 @@ all: $(NAME)
 $(NAME): $(OBJFILES)
 	$(CC) $(FLAGS) $(OBJFILES) -o $(NAME)
 
-v:
-	valgrind --leak-check=full --show-leak-kinds=all ./$(NAME)
+v: all
+	valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) input.txt
 
 clean: 
 	rm -f $(OBJFILES)
