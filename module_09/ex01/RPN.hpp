@@ -4,12 +4,14 @@
 #include <iostream>
 #include <stack>
 #include <exception>
+#include <algorithm>
 
 class RPN {
 
     private:
         /* CONTAINER */
-        std::stack<unsigned int> operands;
+        std::stack<unsigned int>    operands;
+        const std::string OPERATORS;
 
     public:
         /* CONSTRUCTORS */
@@ -25,6 +27,8 @@ class RPN {
 
 
         /* PUBLIC METHODS */
+        bool parseExpression(const std::string &expression);
+        bool isOperator(const char c);
 
 };
 

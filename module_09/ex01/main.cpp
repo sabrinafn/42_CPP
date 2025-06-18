@@ -8,9 +8,9 @@ int main(int ac, char **av) {
     }
 
     try {
-        RPN(av[1]);
+        RPN calculator = RPN(av[1]);
     } catch (std::exception &e) {
-        std::cerr << e.what << std::endl;
+        std::cerr << e.what() << std::endl;
     }
 
     return 0;
