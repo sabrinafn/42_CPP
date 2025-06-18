@@ -170,10 +170,6 @@ Data Structures
 
 Containers c++98:
 
-    Array<T, size>
-        - fixed size array
-        - elements can be accessed by index and iterator
-
     Vector<T>:
         - resizable dynamic array
         - elements can be accessed by index and iterator
@@ -231,7 +227,9 @@ Containers c++98:
     https://stackoverflow.com/questions/10699265/how-can-i-efficiently-select-a-standard-library-container-in-c11
     https://www.w3schools.com/cpp/cpp_data_structures.asp
     https://stackoverflow.com/questions/1436020/whats-the-difference-between-deque-and-list-stl-containers
-
+    https://cplusplus.com/reference/stl/
+    
+    
 Random:
 
     1. Divisible by 4:
