@@ -1,7 +1,7 @@
 #include "RPN.hpp"
  
 /* CONSTRUCTORS */
-RPN::RPN() : operands(), OPERATORS("+-*/") {
+RPN::RPN() : numbers_stack(), OPERATORS("+-*/") {
 }
 
 RPN::RPN(const RPN &other) {
@@ -14,7 +14,7 @@ RPN::~RPN() {}
 /* OPERATORS */
 RPN& RPN::operator=(const RPN &other) {
     if (this != &other) {
-        this->operands = other.operands;
+        this->numbers_stack = other.numbers_stack;
     }
     return *this;
 }
@@ -53,5 +53,13 @@ int  RPN::process(const std::string &expression) {
     if (!parseExpression(expression))
         throw std::invalid_argument("Error: invalid expression");
     
-    
+    std::istringstream iss(expression);
+    std::string token;
+
+    while (iss >> token) {
+        if (isdigit(token[0])) {
+            numbers_stack.push()
+        }
+    }
+    return (42);
 }

@@ -2,6 +2,7 @@
 #define RPN_H
 
 #include <iostream>
+#include <sstream>
 #include <stack>
 #include <exception>
 #include <algorithm>
@@ -10,8 +11,8 @@ class RPN {
 
     private:
         /* CONTAINER */
-        std::stack<unsigned int>    operands;
-        const std::string OPERATORS;
+        std::stack<unsigned int>    numbers_stack;
+        const std::string           OPERATORS;
 
         /* PRIVATE METHODS */
         bool parseExpression(const std::string &expression);
