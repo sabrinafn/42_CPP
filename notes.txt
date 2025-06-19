@@ -230,7 +230,7 @@ Containers c++98:
     https://cplusplus.com/reference/stl/
     
     
-Random:
+Module_09 Random:
 
     1. Divisible by 4:
     If a year is evenly divisible by 4, it's generally a leap year (e.g., 1992, 2000, 2004). 
@@ -241,3 +241,5 @@ Random:
 
     RPN: 
     https://medium.com/@interviewbuddies/reverse-polish-notation-b88524252960
+    https://blog.heycoach.in/reverse-polish-notation-rpn-in-c/
+
