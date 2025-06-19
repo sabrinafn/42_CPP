@@ -13,6 +13,9 @@ class RPN {
         std::stack<unsigned int>    operands;
         const std::string OPERATORS;
 
+        /* PRIVATE METHODS */
+        bool parseExpression(const std::string &expression);
+
     public:
         /* CONSTRUCTORS */
         RPN(); // basic constructor
@@ -27,8 +30,7 @@ class RPN {
 
 
         /* PUBLIC METHODS */
-        bool parseExpression(const std::string &expression);
-        bool isOperator(const char c);
+        int  process(const std::string &expression);
 
 };
 

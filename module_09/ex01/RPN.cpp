@@ -4,14 +4,6 @@
 RPN::RPN() : operands(), OPERATORS("+-*/") {
 }
 
-RPN::RPN(const std::string &expression) : operands(), OPERATORS("+-*/") {
-
-    if (!parseExpression(expression)) {
-        throw std::invalid_argument("Error: invalid polish mathematical expression");
-    }
-
-}
-
 RPN::RPN(const RPN &other) {
     *this = other;
 }
@@ -55,4 +47,11 @@ bool RPN::parseExpression(const std::string &expression) {
         return false;
     }
     return true;
+}
+
+int  RPN::process(const std::string &expression) {
+    if (!parseExpression(expression))
+        throw std::invalid_argument("Error: invalid expression");
+    
+    
 }

@@ -8,7 +8,8 @@ int main(int ac, char **av) {
     }
 
     try {
-        RPN calculator = RPN(av[1]);
+        RPN calculator = RPN();
+        int result = calculator.process(av[1]);
     } catch (std::exception &e) {
         std::cerr << e.what() << std::endl;
     }
