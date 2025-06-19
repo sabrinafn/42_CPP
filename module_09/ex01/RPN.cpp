@@ -64,7 +64,10 @@ int  RPN::process(const std::string &expression) {
                     break;
                 case '*': numbers_stack.push(second_num * first_num);
                     break;
-                case '/': numbers_stack.push(second_num / first_num);
+                case '/':
+                    if (first_num == 0)
+                        throw std::invalid_argument("Error: division by zero not allowed");
+                    numbers_stack.push(second_num / first_num);
                     break;
             }
         }
