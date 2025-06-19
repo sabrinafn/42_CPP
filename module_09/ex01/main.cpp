@@ -10,7 +10,7 @@ int main(int ac, char **av) {
     try {
         RPN calculator = RPN();
         int result = calculator.process(av[1]);
-        std::cout << "result = " << result << std::endl;
+        std::cout << result << std::endl;
     } catch (std::exception &e) {
         std::cerr << e.what() << std::endl;
     }
