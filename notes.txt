@@ -243,3 +243,8 @@ Module_09 Random:
     https://medium.com/@interviewbuddies/reverse-polish-notation-b88524252960
     https://blog.heycoach.in/reverse-polish-notation-rpn-in-c/
 
+https://medium.com/@toukmati2000/cpp09-ford-johnson-algorithm-e6ad43288d4b
+
+ex00: std::map<std::string, float> exchange_rates;
+ex01: std::stack<unsigned int>     numbers_stack;
+ex02: 
