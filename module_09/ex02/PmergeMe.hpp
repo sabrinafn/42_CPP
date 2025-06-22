@@ -4,11 +4,13 @@
 #include <iostream>
 #include <sstream>
 #include <vector>
+#include <list>
 
 class PmergeMe {
 
     private:
-        std::vector<int> numbers;
+        std::vector<int> numbers_vec;
+        std::list<int> numbers_list;
     public:
         /* CONSTRUCTORS */
         PmergeMe(void);

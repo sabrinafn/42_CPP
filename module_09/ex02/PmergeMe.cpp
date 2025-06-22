@@ -1,7 +1,7 @@
 #include "PmergeMe.hpp"
 
 /* CONSTRUCTORS */
-PmergeMe::PmergeMe() : numbers() {}
+PmergeMe::PmergeMe() : numbers_vec(), numbers_list() {}
 
 PmergeMe::PmergeMe(const PmergeMe &other) { *this = other;}
 
@@ -11,7 +11,8 @@ PmergeMe::~PmergeMe() {}
 /* OPERATORS */
 PmergeMe& PmergeMe::operator=(const PmergeMe &other) {
     if (this != &other) {
-        (void)other;
+        this->numbers_vec = other.numbers_vec;
+        this->numbers_list = other.numbers_list;
     }
     return *this;
 }
@@ -33,15 +34,16 @@ void PmergeMe::parseInput(int ac, char **av) {
         long num;
         iss >> num;
 
-        numbers.push_back(static_cast<int>(num));
+        numbers_vec.push_back(static_cast<int>(num));
+        numbers_list.push_back(static_cast<int>(num));
     }
 }
 
 void PmergeMe::printBefore(void) {
 
-    std::vector<int>::iterator it = numbers.begin();
+    std::vector<int>::iterator it = numbers_vec.begin();
     std::cout << "Before: "; 
-    while (it < numbers.end()) {
+    while (it < numbers_vec.end()) {
         std::cout << *it << " ";
         it++;
     }
