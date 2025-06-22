@@ -49,3 +49,9 @@ void PmergeMe::printBefore(void) {
     }
     std::cout << std::endl;
 }
+
+void PmergeMe::sort() {
+
+    std::cout << "help" << std::endl;
+
+}

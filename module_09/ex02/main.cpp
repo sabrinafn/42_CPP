@@ -11,6 +11,7 @@ int main(int ac, char **av) {
         PmergeMe unsorted = PmergeMe();
         unsorted.parseInput(ac, av);
         unsorted.printBefore();
+        unsorted.sort();
     } catch (std::exception &e) {
         std::cerr << e.what() << std::endl;
     }
