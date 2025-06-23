@@ -67,8 +67,12 @@ std::vector<int> PmergeMe::mergeInsertion(std::vector<int> vec) {
 
     std::vector<int>::iterator start = vec.begin();
     std::vector<int>::iterator end = vec.end();
-    
-    while (start < end - 1) {
+    std::cout << "\n";
+    std::cout << "container received as parameter: ";
+    printVec(vec);
+    std::cout << "\n";
+
+    while (start + 1 < end) {
         if (*start < *(start + 1)) {
             other.push_back(*start);
             main.push_back(*(start + 1));
@@ -79,7 +83,7 @@ std::vector<int> PmergeMe::mergeInsertion(std::vector<int> vec) {
         }
         start += 2;
     }
-    if (vec.size() % 2 != 0 && start != end)
+    if (start != end)
         other.push_back(*start);
 
     std::cout << "bigger numbers: ";
@@ -87,8 +91,8 @@ std::vector<int> PmergeMe::mergeInsertion(std::vector<int> vec) {
     std::cout << "smaller numbers: ";
     printVec(other);
 
-    if (main.size() == 1) {
-        return main;
+    if (vec.size() <= 1) {
+        return vec;
     }
  
     main = mergeInsertion(main);
@@ -96,31 +100,42 @@ std::vector<int> PmergeMe::mergeInsertion(std::vector<int> vec) {
     // binary insertion is the binary search in the main container
     // to find where to insert the number from other container 
     // we'll be using either jacobsthal algorithm or another kind
-    int low = 0;
-    int high = main.size() - 1;
-    int value_to_find = other[0];
-    while (low <= high) {
-        int middle = low + (high - low) / 2;
 
-        if (main[middle] == value_to_find) {
-            std::cout << "main[middle] == value_to_find" << std::endl;
-            std::cout << main[middle] << "==" << value_to_find << std::endl;
-            main.insert(main.begin() + middle, value_to_find);
-            break;
-        }
+    int counter = 0;
+    for (size_t i = 0; i < other.size(); i++) {
+        int low = 0;
+        int high = main.size() - 1;
+        int value_to_find = other[i]; // iterating through every value of other
+        while (low <= high) {
+            int middle = low + (high - low) / 2;
 
-        if (main[middle] < value_to_find) {
-            low = middle + 1;
-            std::cout << "main[middle] < value_to_find" << std::endl;
-            std::cout << main[middle] << "<" << value_to_find << std::endl;
+            if (main[middle] == value_to_find) {
+                std::cout << "main[middle] == value_to_find" << std::endl;
+                std::cout << main[middle] << "==" << value_to_find << std::endl;
+                main.insert(main.begin() + middle, value_to_find);
+                counter++;
+                break;
+            }
+
+            if (main[middle] < value_to_find) {
+                low = middle + 1;
+                std::cout << "main[middle] < value_to_find" << std::endl;
+                std::cout << main[middle] << "<" << value_to_find << std::endl;
+            }
+            else if (main[middle] > value_to_find) {
+                high = middle - 1;
+                std::cout << "main[middle] > value_to_find" << std::endl;
+                std::cout << main[middle] << ">" << value_to_find << std::endl;
+            }
+            counter++;
         }
-        else if (main[middle] > value_to_find) {
-            high = middle - 1;
-            std::cout << "main[middle] > value_to_find" << std::endl;
-            std::cout << main[middle] << ">" << value_to_find << std::endl;
-        }
+        main.insert(main.begin() + low, value_to_find);
+        std::cout << "bigger numbers: ";
+        printVec(main);
+        std::cout << "smaller numbers: ";
+        printVec(other);
     }
-
+    std::cout << "counter = " << counter << std::endl;
     return main;
 }
 
