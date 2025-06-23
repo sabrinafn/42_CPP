@@ -253,3 +253,6 @@ Module_09 Random:
     ex02
 
     https://www.geeksforgeeks.org/dsa/binary-search/
+    https://www.w3schools.com/dsa/dsa_algo_binarysearch.php 
+
+    Tutorial for ex02: https://github.com/leske42/CPP09/tree/main
