@@ -39,24 +39,17 @@ void PmergeMe::parseInput(int ac, char **av) {
     }
 }
 
-void PmergeMe::printBefore(void) {
-
-    std::vector<int>::iterator it = numbers_vec.begin();
-    std::cout << "Before: "; 
-    while (it < numbers_vec.end()) {
-        std::cout << *it << " ";
-        it++;
-    }
-    std::cout << std::endl;
-}
-
 void PmergeMe::sort(void) {
 
-    std::cout << "Merge insertion:" << std::endl;
+    std::cout << "=== Merge insertion ===" << std::endl;
 
-    std::vector<int> result = mergeInsertion(numbers_vec);
-    std::cout << "\nResult from mergeInsertion function: ";
-    printVec(result);
+    printVec(getJacobsthal(10));
+
+    std::cout << "Before: ";
+    printVec(numbers_vec);
+    numbers_vec = mergeInsertion(numbers_vec);
+    std::cout << "\nAfter:  ";
+    printVec(numbers_vec);
 
 }
 
@@ -148,3 +141,30 @@ void PmergeMe::printVec(std::vector<int> vec) {
     }
     std::cout << std::endl;
 }
+
+// function to generate jacobsthal sequence, based on the size of the container
+// and return its sequence
+// 1, 1, 3, 5, 11, 21, 43, 85, ...
+std::vector<int> PmergeMe::getJacobsthal(size_t size) {
+
+    std::vector<int> jacobsthal;
+    size_t index = 0;
+    int element = 0;
+    jacobsthal.push_back(element);
+    element++;
+    jacobsthal.push_back(element);
+    while (index < size) {
+        element = element + (jacobsthal[index] * 2);
+        jacobsthal.push_back(element);
+        index++;
+    }
+    printVec(jacobsthal);
+    return jacobsthal;
+}
+
+// function to get sequence to insert, based on the size of the container and on the sequence
+// of jacobsthal. It converts this previous sequence into a valid sequence
+// returns this new sequence based on the jacobsthal sequence
+// 0, 2, 4, 1, 3, ...
+
+// use this last sequence in the for loop of mergeInsertion function

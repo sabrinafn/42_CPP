@@ -27,6 +27,7 @@ class PmergeMe {
         void sort(void);
         std::vector<int> mergeInsertion(std::vector<int> vec);
         void printVec(std::vector<int> vec);
+        std::vector<int> getJacobsthal(size_t size);
 
 };
 
