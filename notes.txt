@@ -91,11 +91,11 @@ Function Pointers
 Fixed Point Number
 
     - It establishes that there is a fixed number of digits after the
-        decimal point. On the other hand, a floating point number can
+        decimal point. A floating point number can, on the other hand, 
         vary on the number of digits after the decimal point.
     - It is stored as a integer in memory, but I am the one who
         interprets this number as a fixed-point value in calculations.
-    - A classe Fixed que criei eh uma maneira de representar numeros 
+    - A classe Fixed que criei é uma maneira de representar numeros 
         nao-inteiros usando apenas inteiros.
 
         https://www.h-schmidt.net/FloatConverter/IEEE754.html
@@ -229,7 +229,6 @@ Containers c++98:
     https://stackoverflow.com/questions/1436020/whats-the-difference-between-deque-and-list-stl-containers
     https://cplusplus.com/reference/stl/
     
-    
 Module_09 Random:
 
     1. Divisible by 4:
@@ -243,10 +242,14 @@ Module_09 Random:
     https://medium.com/@interviewbuddies/reverse-polish-notation-b88524252960
     https://blog.heycoach.in/reverse-polish-notation-rpn-in-c/
 
-https://medium.com/@toukmati2000/cpp09-ford-johnson-algorithm-e6ad43288d4b
-https://dev.to/emuminov/human-explanation-and-step-by-step-visualisation-of-the-ford-johnson-algorithm-5g91
+    https://medium.com/@toukmati2000/cpp09-ford-johnson-algorithm-e6ad43288d4b
+    https://dev.to/emuminov/human-explanation-and-step-by-step-visualisation-of-the-ford-johnson-algorithm-5g91
 
-ex00: std::map<std::string, float> exchange_rates;
-ex01: std::stack<unsigned int>     numbers_stack;
-ex02: std::vector<int>             numbers_vec;
-      std::list<int>               numbers_list;
+    ex00: std::map<std::string, float> exchange_rates;
+    ex01: std::stack<unsigned int>     numbers_stack;
+    ex02: std::vector<int>             numbers_vec;
+          std::list<int>               numbers_list;
+
+    ex02
+
+    https://www.geeksforgeeks.org/dsa/binary-search/
