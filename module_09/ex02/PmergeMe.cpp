@@ -90,8 +90,36 @@ std::vector<int> PmergeMe::mergeInsertion(std::vector<int> vec) {
     if (main.size() == 1) {
         return main;
     }
-
+ 
     main = mergeInsertion(main);
+
+    // binary insertion is the binary search in the main container
+    // to find where to insert the number from other container 
+    // we'll be using either jacobsthal algorithm or another kind
+    int low = 0;
+    int high = main.size() - 1;
+    int value_to_find = other[0];
+    while (low <= high) {
+        int middle = low + (high - low) / 2;
+
+        if (main[middle] == value_to_find) {
+            std::cout << "main[middle] == value_to_find" << std::endl;
+            std::cout << main[middle] << "==" << value_to_find << std::endl;
+            main.insert(main.begin() + middle, value_to_find);
+            break;
+        }
+
+        if (main[middle] < value_to_find) {
+            low = middle + 1;
+            std::cout << "main[middle] < value_to_find" << std::endl;
+            std::cout << main[middle] << "<" << value_to_find << std::endl;
+        }
+        else if (main[middle] > value_to_find) {
+            high = middle - 1;
+            std::cout << "main[middle] > value_to_find" << std::endl;
+            std::cout << main[middle] << ">" << value_to_find << std::endl;
+        }
+    }
 
     return main;
 }

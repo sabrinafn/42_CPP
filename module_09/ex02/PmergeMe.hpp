@@ -5,7 +5,6 @@
 #include <sstream>
 #include <vector>
 #include <list>
-#include <algorithm> // std::is_sorted()
 
 class PmergeMe {
 
@@ -30,7 +29,5 @@ class PmergeMe {
         void printVec(std::vector<int> vec);
 
 };
-
-//std::is_sorted()
 
 #endif
