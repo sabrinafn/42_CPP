@@ -1,12 +1,12 @@
 #include "PmergeMe.hpp"
 
 /* CONSTRUCTORS */
-PmergeMe::PmergeMe() : numbers_vec(), numbers_list() {}
+PmergeMe::PmergeMe(void) : numbers_vec(), numbers_list() {}
 
 PmergeMe::PmergeMe(const PmergeMe &other) { *this = other;}
 
 /* DESTRUCTORS */
-PmergeMe::~PmergeMe() {}
+PmergeMe::~PmergeMe(void) {}
 
 /* OPERATORS */
 PmergeMe& PmergeMe::operator=(const PmergeMe &other) {
@@ -50,8 +50,58 @@ void PmergeMe::printBefore(void) {
     std::cout << std::endl;
 }
 
-void PmergeMe::sort() {
+void PmergeMe::sort(void) {
 
-    std::cout << "help" << std::endl;
+    std::cout << "Merge insertion:" << std::endl;
 
+    std::vector<int> result = mergeInsertion(numbers_vec);
+    std::cout << "\nResult from mergeInsertion function: ";
+    printVec(result);
+
+}
+
+std::vector<int> PmergeMe::mergeInsertion(std::vector<int> vec) {
+
+    std::vector<int>main;
+    std::vector<int>other;
+
+    std::vector<int>::iterator start = vec.begin();
+    std::vector<int>::iterator end = vec.end();
+    
+    while (start < end - 1) {
+        if (*start < *(start + 1)) {
+            other.push_back(*start);
+            main.push_back(*(start + 1));
+        }
+        else {
+            other.push_back(*(start + 1));
+            main.push_back(*start);
+        }
+        start += 2;
+    }
+    if (vec.size() % 2 != 0 && start != end)
+        other.push_back(*start);
+
+    std::cout << "bigger numbers: ";
+    printVec(main);
+    std::cout << "smaller numbers: ";
+    printVec(other);
+
+    if (main.size() == 1) {
+        return main;
+    }
+
+    main = mergeInsertion(main);
+
+    return main;
+}
+
+void PmergeMe::printVec(std::vector<int> vec) {
+
+    std::vector<int>::iterator it = vec.begin();
+    while (it < vec.end()) {
+        std::cout << *it << " ";
+        it++;
+    }
+    std::cout << std::endl;
 }

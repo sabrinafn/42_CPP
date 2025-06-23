@@ -26,6 +26,8 @@ class PmergeMe {
         void parseInput(int ac, char **av);
         void printBefore(void);
         void sort(void);
+        std::vector<int> mergeInsertion(std::vector<int> vec);
+        void printVec(std::vector<int> vec);
 
 };
 
