@@ -253,6 +253,12 @@ Module_09 Random:
     ex02
 
     https://www.geeksforgeeks.org/dsa/binary-search/
-    https://www.w3schools.com/dsa/dsa_algo_binarysearch.php 
+    https://www.w3schools.com/dsa/dsa_algo_binarysearch.php
+
+    // The On-Line Encyclopedia of Integer Sequences
+    https://oeis.org/A001768
+
+    https://en.wikipedia.org/wiki/Merge-insertion_sort
 
     Tutorial for ex02: https://github.com/leske42/CPP09/tree/main
+
