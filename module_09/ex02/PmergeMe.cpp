@@ -43,7 +43,10 @@ void PmergeMe::sort(void) {
 
     std::cout << "=== Merge insertion ===" << std::endl;
 
-    printVec(getJacobsthal(10));
+    if (numbers_vec.size() < 2) {
+        throw std::invalid_argument("Error: container too small to sort");
+    }
+    printVec(getJacobsthal(numbers_vec.size()));
 
     std::cout << "Before: ";
     printVec(numbers_vec);
@@ -60,10 +63,10 @@ std::vector<int> PmergeMe::mergeInsertion(std::vector<int> vec) {
 
     std::vector<int>::iterator start = vec.begin();
     std::vector<int>::iterator end = vec.end();
-    std::cout << "\n";
-    std::cout << "container received as parameter: ";
-    printVec(vec);
-    std::cout << "\n";
+    //std::cout << "\n";
+    //std::cout << "container received as parameter: ";
+    //printVec(vec);
+    //std::cout << "\n";
 
     while (start + 1 < end) {
         if (*start < *(start + 1)) {
@@ -79,10 +82,10 @@ std::vector<int> PmergeMe::mergeInsertion(std::vector<int> vec) {
     if (start != end)
         other.push_back(*start);
 
-    std::cout << "bigger numbers: ";
-    printVec(main);
-    std::cout << "smaller numbers: ";
-    printVec(other);
+    //std::cout << "bigger numbers: ";
+    //printVec(main);
+    //std::cout << "smaller numbers: ";
+    //printVec(other);
 
     if (vec.size() <= 1) {
         return vec;
@@ -103,8 +106,8 @@ std::vector<int> PmergeMe::mergeInsertion(std::vector<int> vec) {
             int middle = low + (high - low) / 2;
 
             if (main[middle] == value_to_find) {
-                std::cout << "main[middle] == value_to_find" << std::endl;
-                std::cout << main[middle] << "==" << value_to_find << std::endl;
+                //std::cout << "main[middle] == value_to_find" << std::endl;
+                //std::cout << main[middle] << "==" << value_to_find << std::endl;
                 main.insert(main.begin() + middle, value_to_find);
                 counter++;
                 break;
@@ -112,21 +115,21 @@ std::vector<int> PmergeMe::mergeInsertion(std::vector<int> vec) {
 
             if (main[middle] < value_to_find) {
                 low = middle + 1;
-                std::cout << "main[middle] < value_to_find" << std::endl;
-                std::cout << main[middle] << "<" << value_to_find << std::endl;
+                //std::cout << "main[middle] < value_to_find" << std::endl;
+                //std::cout << main[middle] << "<" << value_to_find << std::endl;
             }
             else if (main[middle] > value_to_find) {
                 high = middle - 1;
-                std::cout << "main[middle] > value_to_find" << std::endl;
-                std::cout << main[middle] << ">" << value_to_find << std::endl;
+                //std::cout << "main[middle] > value_to_find" << std::endl;
+                //std::cout << main[middle] << ">" << value_to_find << std::endl;
             }
             counter++;
         }
         main.insert(main.begin() + low, value_to_find);
-        std::cout << "bigger numbers: ";
-        printVec(main);
-        std::cout << "smaller numbers: ";
-        printVec(other);
+        //std::cout << "bigger numbers: ";
+        //printVec(main);
+        //std::cout << "smaller numbers: ";
+        //printVec(other);
     }
     std::cout << "counter = " << counter << std::endl;
     return main;
@@ -149,16 +152,16 @@ std::vector<int> PmergeMe::getJacobsthal(size_t size) {
 
     std::vector<int> jacobsthal;
     size_t index = 0;
-    int element = 0;
+    int element = 1;
     jacobsthal.push_back(element);
-    element++;
     jacobsthal.push_back(element);
-    while (index < size) {
+    while (element < (int)size) {
         element = element + (jacobsthal[index] * 2);
         jacobsthal.push_back(element);
         index++;
     }
-    printVec(jacobsthal);
+    jacobsthal.erase(jacobsthal.begin());
+    jacobsthal.pop_back();
     return jacobsthal;
 }
 
@@ -166,5 +169,19 @@ std::vector<int> PmergeMe::getJacobsthal(size_t size) {
 // of jacobsthal. It converts this previous sequence into a valid sequence
 // returns this new sequence based on the jacobsthal sequence
 // 0, 2, 4, 1, 3, ...
+std::vector<size_t> PmergeMe::getInsertionOrder(size_t size) {
 
-// use this last sequence in the for loop of mergeInsertion function
+    std::vector<size_t> sequence;
+
+    std::vector<int> jacobsthal = getJacobsthal(size);
+    std::cout << "Jacobsthal sequence: ";
+    printVec(jacobsthal);
+    std::cout << std::endl;
+
+    
+
+    return sequence;
+}
+
+
+//use this last sequence in the for loop of mergeInsertion function

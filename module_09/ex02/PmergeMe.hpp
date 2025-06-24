@@ -28,6 +28,7 @@ class PmergeMe {
         std::vector<int> mergeInsertion(std::vector<int> vec);
         void printVec(std::vector<int> vec);
         std::vector<int> getJacobsthal(size_t size);
+        std::vector<size_t> getInsertionOrder(size_t size);
 
 };
 
