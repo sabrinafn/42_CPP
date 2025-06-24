@@ -47,20 +47,26 @@ void PmergeMe::parseInput(int ac, char **av) {
 
 void PmergeMe::sort(void) {
 
-    std::cout << "=== Merge insertion ===" << std::endl;
-
     if (numbers_vec.size() < 2) {
         throw std::invalid_argument("Error: container too small to sort");
     }
-    std::vector<int> sequence = getInsertionOrder(numbers_vec.size());
+    std::clock_t start = std::clock();
 
-    std::cout << "Before: ";
+    std::cout << "Before:  ";
     printVec(numbers_vec);
     numbers_vec = mergeInsertion(numbers_vec);
-    std::cout << "\nAfter:  ";
+    std::cout << "After:   ";
     printVec(numbers_vec);
 
-    std::cout << "Number of movements to sort: " << movement_count << std::endl;
+    //std::cout << "Number of movements to sort: " << movement_count << std::endl;
+
+    std::clock_t end = std::clock();
+    
+    double duration = static_cast<double>(end - start) / CLOCKS_PER_SEC;
+
+    std::cout << "Time to process a range of " << numbers_vec.size()
+    << " elements with std::vector : " << std::fixed << std::setprecision(7) << duration
+    << " seconds" << std::endl;
 }
 
 std::vector<int> PmergeMe::mergeInsertion(std::vector<int> vec) {
@@ -180,6 +186,5 @@ std::vector<int> PmergeMe::getInsertionOrder(size_t size) {
             tracker[i] = true;
         }
     }
-    printVec(sequence);
     return sequence;
 }
