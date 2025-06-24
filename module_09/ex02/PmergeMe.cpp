@@ -19,6 +19,7 @@ PmergeMe& PmergeMe::operator=(const PmergeMe &other) {
 
 void PmergeMe::parseInput(int ac, char **av) {
 
+    std::set<int>  check_duplicates;
     for (int i = 1; i < ac; i++) {
         int sign = 0;
         if (av[i][0] == '-')
@@ -28,14 +29,19 @@ void PmergeMe::parseInput(int ac, char **av) {
         std::string arg(av[i]);
         for (size_t j = sign; j < arg.size(); j++) {
             if (!isdigit(arg[j]))
-                throw std::invalid_argument("Error: invalid argument");
+                throw std::invalid_argument("Error: invalid argument1");
         }
+
         std::istringstream iss(arg);
-        long num;
+        int num;
         iss >> num;
 
-        numbers_vec.push_back(static_cast<int>(num));
-        numbers_list.push_back(static_cast<int>(num));
+        if (!check_duplicates.empty() && check_duplicates.find(num) != check_duplicates.end())
+            throw std::invalid_argument("Error: invalid argument2");
+        check_duplicates.insert(num);
+
+        numbers_vec.push_back(num);
+        numbers_list.push_back(num);
     }
 }
 
@@ -97,12 +103,13 @@ std::vector<int> PmergeMe::mergeInsertion(std::vector<int> vec) {
     // binary insertion is the binary search in the main container
     // to find where to insert the number from other container 
     // we'll be using either jacobsthal algorithm or another kind
-
+    std::vector<int> jacob_insertion_order = getInsertionOrder(other.size());
     int counter = 0;
-    for (size_t i = 0; i < other.size(); i++) {
+    for (size_t i = 0; i < jacob_insertion_order.size(); i++) {
         int low = 0;
         int high = main.size() - 1;
-        int value_to_find = other[i]; // iterating through every value of other
+        int index = jacob_insertion_order[i];
+        int value_to_find = other[index]; // iterating through every value of other
         while (low <= high) {
             int middle = low + (high - low) / 2;
 
@@ -173,27 +180,32 @@ std::vector<int> PmergeMe::getJacobsthal(size_t size) {
 std::vector<int> PmergeMe::getInsertionOrder(size_t size) {
 
     std::vector<int> sequence;
+    std::vector<bool> tracker(size, false); // tracker vector to check if index is already in sequence
 
     std::vector<int> jacobsthal = getJacobsthal(size);
-    std::cout << "Jacobsthal sequence: ";
-    printVec(jacobsthal);
-    std::cout << std::endl;
+
+    //std::cout << "Jacobsthal sequence: ";
+    //printVec(jacobsthal);
+    //std::cout << std::endl;
 
     size_t index = 0;
     while (index < jacobsthal.size()) {
     // sequence.push_back(jacobsthal[0] - 1)
         int num = jacobsthal[index] - 1; // working with indexes, not values!
         sequence.push_back(num);
+        tracker[num] = true;
         index++;
     }
     // iterate through numbers.vec
     // check if value in numbers.vec already is there, then skip. else place the new number there
     // use booleans
+
     for (size_t i = 0; i < size; i++) {
-        for (size_t j = 0; j < sequence.size(); j++) {
-            if (sequence[j] != (int)i) {
-                sequence.push_back(i);
-            }
+        //std::cout << "i = " << i << std::endl;
+        if (tracker[i] == false) {
+            //std::cout << "push_back value" << std::endl;
+            sequence.push_back(i);
+            tracker[i] = true;
         }
     }
 

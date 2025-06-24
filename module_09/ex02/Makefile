@@ -16,8 +16,8 @@ all: $(NAME)
 $(NAME): $(OBJFILES)
 	$(CC) $(FLAGS) $(OBJFILES) -o $(NAME)
 
-v:
-	valgrind --leak-check=full --show-leak-kinds=all ./$(NAME)
+v: all
+	valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) 9 8 7 6 5 4 3 2 1
 
 clean: 
 	rm -f $(OBJFILES)
