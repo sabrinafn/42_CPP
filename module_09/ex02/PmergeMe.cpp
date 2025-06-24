@@ -46,7 +46,8 @@ void PmergeMe::sort(void) {
     if (numbers_vec.size() < 2) {
         throw std::invalid_argument("Error: container too small to sort");
     }
-    printVec(getJacobsthal(numbers_vec.size()));
+    //printVec(getJacobsthal(numbers_vec.size()));
+    std::vector<int> sequence = getInsertionOrder(numbers_vec.size());
 
     std::cout << "Before: ";
     printVec(numbers_vec);
@@ -169,17 +170,34 @@ std::vector<int> PmergeMe::getJacobsthal(size_t size) {
 // of jacobsthal. It converts this previous sequence into a valid sequence
 // returns this new sequence based on the jacobsthal sequence
 // 0, 2, 4, 1, 3, ...
-std::vector<size_t> PmergeMe::getInsertionOrder(size_t size) {
+std::vector<int> PmergeMe::getInsertionOrder(size_t size) {
 
-    std::vector<size_t> sequence;
+    std::vector<int> sequence;
 
     std::vector<int> jacobsthal = getJacobsthal(size);
     std::cout << "Jacobsthal sequence: ";
     printVec(jacobsthal);
     std::cout << std::endl;
 
-    
+    size_t index = 0;
+    while (index < jacobsthal.size()) {
+    // sequence.push_back(jacobsthal[0] - 1)
+        int num = jacobsthal[index] - 1; // working with indexes, not values!
+        sequence.push_back(num);
+        index++;
+    }
+    // iterate through numbers.vec
+    // check if value in numbers.vec already is there, then skip. else place the new number there
+    // use booleans
+    for (size_t i = 0; i < size; i++) {
+        for (size_t j = 0; j < sequence.size(); j++) {
+            if (sequence[j] != (int)i) {
+                sequence.push_back(i);
+            }
+        }
+    }
 
+    printVec(sequence);
     return sequence;
 }
 
