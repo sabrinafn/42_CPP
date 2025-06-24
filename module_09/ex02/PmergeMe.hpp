@@ -10,8 +10,9 @@
 class PmergeMe {
 
     private:
-        std::vector<int> numbers_vec;
-        std::list<int> numbers_list;
+        std::vector<int>    numbers_vec;
+        std::list<int>      numbers_list;
+        int                 movement_count;
     public:
         /* CONSTRUCTORS */
         PmergeMe(void);

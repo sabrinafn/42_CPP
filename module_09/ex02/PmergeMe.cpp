@@ -52,7 +52,6 @@ void PmergeMe::sort(void) {
     if (numbers_vec.size() < 2) {
         throw std::invalid_argument("Error: container too small to sort");
     }
-    //printVec(getJacobsthal(numbers_vec.size()));
     std::vector<int> sequence = getInsertionOrder(numbers_vec.size());
 
     std::cout << "Before: ";
@@ -61,19 +60,15 @@ void PmergeMe::sort(void) {
     std::cout << "\nAfter:  ";
     printVec(numbers_vec);
 
+    std::cout << "Number of movements to sort: " << movement_count << std::endl;
 }
 
 std::vector<int> PmergeMe::mergeInsertion(std::vector<int> vec) {
 
     std::vector<int>main;
     std::vector<int>other;
-
     std::vector<int>::iterator start = vec.begin();
     std::vector<int>::iterator end = vec.end();
-    //std::cout << "\n";
-    //std::cout << "container received as parameter: ";
-    //printVec(vec);
-    //std::cout << "\n";
 
     while (start + 1 < end) {
         if (*start < *(start + 1)) {
@@ -88,11 +83,6 @@ std::vector<int> PmergeMe::mergeInsertion(std::vector<int> vec) {
     }
     if (start != end)
         other.push_back(*start);
-
-    //std::cout << "bigger numbers: ";
-    //printVec(main);
-    //std::cout << "smaller numbers: ";
-    //printVec(other);
 
     if (vec.size() <= 1) {
         return vec;
@@ -114,8 +104,6 @@ std::vector<int> PmergeMe::mergeInsertion(std::vector<int> vec) {
             int middle = low + (high - low) / 2;
 
             if (main[middle] == value_to_find) {
-                //std::cout << "main[middle] == value_to_find" << std::endl;
-                //std::cout << main[middle] << "==" << value_to_find << std::endl;
                 main.insert(main.begin() + middle, value_to_find);
                 counter++;
                 break;
@@ -123,23 +111,15 @@ std::vector<int> PmergeMe::mergeInsertion(std::vector<int> vec) {
 
             if (main[middle] < value_to_find) {
                 low = middle + 1;
-                //std::cout << "main[middle] < value_to_find" << std::endl;
-                //std::cout << main[middle] << "<" << value_to_find << std::endl;
             }
             else if (main[middle] > value_to_find) {
                 high = middle - 1;
-                //std::cout << "main[middle] > value_to_find" << std::endl;
-                //std::cout << main[middle] << ">" << value_to_find << std::endl;
             }
             counter++;
         }
         main.insert(main.begin() + low, value_to_find);
-        //std::cout << "bigger numbers: ";
-        //printVec(main);
-        //std::cout << "smaller numbers: ";
-        //printVec(other);
     }
-    std::cout << "counter = " << counter << std::endl;
+    movement_count = counter;
     return main;
 }
 
@@ -181,37 +161,25 @@ std::vector<int> PmergeMe::getInsertionOrder(size_t size) {
 
     std::vector<int> sequence;
     std::vector<bool> tracker(size, false); // tracker vector to check if index is already in sequence
-
     std::vector<int> jacobsthal = getJacobsthal(size);
-
-    //std::cout << "Jacobsthal sequence: ";
-    //printVec(jacobsthal);
-    //std::cout << std::endl;
 
     size_t index = 0;
     while (index < jacobsthal.size()) {
-    // sequence.push_back(jacobsthal[0] - 1)
         int num = jacobsthal[index] - 1; // working with indexes, not values!
         sequence.push_back(num);
         tracker[num] = true;
         index++;
     }
+
     // iterate through numbers.vec
     // check if value in numbers.vec already is there, then skip. else place the new number there
     // use booleans
-
     for (size_t i = 0; i < size; i++) {
-        //std::cout << "i = " << i << std::endl;
         if (tracker[i] == false) {
-            //std::cout << "push_back value" << std::endl;
             sequence.push_back(i);
             tracker[i] = true;
         }
     }
-
     printVec(sequence);
     return sequence;
 }
-
-
-//use this last sequence in the for loop of mergeInsertion function
