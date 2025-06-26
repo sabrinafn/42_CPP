@@ -4,7 +4,7 @@
 #include <iostream>
 #include <sstream>
 #include <vector> // container
-#include <list> // container
+#include <deque> // container
 #include <set> // container
 #include <ctime>
 #include <iomanip>
@@ -14,9 +14,49 @@ class PmergeMe {
 
     private:
         std::vector<int>    numbers_vec;
-        std::list<int>      numbers_list;
-        int                 movement_count;
-        unsigned int        start_time;
+        std::deque<int>     numbers_deq;
+        int                 movement_count_vec;
+        int                 movement_count_deq;
+
+        void sortVector(void);
+        std::vector<int> mergeInsertionVec(std::vector<int> vec);
+        std::vector<int> getInsertionOrderVec(size_t size);
+
+        void sortDeque(void);
+        std::deque<int> mergeInsertionDeq(std::deque<int> deq);
+        std::deque<int> getInsertionOrderDeq(size_t size);
+
+
+        // method to print containers
+        template <typename T_container>
+        void printContainer(T_container& container) {
+            typename T_container::iterator it = container.begin();
+            while (it < container.end()) {
+                std::cout << *it << " ";
+                it++;
+            }
+            std::cout << std::endl;
+        }
+
+        // method to generate jacobsthal sequence based on the size of the container.
+        // returns the sequence
+        // 1, 1, 3, 5, 11, 21, 43, 85, ... 
+        template <typename T_container>
+        T_container getJacobsthal(size_t size) {
+            T_container jacobsthal;
+            size_t index = 0;
+            int element = 1;
+            jacobsthal.push_back(element);
+            jacobsthal.push_back(element);
+            while (element < (int)size) {
+                element = element + (jacobsthal[index] * 2);
+                jacobsthal.push_back(element);
+                index++;
+            }
+            jacobsthal.erase(jacobsthal.begin());
+            jacobsthal.pop_back();
+            return jacobsthal;
+        }
 
     public:
         /* CONSTRUCTORS */
@@ -30,12 +70,8 @@ class PmergeMe {
         PmergeMe& operator=(const PmergeMe &other);
 
         void parseInput(int ac, char **av);
-        void printBefore(void);
         void sort(void);
-        std::vector<int> mergeInsertion(std::vector<int> vec);
-        void printVec(std::vector<int> vec);
-        std::vector<int> getJacobsthal(size_t size);
-        std::vector<int> getInsertionOrder(size_t size);
+
 };
 
 #endif

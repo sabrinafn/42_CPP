@@ -1,7 +1,7 @@
 #include "PmergeMe.hpp"
 
 /* CONSTRUCTORS */
-PmergeMe::PmergeMe(void) : numbers_vec(), numbers_list() {}
+PmergeMe::PmergeMe(void) : numbers_vec(), numbers_deq(), movement_count_vec(0), movement_count_deq(0) {}
 
 PmergeMe::PmergeMe(const PmergeMe &other) { *this = other;}
 
@@ -12,7 +12,7 @@ PmergeMe::~PmergeMe(void) {}
 PmergeMe& PmergeMe::operator=(const PmergeMe &other) {
     if (this != &other) {
         this->numbers_vec = other.numbers_vec;
-        this->numbers_list = other.numbers_list;
+        this->numbers_deq = other.numbers_deq;
     }
     return *this;
 }
@@ -41,35 +41,52 @@ void PmergeMe::parseInput(int ac, char **av) {
         check_duplicates.insert(num);
 
         numbers_vec.push_back(num);
-        numbers_list.push_back(num);
+        numbers_deq.push_back(num);
     }
 }
 
 void PmergeMe::sort(void) {
 
-    if (numbers_vec.size() < 2) {
-        throw std::invalid_argument("Error: container too small to sort");
-    }
-    std::clock_t start = std::clock();
-
-    std::cout << "Before:  ";
-    printVec(numbers_vec);
-    numbers_vec = mergeInsertion(numbers_vec);
-    std::cout << "After:   ";
-    printVec(numbers_vec);
-
-    //std::cout << "Number of movements to sort: " << movement_count << std::endl;
-
-    std::clock_t end = std::clock();
+    std::clock_t start_deque = std::clock();
+    sortDeque();
+    std::clock_t end_deque = std::clock();
     
-    double duration = static_cast<double>(end - start) / CLOCKS_PER_SEC;
+    std::cout << "Before:  ";
+    printContainer(numbers_vec);
+    std::clock_t start_vector = std::clock();
+    sortVector();
+    std::clock_t end_vector = std::clock();
+    std::cout << "After:   ";
+    printContainer(numbers_vec);
+    std::cout << "After:   ";
+    printContainer(numbers_deq);
+
+    std::cout << "Movement count with std::vector : " << movement_count_vec << std::endl;
+    std::cout << "Movement count with std::deque  : " << movement_count_deq << std::endl;
+
+    
+    double duration = static_cast<double>(end_vector - start_vector) / CLOCKS_PER_SEC;
 
     std::cout << "Time to process a range of " << numbers_vec.size()
     << " elements with std::vector : " << std::fixed << std::setprecision(7) << duration
     << " seconds" << std::endl;
+
+    duration = static_cast<double>(end_deque - start_deque) / CLOCKS_PER_SEC;
+
+    std::cout << "Time to process a range of " << numbers_deq.size()
+    << " elements with std::deque  : " << std::fixed << std::setprecision(7) << duration
+    << " seconds" << std::endl;
 }
 
-std::vector<int> PmergeMe::mergeInsertion(std::vector<int> vec) {
+void PmergeMe::sortVector(void) {
+    if (numbers_vec.size() == 1) {
+        std::cout << "return size == 1" << std::endl;
+        return;
+    }
+    numbers_vec = mergeInsertionVec(numbers_vec);
+}
+
+std::vector<int> PmergeMe::mergeInsertionVec(std::vector<int> vec) {
 
     std::vector<int>main;
     std::vector<int>other;
@@ -94,12 +111,12 @@ std::vector<int> PmergeMe::mergeInsertion(std::vector<int> vec) {
         return vec;
     }
  
-    main = mergeInsertion(main);
+    main = mergeInsertionVec(main);
 
     // binary insertion is the binary search in the main container
     // to find where to insert the number from other container 
     // we'll be using either jacobsthal algorithm or another kind
-    std::vector<int> jacob_insertion_order = getInsertionOrder(other.size());
+    std::vector<int> jacob_insertion_order = getInsertionOrderVec(other.size());
     int counter = 0;
     for (size_t i = 0; i < jacob_insertion_order.size(); i++) {
         int low = 0;
@@ -125,61 +142,132 @@ std::vector<int> PmergeMe::mergeInsertion(std::vector<int> vec) {
         }
         main.insert(main.begin() + low, value_to_find);
     }
-    movement_count = counter;
+    movement_count_vec = counter;
     return main;
 }
 
-void PmergeMe::printVec(std::vector<int> vec) {
 
-    std::vector<int>::iterator it = vec.begin();
-    while (it < vec.end()) {
-        std::cout << *it << " ";
-        it++;
-    }
-    std::cout << std::endl;
-}
+// function to get sequence to insert, based on the size of the container and on the sequence
+// of jacobsthal. It converts this previous sequence into a valid sequence
+// returns this new sequence based on the jacobsthal sequence
+// 0, 2, 4, 1, 3, ...
+std::vector<int> PmergeMe::getInsertionOrderVec(size_t size) {
 
-// function to generate jacobsthal sequence, based on the size of the container
-// and return its sequence
-// 1, 1, 3, 5, 11, 21, 43, 85, ...
-std::vector<int> PmergeMe::getJacobsthal(size_t size) {
+    std::vector<int> sequence;
+    std::vector<bool> tracker(size, false); // tracker vector to check if index is already in sequence
+    std::vector<int> jacobsthal = getJacobsthal<std::vector<int> >(size);
 
-    std::vector<int> jacobsthal;
     size_t index = 0;
-    int element = 1;
-    jacobsthal.push_back(element);
-    jacobsthal.push_back(element);
-    while (element < (int)size) {
-        element = element + (jacobsthal[index] * 2);
-        jacobsthal.push_back(element);
+    while (index < jacobsthal.size()) {
+        int num = jacobsthal[index] - 1;
+        sequence.push_back(num);
+        tracker[num] = true;
         index++;
     }
-    jacobsthal.erase(jacobsthal.begin());
-    jacobsthal.pop_back();
-    return jacobsthal;
+
+    // iterate through container
+    // check if value is not already there with boolean tracker   
+    // then place the new value there
+    for (size_t i = 0; i < size; i++) {
+        if (tracker[i] == false) {
+            sequence.push_back(i);
+            tracker[i] = true;
+        }
+    }
+    return sequence;
+}
+
+
+/************************************************************************/
+
+
+void PmergeMe::sortDeque(void) {
+    if (numbers_deq.size() == 1)
+        return;
+    numbers_deq = mergeInsertionDeq(numbers_deq);
+}
+
+std::deque<int> PmergeMe::mergeInsertionDeq(std::deque<int> deq) {
+
+    std::deque<int>main;
+    std::deque<int>other;
+    std::deque<int>::iterator start = deq.begin();
+    std::deque<int>::iterator end = deq.end();
+
+    while (start + 1 < end) {
+        if (*start < *(start + 1)) {
+            other.push_back(*start);
+            main.push_back(*(start + 1));
+        }
+        else {
+            other.push_back(*(start + 1));
+            main.push_back(*start);
+        }
+        start += 2;
+    }
+    if (start != end)
+        other.push_back(*start);
+
+    if (deq.size() <= 1) {
+        return deq;
+    }
+ 
+    main = mergeInsertionDeq(main);
+
+    // binary insertion is the binary search in the main container
+    // to find where to insert the number from other container 
+    // we'll be using either jacobsthal algorithm or another kind
+    std::deque<int> jacob_insertion_order = getInsertionOrderDeq(other.size());
+    int counter = 0;
+    for (size_t i = 0; i < jacob_insertion_order.size(); i++) {
+        int low = 0;
+        int high = main.size() - 1;
+        int current_index = jacob_insertion_order[i];
+        int value_to_insert = other[current_index];
+        while (low <= high) {
+            int middle = low + (high - low) / 2;
+
+            if (main[middle] == value_to_insert) {
+                main.insert(main.begin() + middle, value_to_insert);
+                counter++;
+                break;
+            }
+
+            if (main[middle] < value_to_insert) {
+                low = middle + 1;
+            }
+            else if (main[middle] > value_to_insert) {
+                high = middle - 1;
+            }
+            counter++;
+        }
+        main.insert(main.begin() + low, value_to_insert);
+    }
+    movement_count_deq = counter;
+    return main;
 }
 
 // function to get sequence to insert, based on the size of the container and on the sequence
 // of jacobsthal. It converts this previous sequence into a valid sequence
 // returns this new sequence based on the jacobsthal sequence
 // 0, 2, 4, 1, 3, ...
-std::vector<int> PmergeMe::getInsertionOrder(size_t size) {
+std::deque<int> PmergeMe::getInsertionOrderDeq(size_t size) {
 
-    std::vector<int> sequence;
-    std::vector<bool> tracker(size, false); // tracker vector to check if index is already in sequence
-    std::vector<int> jacobsthal = getJacobsthal(size);
+    std::deque<int> sequence;
+    std::deque<bool> tracker(size, false); // tracker deque to check if index is already in sequence
+    std::deque<int> jacobsthal = getJacobsthal<std::deque<int> >(size);
 
     size_t index = 0;
     while (index < jacobsthal.size()) {
-        int num = jacobsthal[index] - 1; // working with indexes, not values!
+        int num = jacobsthal[index] - 1;
         sequence.push_back(num);
         tracker[num] = true;
         index++;
     }
 
-    // iterate through numbers.vec
-    // check if value in numbers.vec already is there, then skip. else place the new number there
-    // use booleans
+    // iterate through container
+    // check if value is not already there with boolean tracker   
+    // then place the new value there
     for (size_t i = 0; i < size; i++) {
         if (tracker[i] == false) {
             sequence.push_back(i);
