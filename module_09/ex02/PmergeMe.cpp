@@ -28,7 +28,7 @@ void PmergeMe::parseInput(int ac, char **av) {
         std::string arg(av[i]);
         for (size_t j = 0; j < arg.size(); j++) {
             if (!isdigit(arg[j]))
-                throw std::invalid_argument("Error: invalid argument1");
+                throw std::invalid_argument("Error: value is not a digit");
         }
 
         std::istringstream iss(arg);
@@ -36,7 +36,7 @@ void PmergeMe::parseInput(int ac, char **av) {
         iss >> num;
 
         if (check_duplicates.find(num) != check_duplicates.end())
-            throw std::invalid_argument("Error: invalid argument2");
+            throw std::invalid_argument("Error: duplicate values not allowed");
         check_duplicates.insert(num);
 
         numbers_vec.push_back(num);
@@ -50,14 +50,14 @@ void PmergeMe::sort(void) {
     sortDeque();
     std::clock_t end_deque = std::clock();
     
-    std::cout << "Before:  ";
+    std::cout << "Before              :  ";
     printContainer(numbers_vec);
     std::clock_t start_vector = std::clock();
     sortVector();
     std::clock_t end_vector = std::clock();
-    std::cout << "After:   ";
+    std::cout << "After (std::vector) :  ";
     printContainer(numbers_vec);
-    std::cout << "After:   ";
+    std::cout << "After (std::deque)  :  ";
     printContainer(numbers_deq);
 
     std::cout << "Movement count with std::vector : " << movement_count_vec << std::endl;
