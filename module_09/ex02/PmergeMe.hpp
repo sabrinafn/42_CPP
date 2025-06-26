@@ -35,7 +35,7 @@ class PmergeMe {
         template <typename T_container>
         void printContainer(T_container& container) {
             typename T_container::iterator it = container.begin();
-            while (it < container.end()) {
+            while (it != container.end()) {
                 std::cout << *it << " ";
                 it++;
             }

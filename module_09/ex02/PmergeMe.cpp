@@ -21,13 +21,12 @@ void PmergeMe::parseInput(int ac, char **av) {
 
     std::set<int>  check_duplicates;
     for (int i = 1; i < ac; i++) {
-        int sign = 0;
         if (av[i][0] == '-')
             throw std::invalid_argument("Error: negative value not allowed");
         if (av[i][0] == '+')
-            sign = 1;
+            throw std::invalid_argument("Error: unsigned values only");
         std::string arg(av[i]);
-        for (size_t j = sign; j < arg.size(); j++) {
+        for (size_t j = 0; j < arg.size(); j++) {
             if (!isdigit(arg[j]))
                 throw std::invalid_argument("Error: invalid argument1");
         }
@@ -36,7 +35,7 @@ void PmergeMe::parseInput(int ac, char **av) {
         int num;
         iss >> num;
 
-        if (!check_duplicates.empty() && check_duplicates.find(num) != check_duplicates.end())
+        if (check_duplicates.find(num) != check_duplicates.end())
             throw std::invalid_argument("Error: invalid argument2");
         check_duplicates.insert(num);
 
