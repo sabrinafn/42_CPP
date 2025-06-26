@@ -85,6 +85,12 @@ void PmergeMe::sortVector(void) {
     numbers_vec = mergeInsertionVec(numbers_vec);
 }
 
+void PmergeMe::sortDeque(void) {
+    if (numbers_deq.size() == 1)
+        return;
+    numbers_deq = mergeInsertionDeq(numbers_deq);
+}
+
 std::vector<int> PmergeMe::mergeInsertionVec(std::vector<int> vec) {
 
     std::vector<int>main;
@@ -145,7 +151,6 @@ std::vector<int> PmergeMe::mergeInsertionVec(std::vector<int> vec) {
     return main;
 }
 
-
 // function to get sequence to insert, based on the size of the container and on the sequence
 // of jacobsthal. It converts this previous sequence into a valid sequence
 // returns this new sequence based on the jacobsthal sequence
@@ -176,15 +181,6 @@ std::vector<int> PmergeMe::getInsertionOrderVec(size_t size) {
     return sequence;
 }
 
-
-/************************************************************************/
-
-
-void PmergeMe::sortDeque(void) {
-    if (numbers_deq.size() == 1)
-        return;
-    numbers_deq = mergeInsertionDeq(numbers_deq);
-}
 
 std::deque<int> PmergeMe::mergeInsertionDeq(std::deque<int> deq) {
 
