@@ -5,7 +5,7 @@
 #include <sstream>
 #include <vector> // container
 #include <deque> // container
-#include <set> // container
+#include <set> // container for error check only
 #include <ctime>
 #include <iomanip>
 
@@ -18,6 +18,8 @@ class PmergeMe {
         int                 movement_count_vec;
         int                 movement_count_deq;
 
+        /* PRIVATE METHODS */
+
         void sortVector(void);
         std::vector<int> mergeInsertionVec(std::vector<int> vec);
         std::vector<int> getInsertionOrderVec(size_t size);
@@ -26,6 +28,8 @@ class PmergeMe {
         std::deque<int> mergeInsertionDeq(std::deque<int> deq);
         std::deque<int> getInsertionOrderDeq(size_t size);
 
+
+        /* TEMPLATES */
 
         // method to print containers
         template <typename T_container>
@@ -39,8 +43,7 @@ class PmergeMe {
         }
 
         // method to generate jacobsthal sequence based on the size of the container.
-        // returns the sequence
-        // 1, 1, 3, 5, 11, 21, 43, 85, ... 
+        // returns the sequence 1, 1, 3, 5, 11, 21, 43, 85, ... 
         template <typename T_container>
         T_container getJacobsthal(size_t size) {
             T_container jacobsthal;
@@ -48,7 +51,7 @@ class PmergeMe {
             int element = 1;
             jacobsthal.push_back(element);
             jacobsthal.push_back(element);
-            while (element < (int)size) {
+            while (element <= (int)size) {
                 element = element + (jacobsthal[index] * 2);
                 jacobsthal.push_back(element);
                 index++;
@@ -69,6 +72,7 @@ class PmergeMe {
         /* OPERATORS */
         PmergeMe& operator=(const PmergeMe &other);
 
+        /* PUBLIC METHODS */
         void parseInput(int ac, char **av);
         void sort(void);
 
