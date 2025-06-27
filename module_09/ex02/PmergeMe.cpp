@@ -42,6 +42,8 @@ void PmergeMe::parseInput(int ac, char **av) {
         numbers_vec.push_back(num);
         numbers_deq.push_back(num);
     }
+    if (numbers_vec.empty())
+        throw std::invalid_argument("Error: empty input");
 }
 
 void PmergeMe::sort(void) {
@@ -60,8 +62,9 @@ void PmergeMe::sort(void) {
     std::cout << "After (std::deque)  :  ";
     printContainer(numbers_deq);
 
-    std::cout << "Movement count with std::vector : " << movement_count_vec << std::endl;
-    std::cout << "Movement count with std::deque  : " << movement_count_deq << std::endl;
+    // checking movements (not required by subject
+    //std::cout << "Movement count with std::vector : " << movement_count_vec << std::endl;
+    //std::cout << "Movement count with std::deque  : " << movement_count_deq << std::endl;
 
     
     double duration = static_cast<double>(end_vector - start_vector) / CLOCKS_PER_SEC;
@@ -79,7 +82,6 @@ void PmergeMe::sort(void) {
 
 void PmergeMe::sortVector(void) {
     if (numbers_vec.size() == 1) {
-        std::cout << "return size == 1" << std::endl;
         return;
     }
     numbers_vec = mergeInsertionVec(numbers_vec);

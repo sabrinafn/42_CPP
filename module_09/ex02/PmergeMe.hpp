@@ -13,8 +13,11 @@
 class PmergeMe {
 
     private:
+        /* CONTAINERS */
         std::vector<int>    numbers_vec;
         std::deque<int>     numbers_deq;
+
+        /* ATTRIBUTES */
         int                 movement_count_vec;
         int                 movement_count_deq;
 
