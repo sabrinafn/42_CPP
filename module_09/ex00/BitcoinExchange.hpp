@@ -1,13 +1,16 @@
 #ifndef BITCOINEXCHANGE_HPP
 #define BITCOINEXCHANGE_HPP
 
-#include "colors.hpp"
 #include <iostream>
 #include <map>
 #include <fstream>
 #include <sstream>
 #include <cstdlib>
 #include <algorithm>
+
+#define RESET       "\033[0m"
+#define RED         "\033[31m"
+#define GREEN       "\033[32m"
 
 class BitcoinExchange {
 
@@ -20,7 +23,7 @@ class BitcoinExchange {
         std::map<std::string, float>    parseDataFile(const std::string &arg) const;
         bool                            isDateValid(const std::string &date) const;
         bool                            isValueValid(const std::string &value, bool check_limits) const;
-        int                             getFebruaryDays(int &year) const;
+        int                             getFebruaryDays(int year) const;
         float                           strToFloat(const std::string &str) const;
         void                            printBadInputMessage(const std::string &msg, const std::string &error) const;
     

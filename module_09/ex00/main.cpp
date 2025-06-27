@@ -3,13 +3,19 @@
 int main(int ac, char **av) {
 
     if (ac != 2) {
-        std::cerr << "Error! Wrong number of arguments." << std::endl;
+        std::cerr << "Error: wrong number of arguments." << std::endl;
         return 1;
     }
     
-    std::ifstream input_file(av[1]); // std::ifstream == open file
-    if (!input_file.is_open()) { // is_open == check if file is open
-        std::cerr << "Error. Could not open file received as argument." << std::endl;
+    std::ifstream input_file(av[1]);
+    if (!input_file.is_open()) {
+        std::cerr << "Error: failed to open the input file: " << av[1] << std::endl;
+        std::cerr << "Usage: ./btc <input_file>" << std::endl;
+        return 1;
+    }
+    else if (input_file.peek() == EOF) {
+        std::cerr << "Error: empty file: " << av[1] << std::endl;
+        std::cerr << "Usage: ./btc <input_file>" << std::endl;
         return 1;
     }
 
