@@ -241,6 +241,7 @@ Module_09 Random:
     RPN: 
     https://medium.com/@interviewbuddies/reverse-polish-notation-b88524252960
     https://blog.heycoach.in/reverse-polish-notation-rpn-in-c/
+    https://www.youtube.com/watch?v=7ha78yWRDlE&ab_channel=Computerphile
 
     https://medium.com/@toukmati2000/cpp09-ford-johnson-algorithm-e6ad43288d4b
     https://dev.to/emuminov/human-explanation-and-step-by-step-visualisation-of-the-ford-johnson-algorithm-5g91
