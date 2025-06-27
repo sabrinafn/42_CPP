@@ -26,17 +26,17 @@ void RPN::parseExpression(const std::string &expression) {
         char c = expression[i];
         if (i % 2 != 0) {
             if (c != ' ')
-                throw std::invalid_argument("Error: invalid inverted Polish mathematical expression");
+                throw std::invalid_argument("Error: expression must have spaces between each character");
         }
         else if (isdigit(c))
             digit_count++;
         else if (OPERATORS.find(c) != std::string::npos)
             operator_count++;
         else
-            throw std::invalid_argument("Error: invalid inverted Polish mathematical expression");
+            throw std::invalid_argument("Error: expression contains an invalid character: '" + std::string(1, c) + "'");
     }
     if (operator_count != digit_count - 1)
-        throw std::invalid_argument("Error: invalid inverted Polish mathematical expression");
+        throw std::invalid_argument("Error: invalid number of operators or operands");
 }
 
 int  RPN::process(const std::string &expression) {
