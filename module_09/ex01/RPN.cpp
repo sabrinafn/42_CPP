@@ -20,23 +20,33 @@ void RPN::parseExpression(const std::string &expression) {
     // numbers 0 to 9 and operators "+ - / *"
     // validate spaces between each digit
     // number of operators = number of operands - 1
+
+    if (expression.empty())
+        throw std::invalid_argument("Error: empty input");
+
+    std::istringstream iss(expression);
+    std::string token;
     int digit_count = 0;
     int operator_count = 0;
-    for (size_t i = 0; i < expression.length(); i++) {
-        char c = expression[i];
-        if (i % 2 != 0) {
-            if (c != ' ')
-                throw std::invalid_argument("Error: expression must have spaces between each character");
-        }
-        else if (isdigit(c))
+
+    while (iss >> token) {
+        if (token.length() == 1 && isdigit(token[0])) 
             digit_count++;
-        else if (OPERATORS.find(c) != std::string::npos)
+        else if (token.length() == 1 && OPERATORS.find(token[0]) != std::string::npos)
             operator_count++;
+        else if (token.length() > 1 && isdigit(token[1])) 
+            throw std::invalid_argument("Error: invalid number (allowed: 0 to 9)");
         else
-            throw std::invalid_argument("Error: expression contains an invalid character: '" + std::string(1, c) + "'");
+            throw std::invalid_argument("Error: invalid character '" + std::string(1,token[0]) + "'");
     }
-    if (operator_count != digit_count - 1)
-        throw std::invalid_argument("Error: invalid number of operators or operands");
+    if (digit_count == 0 && operator_count == 0)
+        throw std::invalid_argument("Error: no operands and no operators");
+    else if (digit_count == 0 && operator_count != 0)
+        throw std::invalid_argument("Error: no operands");
+    else if (digit_count != 0 && operator_count == 0)
+        throw std::invalid_argument("Error: no operators");
+    else if (operator_count != digit_count - 1)
+        throw std::invalid_argument("Error: insufficient operands for operator");
 }
 
 int  RPN::process(const std::string &expression) {
@@ -47,7 +57,7 @@ int  RPN::process(const std::string &expression) {
 
     while (iss >> token) {
         if (isdigit(token[0])) {
-            int num = strToInt(token);
+            long num = strToInt(token);
             numbers_stack.push(num);
         }
         else {
@@ -66,7 +76,7 @@ int  RPN::process(const std::string &expression) {
                     break;
                 case '/':
                     if (first_num == 0)
-                        throw std::invalid_argument("Error: division by zero not allowed");
+                        throw std::invalid_argument("Error: division by zero is not allowed");
                     numbers_stack.push(second_num / first_num);
                     break;
             }

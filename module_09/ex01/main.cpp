@@ -5,7 +5,6 @@ int main(int ac, char **av) {
     if (ac != 2) {
         std::cerr << "Error: invalid number of arguments" << std::endl;
         std::cerr << "Usage: ./rpn \"<expression>\"" << std::endl;
-
         return 1;
     }
 

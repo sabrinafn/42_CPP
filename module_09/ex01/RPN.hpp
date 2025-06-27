@@ -11,12 +11,14 @@ class RPN {
 
     private:
         /* CONTAINER */
-        std::stack<unsigned int>    numbers_stack;
-        const std::string           OPERATORS;
+        std::stack<int>     numbers_stack;
+
+        /* ATTRIBUTE */
+        const std::string   OPERATORS;
 
         /* PRIVATE METHODS */
-        void parseExpression(const std::string &expression);
-        int  strToInt(const std::string &str) const;
+        void    parseExpression(const std::string &expression);
+        int     strToInt(const std::string &str) const;
 
     public:
         /* CONSTRUCTORS */
@@ -31,7 +33,6 @@ class RPN {
 
         /* PUBLIC METHODS */
         int  process(const std::string &expression);
-
 };
 
 #endif
