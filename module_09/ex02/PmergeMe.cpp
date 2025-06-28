@@ -19,16 +19,23 @@ PmergeMe& PmergeMe::operator=(const PmergeMe &other) {
 
 void PmergeMe::parseInput(int ac, char **av) {
 
+    if (ac <= 1)
+        throw std::invalid_argument("missing argument");
+
     std::set<int>  check_duplicates;
     for (int i = 1; i < ac; i++) {
-        if (av[i][0] == '-')
-            throw std::invalid_argument("Error: negative value not allowed");
-        if (av[i][0] == '+')
-            throw std::invalid_argument("Error: unsigned values only");
         std::string arg(av[i]);
+        if (arg[0] == '-')
+            throw std::invalid_argument("negative value not allowed");
+        if (arg[0] == '+')
+            throw std::invalid_argument("unsigned values only");
+        if (arg.empty())
+            throw std::invalid_argument("empty input");
         for (size_t j = 0; j < arg.size(); j++) {
+            if (isspace(arg[j]))
+                throw std::invalid_argument("each value must be a separate argument");
             if (!isdigit(arg[j]))
-                throw std::invalid_argument("Error: value is not a digit");
+                throw std::invalid_argument("value is not a digit");
         }
 
         std::istringstream iss(arg);
@@ -36,14 +43,12 @@ void PmergeMe::parseInput(int ac, char **av) {
         iss >> num;
 
         if (check_duplicates.find(num) != check_duplicates.end())
-            throw std::invalid_argument("Error: duplicate values not allowed");
+            throw std::invalid_argument("duplicate values not allowed");
         check_duplicates.insert(num);
 
         numbers_vec.push_back(num);
         numbers_deq.push_back(num);
     }
-    if (numbers_vec.empty())
-        throw std::invalid_argument("Error: empty input");
 }
 
 void PmergeMe::sort(void) {

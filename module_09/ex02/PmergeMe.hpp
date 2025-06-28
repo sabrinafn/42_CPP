@@ -30,8 +30,7 @@ class PmergeMe {
         void sortDeque(void);
         std::deque<int> mergeInsertionDeq(std::deque<int> deq);
         std::deque<int> getInsertionOrderDeq(size_t size);
-
-
+        
         /* TEMPLATES */
 
         // method to print containers

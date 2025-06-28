@@ -46,9 +46,14 @@ test: all
 	@./$(NAME) "-1" "2"
 	@echo "$(RED)Input: 3 1 4 2 3 $(RESET)"
 	@./$(NAME) 3 1 4 2 3
-	@echo "$(RED)Input: \"\" $(RESET)"
+	@echo "$(RED)Input: \"\"$(RESET)"
 	@./$(NAME) ""
-	@echo "needs to throw error for empty"
+	@echo "$(RED)Input: \"9 1 56 832 92 0 43\"$(RESET)"
+	@./$(NAME) "9 1 56 832 92 0 43"
+	@echo "$(RED)Input: \"\" 3 2$(RESET)"
+	@./$(NAME) "" 3 2
+	@echo "$(RED)Input: 42 \"\"$(RESET)"
+	@./$(NAME) 42 ""
 
 clean: 
 	rm -f $(OBJFILES)
