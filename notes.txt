@@ -263,3 +263,5 @@ Module_09 Random:
 
     Tutorial for ex02: https://github.com/leske42/CPP09/tree/main
 
+// C++98 cheatsheet
+https://github.com/mdabir1203/42_Object_Oriented_Cheatsheets
