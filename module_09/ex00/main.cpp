@@ -4,6 +4,7 @@ int main(int ac, char **av) {
 
     if (ac != 2) {
         std::cerr << "Error: wrong number of arguments." << std::endl;
+        std::cerr << "Usage: ./btc <input_file>" << std::endl;
         return 1;
     }
     
