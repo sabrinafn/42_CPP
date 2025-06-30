@@ -13,7 +13,7 @@ class RPN {
         /* CONTAINER */
         std::stack<int>     numbers_stack;
 
-        /* ATTRIBUTE */
+        /* CONST */
         const std::string   OPERATORS;
 
         /* PRIVATE METHODS */
