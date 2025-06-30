@@ -18,7 +18,6 @@ RPN& RPN::operator=(const RPN &other) {
 
 void RPN::parseExpression(const std::string &expression) {
     // numbers 0 to 9 and operators "+ - / *"
-    // validate spaces between each digit
     // number of operators = number of operands - 1
 
     if (expression.empty())
