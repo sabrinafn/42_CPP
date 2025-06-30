@@ -257,7 +257,7 @@ Module_09 Random:
     https://www.w3schools.com/dsa/dsa_algo_binarysearch.php
 
     // The On-Line Encyclopedia of Integer Sequences
-    https://oeis.org/A001768
+    https://oeis.org/A001768 // CORRECT ONE
 
     https://en.wikipedia.org/wiki/Merge-insertion_sort
 
